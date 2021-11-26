@@ -82,29 +82,49 @@ namespace WinIO.FluentWPF.Utility
 
         internal static AccentState SelectAccentState(AcrylicAccentState state = AcrylicAccentState.Default)
         {
-            // ウィンドウのアクリル効果を設定する
-            AccentState value = state switch
+            AccentState value = AccentState.ACCENT_DISABLED;
+            switch (state)
             {
-                // ウィンドウ背景のぼかしを行うのはWindows10の場合のみ
-                // OSのバージョンに従い、AccentStateを切り替える
-                AcrylicAccentState.Default => SystemInfo.Version.Value switch
-                {
-                    // Windows11環境ではアクリル効果を無効にする
-                    var version when version >= VersionInfos.Windows11_Preview => AccentState.ACCENT_ENABLE_GRADIENT,
-                    // Windows10 1903以降では、ACCENT_ENABLE_ACRYLICBLURBEHINDを用いると、ウィンドウのドラッグ移動などでマウス操作に追従しなくなる。
-                    // ウィンドウの移動/リサイズ中だけ、ACCENT_ENABLE_ACRYLICBLURBEHINDを無効にして、この問題を回避する
-                    //var version when version >= VersionInfos.Windows10_1903 => AccentState.ACCENT_ENABLE_BLURBEHIND,
-                    var version when version >= VersionInfos.Windows10_1809 => AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND,
-                    var version when version >= VersionInfos.Windows10 => AccentState.ACCENT_ENABLE_BLURBEHIND,
-                    _ => AccentState.ACCENT_ENABLE_TRANSPARENTGRADIENT,
-                },
-                AcrylicAccentState.Disabled => AccentState.ACCENT_DISABLED,
-                AcrylicAccentState.Gradient => AccentState.ACCENT_ENABLE_GRADIENT,
-                AcrylicAccentState.TransparentGradient => AccentState.ACCENT_ENABLE_TRANSPARENTGRADIENT,
-                AcrylicAccentState.BlurBehind => AccentState.ACCENT_ENABLE_BLURBEHIND,
-                AcrylicAccentState.AcrylicBlurBehind => AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND,
-                _ => throw new InvalidOperationException(),
-            };
+                case AcrylicAccentState.Default:
+                    var version = SystemInfo.Version.Value;
+                    if (version >= VersionInfos.Windows11_Preview)
+                    {
+                        value = AccentState.ACCENT_ENABLE_GRADIENT;
+                    }
+                    else if (version >= VersionInfos.Windows10_1809)
+                    {
+                        // Windows10 1903以降では、ACCENT_ENABLE_ACRYLICBLURBEHINDを用いると、ウィンドウのドラッグ移動などでマウス操作に追従しなくなる。
+                        // ウィンドウの移動/リサイズ中だけ、ACCENT_ENABLE_ACRYLICBLURBEHINDを無効にして、この問題を回避する
+                        //var version when version >= VersionInfos.Windows10_1903 => AccentState.ACCENT_ENABLE_BLURBEHIND,
+                        value = AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND;
+                    }
+                    else if (version >= VersionInfos.Windows10)
+                    {
+                        value = AccentState.ACCENT_ENABLE_BLURBEHIND;
+                    }
+                    else
+                    {
+                        value = AccentState.ACCENT_ENABLE_TRANSPARENTGRADIENT;
+                    }
+                    break;
+                case AcrylicAccentState.Disabled:
+                    value = AccentState.ACCENT_DISABLED;
+                    break;
+                case AcrylicAccentState.Gradient:
+                    value = AccentState.ACCENT_ENABLE_GRADIENT;
+                    break;
+                case AcrylicAccentState.TransparentGradient:
+                    value = AccentState.ACCENT_ENABLE_TRANSPARENTGRADIENT;
+                    break;
+                case AcrylicAccentState.BlurBehind:
+                    value = AccentState.ACCENT_ENABLE_BLURBEHIND;
+                    break;
+                case AcrylicAccentState.AcrylicBlurBehind:
+                    throw new InvalidOperationException();
+                    // value = AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND;
+                    break;
+
+            }
 
             return value;
         }
