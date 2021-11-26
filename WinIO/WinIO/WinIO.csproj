@@ -55,6 +55,62 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Colors.Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Colors.Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Controls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ScrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,6 +119,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FluentWPF\AcrylicBrush.cs" />
+    <Compile Include="FluentWPF\AcrylicContextMenu.cs" />
+    <Compile Include="FluentWPF\AcrylicMessageBox.cs" />
+    <Compile Include="FluentWPF\AcrylicPanel.cs" />
+    <Compile Include="FluentWPF\AcrylicPopup.cs" />
+    <Compile Include="FluentWPF\AcrylicToolTip.cs" />
+    <Compile Include="FluentWPF\AcrylicWindow.cs" />
+    <Compile Include="FluentWPF\Animations\BrushAnimation.cs" />
+    <Compile Include="FluentWPF\Converters\HeightToRadiusConverter.cs" />
+    <Compile Include="FluentWPF\Converters\RectConverter.cs" />
+    <Compile Include="FluentWPF\DropShadowPanel.cs" />
+    <Compile Include="FluentWPF\Extensions.cs" />
+    <Compile Include="FluentWPF\ParallaxView.cs" />
+    <Compile Include="FluentWPF\PointerTracker.cs" />
+    <Compile Include="FluentWPF\Resources\AccentColors.cs" />
+    <Compile Include="FluentWPF\Resources\ResourceDictionaryEx.cs" />
+    <Compile Include="FluentWPF\Resources\SystemTheme.cs" />
+    <Compile Include="FluentWPF\Resources\ThemeHandler.cs" />
+    <Compile Include="FluentWPF\RevealPanel.cs" />
+    <Compile Include="FluentWPF\Utility\AcrylicHelper.cs" />
+    <Compile Include="FluentWPF\Utility\IconHelper.cs" />
+    <Compile Include="FluentWPF\Utility\SystemInfo.cs" />
+    <Compile Include="FluentWPF\Utility\VersionInfo.cs" />
+    <Compile Include="FluentWPF\Utility\VersionInfos.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -93,6 +173,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Images\noise.png" />
+    <Resource Include="Assets\Images\noiseBlack.png" />
+    <Resource Include="Assets\Images\noiseWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
