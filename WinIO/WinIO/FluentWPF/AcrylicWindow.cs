@@ -624,7 +624,6 @@ namespace WinIO.FluentWPF
             if (value)
             {
                 win.SetResourceReference(FrameworkElement.StyleProperty, "AcrylicWindowStyle");
-
                 win.Loaded += (_, __) =>
                 {
                     EnableBlur(win);

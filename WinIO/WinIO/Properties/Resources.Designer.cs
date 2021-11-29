@@ -8,9 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-namespace WinIO.Properties
-{
+namespace WinIO.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -18,52 +19,251 @@ namespace WinIO.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinIO.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 激活文件.
+        /// </summary>
+        internal static string Active_Files {
+            get {
+                return ResourceManager.GetString("Active_Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 激活工具窗口.
+        /// </summary>
+        internal static string Active_ToolWindows {
+            get {
+                return ResourceManager.GetString("Active_ToolWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自动隐藏.
+        /// </summary>
+        internal static string Anchorable_AutoHide {
+            get {
+                return ResourceManager.GetString("Anchorable_AutoHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自动隐藏.
+        /// </summary>
+        internal static string Anchorable_BtnAutoHide_Hint {
+            get {
+                return ResourceManager.GetString("Anchorable_BtnAutoHide_Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 隐藏.
+        /// </summary>
+        internal static string Anchorable_BtnClose_Hint {
+            get {
+                return ResourceManager.GetString("Anchorable_BtnClose_Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 窗口位置.
+        /// </summary>
+        internal static string Anchorable_CxMenu_Hint {
+            get {
+                return ResourceManager.GetString("Anchorable_CxMenu_Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 侧边栏.
+        /// </summary>
+        internal static string Anchorable_Dock {
+            get {
+                return ResourceManager.GetString("Anchorable_Dock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 侧边栏作为文档.
+        /// </summary>
+        internal static string Anchorable_DockAsDocument {
+            get {
+                return ResourceManager.GetString("Anchorable_DockAsDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 浮动.
+        /// </summary>
+        internal static string Anchorable_Float {
+            get {
+                return ResourceManager.GetString("Anchorable_Float", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 隐藏.
+        /// </summary>
+        internal static string Anchorable_Hide {
+            get {
+                return ResourceManager.GetString("Anchorable_Hide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 切换状态.
+        /// </summary>
+        internal static string Document_BtnPinned_Hint {
+            get {
+                return ResourceManager.GetString("Document_BtnPinned_Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 关闭.
+        /// </summary>
+        internal static string Document_Close {
+            get {
+                return ResourceManager.GetString("Document_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 全部关闭.
+        /// </summary>
+        internal static string Document_CloseAll {
+            get {
+                return ResourceManager.GetString("Document_CloseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 除了这个全部关闭.
+        /// </summary>
+        internal static string Document_CloseAllButThis {
+            get {
+                return ResourceManager.GetString("Document_CloseAllButThis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 窗口位置.
+        /// </summary>
+        internal static string Document_CxMenu_Hint {
+            get {
+                return ResourceManager.GetString("Document_CxMenu_Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 侧边作为文档.
+        /// </summary>
+        internal static string Document_DockAsDocument {
+            get {
+                return ResourceManager.GetString("Document_DockAsDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 浮动.
+        /// </summary>
+        internal static string Document_Float {
+            get {
+                return ResourceManager.GetString("Document_Float", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 移动到下一个窗口组.
+        /// </summary>
+        internal static string Document_MoveToNextTabGroup {
+            get {
+                return ResourceManager.GetString("Document_MoveToNextTabGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 移动到之前的窗口组.
+        /// </summary>
+        internal static string Document_MoveToPreviousTabGroup {
+            get {
+                return ResourceManager.GetString("Document_MoveToPreviousTabGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新的水平窗口组.
+        /// </summary>
+        internal static string Document_NewHorizontalTabGroup {
+            get {
+                return ResourceManager.GetString("Document_NewHorizontalTabGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新的垂直窗口组.
+        /// </summary>
+        internal static string Document_NewVerticalTabGroup {
+            get {
+                return ResourceManager.GetString("Document_NewVerticalTabGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最大化.
+        /// </summary>
+        internal static string Window_Maximize {
+            get {
+                return ResourceManager.GetString("Window_Maximize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 还原.
+        /// </summary>
+        internal static string Window_Restore {
+            get {
+                return ResourceManager.GetString("Window_Restore", resourceCulture);
             }
         }
     }

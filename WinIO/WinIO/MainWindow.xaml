@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:WinIO.FluentWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Enabled="False">
     <Grid>
-       <Button Click="ButtonBase_OnClick">click me</Button> 
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Click="ButtonBase_OnClick">click me</Button>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Click"></MenuItem>
+        </Menu>
     </Grid>
 </fluentWpf:AcrylicWindow>

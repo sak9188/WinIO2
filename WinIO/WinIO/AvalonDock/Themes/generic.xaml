@@ -16,7 +16,7 @@
 	xmlns:avalonDockControls="clr-namespace:WinIO.AvalonDock.Controls"
 	xmlns:avalonDockConverters="clr-namespace:WinIO.AvalonDock.Converters"
 	xmlns:avalonDockLayout="clr-namespace:WinIO.AvalonDock.Layout"
-	xmlns:avalonDockProperties="clr-namespace:WinIO.AvalonDock.Properties"
+	xmlns:avalonDockProperties="clr-namespace:WinIO.Properties"
 	xmlns:shell="clr-namespace:Microsoft.Windows.Shell">
 
 	<!--  DocumentPaneControlStyle  -->

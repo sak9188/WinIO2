@@ -21,10 +21,9 @@ namespace WinIO
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : AcrylicWindow
+    public partial class MainWindow : AcrylicWindow 
     {
         #region Field
-
         private readonly NotifyIcon _notifyIcon;
 
         #endregion
@@ -33,11 +32,13 @@ namespace WinIO
         public MainWindow()
         {
             InitializeComponent();
-            
+
             // notifyIcon
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             _notifyIcon.BalloonTipClosed += (s, e) => _notifyIcon.Visible = false;
+
+            this.SetValue(AcrylicWindow.EnabledProperty, true);
         }
 
         private void Notification(int time, string title, string context, ToolTipIcon icon = ToolTipIcon.None)
@@ -46,15 +47,14 @@ namespace WinIO
             _notifyIcon.ShowBalloonTip(time, title, context, icon);
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void Notification(string title, string context)
         {
-            TestShowNotification();
+            Notification(1000, title, context);
         }
 
-
-        private void TestShowNotification()
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Notification(1000, "fuck:", "test");
+            Notification("SomeTest", "test");
         }
     }
 }
