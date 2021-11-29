@@ -1,6 +1,5 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:WinIO.FluentWPF"
                     xmlns:resources="clr-namespace:WinIO.FluentWPF.Resources">
     <ResourceDictionary.MergedDictionaries>
 
@@ -8,8 +7,8 @@
             <resources:ResourceDictionaryEx.ThemeDictionaries>
                 <resources:ThemeDictionary ThemeName="Light">
                     <resources:ThemeDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Colors.Light.xaml" />
-                        <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Brushes.xaml" />
+                        <ResourceDictionary Source="Colors.Light.xaml" />
+                        <ResourceDictionary Source="Brushes.xaml" />
                         <!-- Accent colors-->
                         <ResourceDictionary>
                             <SolidColorBrush x:Key="ImmersiveSystemAccentBrush" Color="{Binding Path=(resources:AccentColors.ImmersiveSystemAccent)}" />
@@ -21,8 +20,8 @@
                 </resources:ThemeDictionary>
                 <resources:ThemeDictionary ThemeName="Dark">
                     <resources:ThemeDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Colors.Dark.xaml" />
-                        <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Brushes.xaml" />
+                        <ResourceDictionary Source="Colors.Dark.xaml" />
+                        <ResourceDictionary Source="Brushes.xaml" />
                         <!-- Accent colors-->
                         <ResourceDictionary>
                             <SolidColorBrush x:Key="ImmersiveSystemAccentBrush" Color="{Binding Path=(resources:AccentColors.ImmersiveSystemAccent)}" />

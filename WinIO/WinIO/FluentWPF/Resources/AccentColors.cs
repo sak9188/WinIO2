@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Media;
-using SourceChord.FluentWPF;
 using WinIO.FluentWPF.Utility;
 
 namespace WinIO.FluentWPF.Resources
