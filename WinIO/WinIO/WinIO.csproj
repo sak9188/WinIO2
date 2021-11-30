@@ -77,10 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AvalonDock\Themes\generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Styles\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -133,7 +129,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.xaml">
+    <Page Include="Themes\AvalonDock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\FluentWPF.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -293,7 +293,6 @@
     <Compile Include="AvalonDock\ReferenceEqualityComparer.cs" />
     <Compile Include="AvalonDock\Themes\DictionaryTheme.cs" />
     <Compile Include="AvalonDock\Themes\GenericTheme.cs" />
-    <Compile Include="AvalonDock\Themes\NamespaceDoc.cs" />
     <Compile Include="AvalonDock\Themes\Theme.cs" />
     <Compile Include="AvalonDock\Win32Helper.cs" />
     <Compile Include="AvalonDock\WindowHelper.cs" />
@@ -325,6 +324,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -341,7 +344,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -352,37 +355,82 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\DockBottom.PNG" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\noise.png" />
     <Resource Include="Assets\Images\noiseBlack.png" />
     <Resource Include="Assets\Images\noiseWhite.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="AvalonDock\Themes\Generic\Images\DockBottom.PNG" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\DockLeft.PNG" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\DockPane.PNG" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\DockPaneEmpty.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\DockRight.PNG" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\DockTop.PNG" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\HTabGroup.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockDocPaneBottom.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockDocPaneLeft.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockDocPaneRight.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockDocPaneTop.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockPaneBottom.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockPaneInside.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockPaneLeft.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockPaneRight.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\InnerDockPaneTop.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\Locked.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\PinAutoHide.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\PinClose.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\PinDocMenu.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\PinMaximize.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\PinMenu.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\PinRestore.png" />
-    <Resource Include="AvalonDock\Themes\Generic\Images\VTabGroup.png" />
+    <Resource Include="Themes\Generic\Images\DockLeft.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\DockPane.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\DockPaneEmpty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\DockRight.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\DockTop.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\HTabGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockDocPaneBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockDocPaneLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockDocPaneRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockDocPaneTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockPaneBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockPaneInside.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockPaneLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockPaneRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\InnerDockPaneTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\Locked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\PinAutoHide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\PinClose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\PinDocMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\PinMaximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\PinMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\PinRestore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Generic\Images\VTabGroup.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

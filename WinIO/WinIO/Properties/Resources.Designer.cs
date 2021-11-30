@@ -22,7 +22,7 @@ namespace WinIO.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace WinIO.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinIO.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace WinIO.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 激活文件.
         /// </summary>
-        internal static string Active_Files {
+        public static string Active_Files {
             get {
                 return ResourceManager.GetString("Active_Files", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 激活工具窗口.
         /// </summary>
-        internal static string Active_ToolWindows {
+        public static string Active_ToolWindows {
             get {
                 return ResourceManager.GetString("Active_ToolWindows", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 自动隐藏.
         /// </summary>
-        internal static string Anchorable_AutoHide {
+        public static string Anchorable_AutoHide {
             get {
                 return ResourceManager.GetString("Anchorable_AutoHide", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 自动隐藏.
         /// </summary>
-        internal static string Anchorable_BtnAutoHide_Hint {
+        public static string Anchorable_BtnAutoHide_Hint {
             get {
                 return ResourceManager.GetString("Anchorable_BtnAutoHide_Hint", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 隐藏.
         /// </summary>
-        internal static string Anchorable_BtnClose_Hint {
+        public static string Anchorable_BtnClose_Hint {
             get {
                 return ResourceManager.GetString("Anchorable_BtnClose_Hint", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 窗口位置.
         /// </summary>
-        internal static string Anchorable_CxMenu_Hint {
+        public static string Anchorable_CxMenu_Hint {
             get {
                 return ResourceManager.GetString("Anchorable_CxMenu_Hint", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 侧边栏.
         /// </summary>
-        internal static string Anchorable_Dock {
+        public static string Anchorable_Dock {
             get {
                 return ResourceManager.GetString("Anchorable_Dock", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 侧边栏作为文档.
         /// </summary>
-        internal static string Anchorable_DockAsDocument {
+        public static string Anchorable_DockAsDocument {
             get {
                 return ResourceManager.GetString("Anchorable_DockAsDocument", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 浮动.
         /// </summary>
-        internal static string Anchorable_Float {
+        public static string Anchorable_Float {
             get {
                 return ResourceManager.GetString("Anchorable_Float", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 隐藏.
         /// </summary>
-        internal static string Anchorable_Hide {
+        public static string Anchorable_Hide {
             get {
                 return ResourceManager.GetString("Anchorable_Hide", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 切换状态.
         /// </summary>
-        internal static string Document_BtnPinned_Hint {
+        public static string Document_BtnPinned_Hint {
             get {
                 return ResourceManager.GetString("Document_BtnPinned_Hint", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 关闭.
         /// </summary>
-        internal static string Document_Close {
+        public static string Document_Close {
             get {
                 return ResourceManager.GetString("Document_Close", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 全部关闭.
         /// </summary>
-        internal static string Document_CloseAll {
+        public static string Document_CloseAll {
             get {
                 return ResourceManager.GetString("Document_CloseAll", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 除了这个全部关闭.
         /// </summary>
-        internal static string Document_CloseAllButThis {
+        public static string Document_CloseAllButThis {
             get {
                 return ResourceManager.GetString("Document_CloseAllButThis", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 窗口位置.
         /// </summary>
-        internal static string Document_CxMenu_Hint {
+        public static string Document_CxMenu_Hint {
             get {
                 return ResourceManager.GetString("Document_CxMenu_Hint", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 侧边作为文档.
         /// </summary>
-        internal static string Document_DockAsDocument {
+        public static string Document_DockAsDocument {
             get {
                 return ResourceManager.GetString("Document_DockAsDocument", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 浮动.
         /// </summary>
-        internal static string Document_Float {
+        public static string Document_Float {
             get {
                 return ResourceManager.GetString("Document_Float", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 移动到下一个窗口组.
         /// </summary>
-        internal static string Document_MoveToNextTabGroup {
+        public static string Document_MoveToNextTabGroup {
             get {
                 return ResourceManager.GetString("Document_MoveToNextTabGroup", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 移动到之前的窗口组.
         /// </summary>
-        internal static string Document_MoveToPreviousTabGroup {
+        public static string Document_MoveToPreviousTabGroup {
             get {
                 return ResourceManager.GetString("Document_MoveToPreviousTabGroup", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 新的水平窗口组.
         /// </summary>
-        internal static string Document_NewHorizontalTabGroup {
+        public static string Document_NewHorizontalTabGroup {
             get {
                 return ResourceManager.GetString("Document_NewHorizontalTabGroup", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 新的垂直窗口组.
         /// </summary>
-        internal static string Document_NewVerticalTabGroup {
+        public static string Document_NewVerticalTabGroup {
             get {
                 return ResourceManager.GetString("Document_NewVerticalTabGroup", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 最大化.
         /// </summary>
-        internal static string Window_Maximize {
+        public static string Window_Maximize {
             get {
                 return ResourceManager.GetString("Window_Maximize", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace WinIO.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 还原.
         /// </summary>
-        internal static string Window_Restore {
+        public static string Window_Restore {
             get {
                 return ResourceManager.GetString("Window_Restore", resourceCulture);
             }

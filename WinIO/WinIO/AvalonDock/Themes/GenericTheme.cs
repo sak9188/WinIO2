@@ -17,7 +17,7 @@ namespace WinIO.AvalonDock.Themes
         /// <inheritdoc/>
         public override Uri GetResourceUri()
         {
-            return new Uri("/AvalonDock;component/Themes/generic.xaml", UriKind.Relative);
+            return new Uri("/WinIO;component/Themes/Generic.xaml", UriKind.Relative);
         }
     }
 }

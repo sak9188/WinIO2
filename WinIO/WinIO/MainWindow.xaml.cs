@@ -21,7 +21,7 @@ namespace WinIO
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : AcrylicWindow 
+    internal partial class MainWindow : AcrylicWindow 
     {
         #region Field
         private readonly NotifyIcon _notifyIcon;
