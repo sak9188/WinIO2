@@ -216,7 +216,7 @@ namespace WinIO.PythonNet
                     Runtime.PyDict_SetItemString(module_globals, "__builtins__", builtins);
 
                     Assembly assembly = Assembly.GetExecutingAssembly();
-                    using (Stream stream = assembly.GetManifestResourceStream("clr.py"))
+                    using (Stream stream = assembly.GetManifestResourceStream("WinIO.PythonNet.resources.clr.py"))
                     using (var reader = new StreamReader(stream))
                     {
                         // add the contents of clr.py to the module
