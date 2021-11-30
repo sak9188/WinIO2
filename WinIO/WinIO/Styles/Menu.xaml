@@ -58,7 +58,7 @@
                             <Rectangle x:Name="noiseLayer"
                                        Opacity="{Binding RelativeSource={RelativeSource AncestorType=MenuItem}, Path=(fluentWpf:AcrylicWindow.NoiseOpacity)}">
                                 <Rectangle.Fill>
-                                    <ImageBrush ImageSource="/FluentWPF;component/Assets/Images/noise.png"
+                                    <ImageBrush ImageSource="/WinIO;component/Assets/Images/noise.png"
                                                 TileMode="Tile" Stretch="None"
                                                 ViewportUnits="Absolute" Viewport="0,0,128,128"/>
                                 </Rectangle.Fill>
@@ -238,7 +238,7 @@
                             <Rectangle x:Name="noiseLayer"
                                        Opacity="{Binding RelativeSource={RelativeSource AncestorType=MenuItem}, Path=(fluentWpf:AcrylicWindow.NoiseOpacity)}">
                                 <Rectangle.Fill>
-                                    <ImageBrush ImageSource="/FluentWPF;component/Assets/Images/noise.png"
+                                    <ImageBrush ImageSource="/WinIO;component/Assets/Images/noise.png"
                                                 TileMode="Tile" Stretch="None"
                                                 ViewportUnits="Absolute" Viewport="0,0,128,128"/>
                                 </Rectangle.Fill>

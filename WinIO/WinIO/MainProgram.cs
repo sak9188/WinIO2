@@ -13,13 +13,18 @@ namespace WinIO
         [STAThread]
         static void Main()
         {
-            // 优先初始化Python， 然后在是WPF
-            // 这里测试一下Python
+            InitPythonPath();
             PythonEngine.Initialize();
             App app = new App();
             app.InitializeComponent();
             app.Run();
             PythonEngine.Shutdown();
+        }
+
+        internal static void InitPythonPath()
+        {
+            var beforePath = Environment.GetEnvironmentVariable("PYTHONPATH");
+            Environment.SetEnvironmentVariable("PYTHONPATH", beforePath + ";../../../Scripts", EnvironmentVariableTarget.Process);
         }
     }
 }

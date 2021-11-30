@@ -9,20 +9,22 @@
         xmlns:vs2013="clr-namespace:WinIO.Themes.VS2013"
         mc:Ignorable="d"
         Title="WinIO 2.0" Height="450" Width="800"
-        x:ClassModifier="internal" Icon="splash.png" Closing="AcrylicWindow_Closing">
+        x:ClassModifier="internal" Icon="splash.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Style="{StaticResource AcrylicMenuStyle}">
-            <MenuItem Header="Click Toast" Style="{StaticResource AcrylicMenuItemStyle}" Click="MenuItem_OnClick"></MenuItem>
-            <MenuItem Header="Click" Style="{StaticResource AcrylicMenuItemStyle}"></MenuItem>
-            <MenuItem Header="Click" Style="{StaticResource AcrylicMenuItemStyle}"></MenuItem>
-            <MenuItem Header="Click" Style="{StaticResource AcrylicMenuItemStyle}"></MenuItem>
-            <MenuItem Header="Click" Style="{StaticResource AcrylicMenuItemStyle}"></MenuItem>
-            <MenuItem Header="Click" Style="{StaticResource AcrylicMenuItemStyle}"></MenuItem>
-            <MenuItem Header="Click" Style="{StaticResource AcrylicMenuItemStyle}"></MenuItem>
+            <MenuItem Header="Click Toast" Click="MenuItem_OnClick"></MenuItem>
+            <MenuItem Header="Click">
+                <MenuItem Header="testestse"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Click"></MenuItem>
+            <MenuItem Header="Click"></MenuItem>
+            <MenuItem Header="Click"></MenuItem>
+            <MenuItem Header="Click"></MenuItem>
+            <MenuItem Header="Click"></MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Name="ButtonPanel">
 

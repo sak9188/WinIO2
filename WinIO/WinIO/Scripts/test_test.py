@@ -16,5 +16,9 @@ class AClass(object):
         button.Content = "hello"
         self.win.GetButtonPanel().Children.Add(button)
 
+    def recur(self):
+        print "refunction"
+        #self.win.Recur()
+
 
 test_obj = AClass()

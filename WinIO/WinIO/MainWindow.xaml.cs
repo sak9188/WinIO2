@@ -15,8 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinIO.FluentWPF;
 using WinIO.PythonNet;
-using NotifyIcon = System.Windows.Forms.NotifyIcon;
-using ToolTipIcon = System.Windows.Forms.ToolTipIcon;
 
 namespace WinIO
 {
@@ -25,10 +23,7 @@ namespace WinIO
     /// </summary>
     internal partial class MainWindow : AcrylicWindow 
     {
-        #region Field
-        private readonly NotifyIcon _notifyIcon;
-
-        #endregion
+        public static App app;
 
         public static void TestFun()
         {
@@ -39,31 +34,16 @@ namespace WinIO
 
         public MainWindow()
         {
+            app = Application.Current as App;
             InitializeComponent();
 
-            // notifyIcon
-            _notifyIcon = new NotifyIcon();
-            _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
-            _notifyIcon.Visible = true;
-
             pytest_mod = Py.Import("test_test");
-            Action<string, string> del = Notification;
+            Action<string, string> del = app.Notification;
             pytest_mod.test_obj.val = del;
             pytest_mod.test_obj.win = this;
             Console.WriteLine(pytest_mod.test_obj.val);
         }
 
-        #region Notification
-        private void Notification(int time, string title, string context, ToolTipIcon icon = ToolTipIcon.None)
-        {
-            _notifyIcon.ShowBalloonTip(time, title, context, icon);
-        }
-
-        private void Notification(string title, string context)
-        {
-            Notification(1000, title, context);
-        }
-        #endregion
 
         #region ComponentAddation
         public StackPanel GetButtonPanel() => ButtonPanel;
@@ -73,16 +53,17 @@ namespace WinIO
             button.Content = "hello";
             ButtonPanel.Children.Add(button);
         }
+
+        public void Recur()
+        {
+            pytest_mod.test_obj.recur();
+        }
         #endregion
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             pytest_mod.test_obj.invoke();
-        }
-
-        private void AcrylicWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            _notifyIcon.Visible = false;
+            pytest_mod.test_obj.recur();
         }
     }
 }
