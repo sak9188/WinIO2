@@ -21,18 +21,20 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;PYTHON2, PYTHON27, UCS2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;PYTHON2, PYTHON27, UCS2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -77,6 +79,87 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PythonNet\arrayobject.cs" />
+    <Compile Include="PythonNet\assemblymanager.cs" />
+    <Compile Include="PythonNet\BorrowedReference.cs" />
+    <Compile Include="PythonNet\classbase.cs" />
+    <Compile Include="PythonNet\classderived.cs" />
+    <Compile Include="PythonNet\classmanager.cs" />
+    <Compile Include="PythonNet\classobject.cs" />
+    <Compile Include="PythonNet\clrobject.cs" />
+    <Compile Include="PythonNet\Codecs\DecoderGroup.cs" />
+    <Compile Include="PythonNet\Codecs\EncoderGroup.cs" />
+    <Compile Include="PythonNet\Codecs\RawProxyEncoder.cs" />
+    <Compile Include="PythonNet\Codecs\TupleCodecs.cs" />
+    <Compile Include="PythonNet\codegenerator.cs" />
+    <Compile Include="PythonNet\constructorbinder.cs" />
+    <Compile Include="PythonNet\constructorbinding.cs" />
+    <Compile Include="PythonNet\converter.cs" />
+    <Compile Include="PythonNet\converterextensions.cs" />
+    <Compile Include="PythonNet\CustomMarshaler.cs" />
+    <Compile Include="PythonNet\debughelper.cs" />
+    <Compile Include="PythonNet\delegatemanager.cs" />
+    <Compile Include="PythonNet\delegateobject.cs" />
+    <Compile Include="PythonNet\eventbinding.cs" />
+    <Compile Include="PythonNet\eventobject.cs" />
+    <Compile Include="PythonNet\exceptions.cs" />
+    <Compile Include="PythonNet\extensiontype.cs" />
+    <Compile Include="PythonNet\fieldobject.cs" />
+    <Compile Include="PythonNet\finalizer.cs" />
+    <Compile Include="PythonNet\generictype.cs" />
+    <Compile Include="PythonNet\genericutil.cs" />
+    <Compile Include="PythonNet\importhook.cs" />
+    <Compile Include="PythonNet\indexer.cs" />
+    <Compile Include="PythonNet\interfaceobject.cs" />
+    <Compile Include="PythonNet\interfaces.cs" />
+    <Compile Include="PythonNet\interop.cs" />
+    <Compile Include="PythonNet\interop27.cs" />
+    <Compile Include="PythonNet\interop34.cs" />
+    <Compile Include="PythonNet\interop35.cs" />
+    <Compile Include="PythonNet\interop36.cs" />
+    <Compile Include="PythonNet\interop37.cs" />
+    <Compile Include="PythonNet\interop38.cs" />
+    <Compile Include="PythonNet\interop39.cs" />
+    <Compile Include="PythonNet\iterator.cs" />
+    <Compile Include="PythonNet\managedtype.cs" />
+    <Compile Include="PythonNet\metatype.cs" />
+    <Compile Include="PythonNet\methodbinder.cs" />
+    <Compile Include="PythonNet\methodbinding.cs" />
+    <Compile Include="PythonNet\methodobject.cs" />
+    <Compile Include="PythonNet\methodwrapper.cs" />
+    <Compile Include="PythonNet\modulefunctionobject.cs" />
+    <Compile Include="PythonNet\moduleobject.cs" />
+    <Compile Include="PythonNet\modulepropertyobject.cs" />
+    <Compile Include="PythonNet\nativecall.cs" />
+    <Compile Include="PythonNet\NewReference.cs" />
+    <Compile Include="PythonNet\NonCopyableAttribute.cs" />
+    <Compile Include="PythonNet\overload.cs" />
+    <Compile Include="PythonNet\platform\LibraryLoader.cs" />
+    <Compile Include="PythonNet\platform\Types.cs" />
+    <Compile Include="PythonNet\polyfill\ReflectionPolifills.cs" />
+    <Compile Include="PythonNet\propertyobject.cs" />
+    <Compile Include="PythonNet\pyansistring.cs" />
+    <Compile Include="PythonNet\pydict.cs" />
+    <Compile Include="PythonNet\PyExportAttribute.cs" />
+    <Compile Include="PythonNet\pyfloat.cs" />
+    <Compile Include="PythonNet\pyint.cs" />
+    <Compile Include="PythonNet\pyiter.cs" />
+    <Compile Include="PythonNet\pylist.cs" />
+    <Compile Include="PythonNet\pylong.cs" />
+    <Compile Include="PythonNet\pynumber.cs" />
+    <Compile Include="PythonNet\pyobject.cs" />
+    <Compile Include="PythonNet\pyscope.cs" />
+    <Compile Include="PythonNet\pysequence.cs" />
+    <Compile Include="PythonNet\pystring.cs" />
+    <Compile Include="PythonNet\pythonengine.cs" />
+    <Compile Include="PythonNet\pythonexception.cs" />
+    <Compile Include="PythonNet\pytuple.cs" />
+    <Compile Include="PythonNet\ReferenceExtensions.cs" />
+    <Compile Include="PythonNet\runtime.cs" />
+    <Compile Include="PythonNet\slots\mp_length.cs" />
+    <Compile Include="PythonNet\typemanager.cs" />
+    <Compile Include="PythonNet\typemethod.cs" />
+    <Compile Include="PythonNet\Util.cs" />
     <Compile Include="Themes\VS2013\Themes\Menu\MenuKeys.cs" />
     <Compile Include="Themes\VS2013\Themes\ResourceKeys.cs" />
     <Compile Include="Themes\VS2013\Vs2013BlueTheme.cs" />
@@ -486,5 +569,12 @@
     <Resource Include="Themes\Generic\Images\VTabGroup.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="PythonNet\resources\clr.py" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>
