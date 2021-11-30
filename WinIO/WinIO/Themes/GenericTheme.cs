@@ -9,7 +9,7 @@
 
 using System;
 
-namespace WinIO.AvalonDock.Themes
+namespace WinIO.Themes
 {
     /// <inheritdoc/>
     public class GenericTheme : Theme

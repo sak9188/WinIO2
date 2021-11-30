@@ -10,7 +10,7 @@
 using System;
 using System.Windows;
 
-namespace WinIO.AvalonDock.Themes
+namespace WinIO.Themes
 {
 	/// <summary>Provides a base class for the implementation of a custom AvalonDock WPF theme.</summary>
 	public abstract class Theme : DependencyObject

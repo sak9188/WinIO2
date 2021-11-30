@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:WinIO.FluentWPF"
         xmlns:dk="clr-namespace:WinIO.AvalonDock" 
-        xmlns:layout="clr-namespace:WinIO.AvalonDock.Layout"
+        xmlns:layout="clr-namespace:WinIO.AvalonDock.Layout" 
+        xmlns:vs2013="clr-namespace:WinIO.Themes.VS2013"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Enabled="False" x:ClassModifier="internal">
@@ -24,6 +25,9 @@
             AutoWindowSizeWhenOpened="True"
             IsVirtualizingAnchorable="True"
             IsVirtualizingDocument="True">
+            <dk:DockingManager.Theme>
+                <vs2013:Vs2013DarkTheme></vs2013:Vs2013DarkTheme>
+            </dk:DockingManager.Theme>
             <dk:DockingManager.DocumentHeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

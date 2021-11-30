@@ -10,7 +10,7 @@
 using System;
 using System.Windows;
 
-namespace WinIO.AvalonDock.Themes
+namespace WinIO.Themes
 {
     /// <summary>Defines a base class to implement a method for storing the current AvalonDock theme
     /// that provides a XAML Uri pointing to a <see cref="ResourceDictionary"/>.

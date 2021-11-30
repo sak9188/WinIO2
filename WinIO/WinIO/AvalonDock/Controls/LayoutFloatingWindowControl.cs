@@ -8,7 +8,7 @@
  ************************************************************************/
 
 using WinIO.AvalonDock.Layout;
-using WinIO.AvalonDock.Themes;
+using WinIO.Themes;
 using System;
 using System.ComponentModel;
 using System.Linq;

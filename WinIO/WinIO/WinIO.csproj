@@ -77,6 +77,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Themes\VS2013\Themes\Menu\MenuKeys.cs" />
+    <Compile Include="Themes\VS2013\Themes\ResourceKeys.cs" />
+    <Compile Include="Themes\VS2013\Vs2013BlueTheme.cs" />
+    <Compile Include="Themes\VS2013\Vs2013DarkTheme.cs" />
+    <Compile Include="Themes\VS2013\Vs2013LightTheme.cs" />
     <Page Include="Styles\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -291,9 +296,9 @@
     <Compile Include="AvalonDock\MathHelper.cs" />
     <Compile Include="AvalonDock\NamespaceDoc.cs" />
     <Compile Include="AvalonDock\ReferenceEqualityComparer.cs" />
-    <Compile Include="AvalonDock\Themes\DictionaryTheme.cs" />
-    <Compile Include="AvalonDock\Themes\GenericTheme.cs" />
-    <Compile Include="AvalonDock\Themes\Theme.cs" />
+    <Compile Include="Themes\DictionaryTheme.cs" />
+    <Compile Include="Themes\GenericTheme.cs" />
+    <Compile Include="Themes\Theme.cs" />
     <Compile Include="AvalonDock\Win32Helper.cs" />
     <Compile Include="AvalonDock\WindowHelper.cs" />
     <Compile Include="FluentWPF\AcrylicBrush.cs" />
@@ -327,6 +332,54 @@
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\VS2013\BlueBrushs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\BlueTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\DarkBrushs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\LightBrushs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\OverlayButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\Themes\Icons\IconGeometry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\Themes\Menu\DarkBrushs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\Themes\Menu\LightBrushs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VS2013\Themes\Menu\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -432,5 +485,6 @@
   <ItemGroup>
     <Resource Include="Themes\Generic\Images\VTabGroup.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,7 @@
 
 using WinIO.AvalonDock.Controls;
 using WinIO.AvalonDock.Layout;
-using WinIO.AvalonDock.Themes;
+using WinIO.Themes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
