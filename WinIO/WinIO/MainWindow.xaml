@@ -8,7 +8,7 @@
         xmlns:layout="clr-namespace:WinIO.AvalonDock.Layout" 
         xmlns:vs2013="clr-namespace:WinIO.Themes.VS2013"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="WinIO 2.0" Height="450" Width="800"
         Enabled="False" x:ClassModifier="internal">
     <Grid>
         <Grid.RowDefinitions>
