@@ -8,7 +8,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -16,7 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinIO.FluentWPF;
 using WinIO.PythonNet;
-using Button = System.Windows.Controls.Button;
+using NotifyIcon = System.Windows.Forms.NotifyIcon;
+using ToolTipIcon = System.Windows.Forms.ToolTipIcon;
 
 namespace WinIO
 {
@@ -44,9 +44,7 @@ namespace WinIO
             // notifyIcon
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
-            _notifyIcon.BalloonTipClosed += (s, e) => _notifyIcon.Visible = false;
-
-            this.SetValue(EnabledProperty, true);
+            _notifyIcon.Visible = true;
 
             pytest_mod = Py.Import("test_test");
             Action<string, string> del = Notification;
@@ -55,9 +53,9 @@ namespace WinIO
             Console.WriteLine(pytest_mod.test_obj.val);
         }
 
+        #region Notification
         private void Notification(int time, string title, string context, ToolTipIcon icon = ToolTipIcon.None)
         {
-            _notifyIcon.Visible = true;
             _notifyIcon.ShowBalloonTip(time, title, context, icon);
         }
 
@@ -65,17 +63,26 @@ namespace WinIO
         {
             Notification(1000, title, context);
         }
+        #endregion
 
+        #region ComponentAddation
+        public StackPanel GetButtonPanel() => ButtonPanel;
         public void AddButton()
         {
             var button = new Button();
             button.Content = "hello";
             ButtonPanel.Children.Add(button);
         }
+        #endregion
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             pytest_mod.test_obj.invoke();
+        }
+
+        private void AcrylicWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _notifyIcon.Visible = false;
         }
     }
 }

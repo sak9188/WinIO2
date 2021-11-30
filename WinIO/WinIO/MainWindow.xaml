@@ -9,7 +9,7 @@
         xmlns:vs2013="clr-namespace:WinIO.Themes.VS2013"
         mc:Ignorable="d"
         Title="WinIO 2.0" Height="450" Width="800"
-        Enabled="False" x:ClassModifier="internal" Icon="splash.png">
+        x:ClassModifier="internal" Icon="splash.png" Closing="AcrylicWindow_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
