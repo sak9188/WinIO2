@@ -232,8 +232,18 @@
 								Focusable="False"
 								Style="{StaticResource AvalonDockThemeVs2013ToolButtonStyle}">
 								<avalonDockControls:DropDownButton.DropDownContextMenu>
-									<avalonDockControls:ContextMenuEx ItemsSource="{Binding Model.ChildrenSorted, RelativeSource={RelativeSource TemplatedParent}}" />
-								</avalonDockControls:DropDownButton.DropDownContextMenu>
+                                    <avalonDockControls:ContextMenuEx ItemsSource="{Binding Model.ChildrenSorted, RelativeSource={RelativeSource TemplatedParent}}" >
+                                        <avalonDockControls:ContextMenuEx.ItemContainerStyle>
+                                            <Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type avalonDockControls:MenuItemEx}">
+                                                <Setter Property="HeaderTemplate" Value="{Binding Path=Root.Manager.DocumentPaneMenuItemHeaderTemplate}" />
+                                                <Setter Property="HeaderTemplateSelector" Value="{Binding Path=Root.Manager.DocumentPaneMenuItemHeaderTemplateSelector}" />
+                                                <Setter Property="IconTemplate" Value="{Binding Path=Root.Manager.IconContentTemplate}" />
+                                                <Setter Property="IconTemplateSelector" Value="{Binding Path=Root.Manager.IconContentTemplateSelector}" />
+                                                <Setter Property="Command" Value="{Binding Path=., Converter={avalonDockConverters:ActivateCommandLayoutItemFromLayoutModelConverter}}" />
+                                            </Style>
+                                        </avalonDockControls:ContextMenuEx.ItemContainerStyle>
+                                    </avalonDockControls:ContextMenuEx>
+                                </avalonDockControls:DropDownButton.DropDownContextMenu>
 								<Path
 									x:Name="MenuDropDownButtonImage"
 									Width="10"

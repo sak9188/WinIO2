@@ -11,15 +11,15 @@ using System;
 
 namespace WinIO.Themes.VS2013
 {
-	/// <inheritdoc/>
-	public class Vs2013BlueTheme : Theme
-	{
-		/// <inheritdoc/>
-		public override Uri GetResourceUri()
-		{
-			return new Uri(
-				"/WinIO;compoent/Themes/VS2013/BlueTheme.xaml",
-				UriKind.Relative);
-		}
-	}
+    /// <inheritdoc/>
+    public class Vs2013BlueTheme : Theme
+    {
+        /// <inheritdoc/>
+        public override Uri GetResourceUri()
+        {
+            return new Uri(
+                "/WinIO;compoent/Themes/VS2013/BlueTheme.xaml",
+                UriKind.Relative);
+        }
+    }
 }

@@ -103,7 +103,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
-    <Compile Include="Controls\MenuItemTemplateSelector.cs" />
     <Compile Include="Models\MenuItemView.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="PythonNet\arrayobject.cs" />
@@ -187,6 +186,7 @@
     <Compile Include="PythonNet\typemanager.cs" />
     <Compile Include="PythonNet\typemethod.cs" />
     <Compile Include="PythonNet\Util.cs" />
+    <Compile Include="Themes\FluentAero\FluentAeroTheme.cs" />
     <Compile Include="Themes\VS2013\Themes\Menu\MenuKeys.cs" />
     <Compile Include="Themes\VS2013\Themes\ResourceKeys.cs" />
     <Compile Include="Themes\VS2013\Vs2013BlueTheme.cs" />
@@ -614,7 +614,10 @@
   <ItemGroup>
     <Resource Include="icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Themes\FluentAero\Assets\Icons\" />
+    <Folder Include="Themes\FluentAero\Assets\Menu\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

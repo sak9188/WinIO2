@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using WinIO.Models;
 
 namespace WinIO.Controls
 {
@@ -12,8 +14,27 @@ namespace WinIO.Controls
     {
         public override Style SelectStyle(object item, DependencyObject container)
         {
+            
+            var me = container as MenuItem;
+            var view = item as MenuItemView;
+            Style dt = base.SelectStyle(item, container);
 
-            return base.SelectStyle(item, container);
+            if (view != null && me != null)
+            {
+                me.IsCheckable = view.Checkable;
+                me.Header = view.Title;
+                me.ItemsSource = view.Children;
+                if (!string.IsNullOrEmpty(view.Icon))
+                {
+                    me.Icon = new Image()
+                    {
+                        Source = new BitmapImage(new Uri(view.Icon, UriKind.Relative))
+                    };
+                    dt = me.FindResource("MenuItemIconStyle") as Style;
+                }
+            }
+
+            return dt;
         }
     }
 }

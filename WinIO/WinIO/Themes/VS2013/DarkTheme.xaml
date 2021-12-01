@@ -3,5 +3,4 @@
 		<ResourceDictionary Source="DarkBrushs.xaml" />
 		<ResourceDictionary Source="Themes/Generic.xaml" />
 	</ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>
