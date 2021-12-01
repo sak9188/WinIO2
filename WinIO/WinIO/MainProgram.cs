@@ -15,7 +15,6 @@ namespace WinIO
         {
             InitPythonPath();
             PythonEngine.Initialize();
-            var str = PythonEngine.PythonPath;
             App app = new App();
             app.InitializeComponent();
             app.Run();

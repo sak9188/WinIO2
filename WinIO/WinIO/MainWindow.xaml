@@ -11,9 +11,21 @@
         xmlns:con="clr-namespace:WinIO.Controls"
         mc:Ignorable="d"
         Title="WinIO 2.0" Height="450" Width="800"
-        x:ClassModifier="internal" Icon="splash.png">
+        x:ClassModifier="internal" Icon="splash.png" TitleBarMode="Extend">
     <Window.Resources>
         <ResourceDictionary>
+            <!-- HeadMenu -->
+            <Style x:Key="HeadMenuItem" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
+                <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource AncestorType=Menu}}"></Setter>
+            </Style>
+            <Style x:Key="HeadMenu" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
+                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource HeadMenuItem}"></Setter>
+            </Style>
+
+            <!-- SubMenu -->
             <con:MenuItemContainerStyleSelector x:Key="MenuItemContainerStyleSelector"></con:MenuItemContainerStyleSelector>
 
             <DataTemplate x:Key="MenuItemHeaderTemplate" DataType="{x:Type system:String}">
@@ -30,6 +42,8 @@
                 <Setter Property="ItemContainerStyleSelector" Value="{StaticResource MenuItemContainerStyleSelector}"></Setter>
             </Style>
 
+
+
         </ResourceDictionary>
     </Window.Resources>
 
@@ -38,16 +52,30 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType=Window}}" 
-                       VerticalAlignment="Center" Padding="3"></TextBlock>
-            <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" Grid.Column="1" VerticalAlignment="Center">
-                <Button Content="StringTest" Height="20" Width="100" Click="ButtonBase_OnClick"></Button>
+            <Image Height="24" Width="24" Stretch="UniformToFill" Source="splash.png" Margin="5" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Menu x:Name="HeadMenu" Style="{StaticResource HeadMenu}">
+                    <MenuItem Header="工具">
+                        <MenuItem Header="主题设置"></MenuItem>
+                        <MenuItem Header="设置"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="窗口">
+                        <MenuItem Header="重置"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="帮助"></MenuItem>
+                    <MenuItem Header="我的Redmine"></MenuItem>
+                </Menu>
             </StackPanel>
+            <TextBlock Grid.Column="2" Background="{StaticResource SystemChromeLowColorBrush}" 
+                       Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType=Window}}" 
+                       FontWeight="Bold" FontSize="12"
+                       VerticalAlignment="Center" Padding="3"></TextBlock>
         </Grid>
     </fluentWpf:AcrylicWindow.TitleBar>
-        
-    <Grid x:Name="MainGrid">
+
+    <Grid x:Name="MainGrid" fluentWpf:PointerTracker.Enabled="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -77,19 +105,14 @@
                 <layout:LayoutPanel Orientation = "Horizontal" >
                     <layout:LayoutDocumentPaneGroup >
                         <layout:LayoutDocumentPane x:Name = "LayoutDocumentPane" >
-                            <layout:LayoutDocument
-                                                   Title = "Document 1"
-                                ContentId="document1">
+                            <layout:LayoutDocument Title = "WinIO" ContentId="document1">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
-                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Button
-                                        Height="28"
-                                        VerticalAlignment="Top"
-                                        Content="Click to add 2 documents" />
-                                    <TextBox Grid.Row="1" Text="Document 1 Content" />
+                                    <RichTextBox x:Name="MainOutPanel" Grid.Row="0" Height="Auto" IsReadOnly="True">
+                                        <FlowDocument></FlowDocument>
+                                    </RichTextBox>
                                 </Grid>
                             </layout:LayoutDocument >
                             <layout:LayoutDocument Title = "Document 2" ContentId="document2">

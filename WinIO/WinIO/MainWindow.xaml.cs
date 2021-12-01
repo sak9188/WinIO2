@@ -38,6 +38,11 @@ namespace WinIO
             app = Application.Current as App;
             InitializeComponent();
 
+            MainOutPanel.AppendText("tesn\n");
+            MainOutPanel.AppendText("tesn\n");
+            MainOutPanel.AppendText("tesn\n");
+            var block = MainOutPanel.Document.Blocks.LastBlock;
+
             var a = new MenuItemView();
             a.Title = "test0";
             a.Icon = "../../../splash.png";

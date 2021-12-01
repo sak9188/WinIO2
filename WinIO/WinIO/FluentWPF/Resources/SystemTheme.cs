@@ -50,16 +50,18 @@ namespace WinIO.FluentWPF.Resources
 
         private static ApplicationTheme GetAppTheme()
         {
+            return ApplicationTheme.Dark;
             var regkey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", false);
             // キーが存在しないときはnullが返る
             if (regkey == null) return ApplicationTheme.Light;
             var intValue = (int)regkey.GetValue("AppsUseLightTheme", 1);
-
-            return intValue == 0 ? ApplicationTheme.Dark : ApplicationTheme.Light;
+    
+            //return intValue == 0 ? ApplicationTheme.Dark : ApplicationTheme.Light;
         }
 
         private static WindowsTheme GetWindowsTheme()
         {
+            return WindowsTheme.Dark;
             var regkey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", false);
             // キーが存在しないときはnullが返る
             if (regkey == null) return WindowsTheme.Light;
