@@ -7,20 +7,46 @@
         xmlns:dk="clr-namespace:WinIO.AvalonDock" 
         xmlns:layout="clr-namespace:WinIO.AvalonDock.Layout" 
         xmlns:vs2013="clr-namespace:WinIO.Themes.VS2013"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:con="clr-namespace:WinIO.Controls"
         mc:Ignorable="d"
         Title="WinIO 2.0" Height="450" Width="800"
         x:ClassModifier="internal" Icon="splash.png">
+        <Window.Resources>
+            <ResourceDictionary>
+                <con:MenuItemContainerStyleSelector x:Key="MenuItemContainerStyleSelector"></con:MenuItemContainerStyleSelector>
+                <con:MenuItemTemplateSelector x:Key="MenuItemTemplateSelector"></con:MenuItemTemplateSelector>
+
+                <Style x:Key="MenuItemIconStyle" TargetType="MenuItem">
+                    
+                </Style>
+
+                <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+                    <Setter TargetName="Header" ></Setter>
+                </Style>
+
+                <DataTemplate x:Key="MenuItemHeaderTemplate" DataType="{x:Type system:String}">
+                    <TextBlock Text="{Binding}" Margin="3"></TextBlock>
+                </DataTemplate>
+            </ResourceDictionary>
+        </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Style="{StaticResource AcrylicMenuStyle}">
+        <Menu Grid.Row="0" Style="{StaticResource AcrylicMenuStyle}"  ItemContainerStyleSelector="{StaticResource MenuItemContainerStyleSelector}" >
             <MenuItem Header="Click Toast" Click="MenuItem_OnClick"></MenuItem>
-            <MenuItem Header="Click">
+            <MenuItem>
+                <MenuItem.Icon>
+                    <Image Source="splash.png"></Image>
+                </MenuItem.Icon>
+                <MenuItem.Header>
+                    <TextBlock Text="Click" Margin="-6, 1, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </MenuItem.Header>
                 <MenuItem Header="testestse"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Click"></MenuItem>
+            <MenuItem Header="Click" HeaderTemplate="{StaticResource MenuItemHeaderTemplate}"></MenuItem>
             <MenuItem Header="Click"></MenuItem>
             <MenuItem Header="Click"></MenuItem>
             <MenuItem Header="Click"></MenuItem>

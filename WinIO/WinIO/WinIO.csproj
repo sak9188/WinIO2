@@ -102,6 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
+    <Compile Include="Controls\MenuItemTemplateSelector.cs" />
+    <Compile Include="Models\MenuItemView.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="PythonNet\arrayobject.cs" />
     <Compile Include="PythonNet\assemblymanager.cs" />
@@ -611,6 +614,7 @@
   <ItemGroup>
     <Resource Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
