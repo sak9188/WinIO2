@@ -12,41 +12,6 @@
         mc:Ignorable="d"
         Title="WinIO 2.0" Height="450" Width="800"
         x:ClassModifier="internal" Icon="splash.png" TitleBarMode="Extend">
-    <Window.Resources>
-        <ResourceDictionary>
-            <!-- HeadMenu -->
-            <Style x:Key="HeadMenuItem" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
-                <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource AncestorType=Menu}}"></Setter>
-            </Style>
-            <Style x:Key="HeadMenu" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
-                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="ItemContainerStyle" Value="{StaticResource HeadMenuItem}"></Setter>
-            </Style>
-
-            <!-- SubMenu -->
-            <con:MenuItemContainerStyleSelector x:Key="MenuItemContainerStyleSelector"></con:MenuItemContainerStyleSelector>
-
-            <DataTemplate x:Key="MenuItemHeaderTemplate" DataType="{x:Type system:String}">
-                <TextBlock Text="{Binding}" Margin="-6, 1, 0, 0"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            </DataTemplate>
-
-            <Style x:Key="MenuItemIconStyle" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
-                <Setter Property="HeaderTemplate" Value="{StaticResource MenuItemHeaderTemplate}"></Setter>
-            </Style>
-
-            <Style x:Key="MenuStyle" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="ItemContainerStyleSelector" Value="{StaticResource MenuItemContainerStyleSelector}"></Setter>
-            </Style>
-
-
-
-        </ResourceDictionary>
-    </Window.Resources>
-
     <fluentWpf:AcrylicWindow.TitleBar>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -80,11 +45,11 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
         <Menu Name="MainMenu" Style="{StaticResource MenuStyle}"></Menu>
 
         <dk:DockingManager x:Name = "dockManager"
             Grid.Row = "1"
+            Background="Transparent"
             AllowMixedOrientation = "True"
             AutoWindowSizeWhenOpened = "True"
             IsVirtualizingAnchorable = "True"
@@ -101,26 +66,69 @@
                 </DataTemplate >
             </dk:DockingManager.DocumentHeaderTemplate >
 
-            <layout:LayoutRoot >
-                <layout:LayoutPanel Orientation = "Horizontal" >
-                    <layout:LayoutDocumentPaneGroup >
-                        <layout:LayoutDocumentPane x:Name = "LayoutDocumentPane" >
-                            <layout:LayoutDocument Title = "WinIO" ContentId="document1">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <RichTextBox x:Name="MainOutPanel" Grid.Row="0" Height="Auto" IsReadOnly="True">
-                                        <FlowDocument></FlowDocument>
-                                    </RichTextBox>
-                                </Grid>
+            <layout:LayoutRoot>
+                <layout:LayoutPanel Orientation = "Horizontal">
+                    <layout:LayoutDocumentPaneGroup>
+                        <layout:LayoutDocumentPane x:Name = "LayoutDocumentPane">
+                            <layout:LayoutDocument Title = "WinIO" ContentId="document1" >
+                                <FlowDocumentScrollViewer>
+                                    <con:OutputDocument x:Name="MainOutPanel" Grid.Row="0" Background="Transparent">
+                                        <Paragraph> <Run Text="tsetes"></Run></Paragraph>
+                                        <Paragraph> <Run Text="tsetes2"></Run></Paragraph>
+                                        <Paragraph> <Run Text="tsetes3"></Run></Paragraph>
+                                        <Paragraph> <Run Text="tsetes4"></Run></Paragraph>
+                                        <Paragraph> <Run Text="tsetes5"></Run></Paragraph>
+                                    </con:OutputDocument> 
+                                </FlowDocumentScrollViewer>
                             </layout:LayoutDocument >
+
                             <layout:LayoutDocument Title = "Document 2" ContentId="document2">
-                                <TextBox
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Foreground="White"
-                                    Text="{Binding TestTimer, Mode=OneWay, StringFormat='Document 2 Attached to Timer ->\{0\}'}" />
+                                <FlowDocumentScrollViewer Margin="0" Padding="0" Background="Aqua" VerticalScrollBarVisibility="Auto">
+                                    
+                                <FlowDocument ColumnWidth="400" PagePadding="0" LineHeight="1">
+                                    <Paragraph>
+                                        <Run>
+                                            A UIElement element may be embedded directly in flow content
+                                            by enclosing it in an InlineUIContainer element.
+                                        </Run>
+                                        <LineBreak/>
+                                        <LineBreak/>
+                                        <InlineUIContainer>
+                                            <Button>Click me!</Button>
+                                        </InlineUIContainer>
+                                        <LineBreak/>
+                                        <LineBreak/>
+                                        <Run>
+                                            The InlineUIContainer element may host no more than one top-level
+                                            UIElement.  However, other UIElements may be nested within the
+                                            UIElement contained by an InlineUIContainer element.  For example,
+                                            a StackPanel can be used to host multiple UIElement elements within
+                                            an InlineUIContainer element.
+                                        </Run>
+                                        <InlineUIContainer>
+                                            <StackPanel>
+                                                <Label Foreground="Blue">Choose a value:</Label>
+                                                <ComboBox>
+                                                    <ComboBoxItem IsSelected="True">a</ComboBoxItem>
+                                                    <ComboBoxItem>b</ComboBoxItem>
+                                                    <ComboBoxItem>c</ComboBoxItem>
+                                                </ComboBox>
+                                                <Label Foreground ="Red">Choose a value:</Label>
+                                                <StackPanel>
+                                                    <RadioButton>x</RadioButton>
+                                                    <RadioButton>y</RadioButton>
+                                                    <RadioButton>z</RadioButton>
+                                                </StackPanel>
+                                                <Label>Enter a value:</Label>
+                                                <TextBox>
+                                                    A text editor embedded in flow content.
+                                                </TextBox>
+                                            </StackPanel>
+                                        </InlineUIContainer>
+                                    </Paragraph>
+                                </FlowDocument>
+
+                                </FlowDocumentScrollViewer>
                             </layout:LayoutDocument >
                         </layout:LayoutDocumentPane >
                     </layout:LayoutDocumentPaneGroup >

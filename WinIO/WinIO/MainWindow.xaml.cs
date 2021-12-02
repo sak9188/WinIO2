@@ -38,10 +38,10 @@ namespace WinIO
             app = Application.Current as App;
             InitializeComponent();
 
-            MainOutPanel.AppendText("tesn\n");
-            MainOutPanel.AppendText("tesn\n");
-            MainOutPanel.AppendText("tesn\n");
-            var block = MainOutPanel.Document.Blocks.LastBlock;
+            //MainOutPanel.AppendLine("etestest");
+            //MainOutPanel.AppendLine("sdfasdf");
+            //MainOutPanel.AppendLine("sadfasdf");
+            //MainOutPanel.AppendLine("fuifuifufuifuifufiuif");
 
             var a = new MenuItemView();
             a.Title = "test0";
@@ -56,11 +56,11 @@ namespace WinIO
                 //new MenuItemView(){ Title = "test3"},
             };
 
-            pytest_mod = Py.Import("test_test");
-            Action<string, string> del = app.Notification;
-            pytest_mod.test_obj.val = del;
-            pytest_mod.test_obj.win = this;
-            Console.WriteLine(pytest_mod.test_obj.val);
+            //pytest_mod = Py.Import("test_test");
+            //Action<string, string> del = app.Notification;
+            //pytest_mod.test_obj.val = del;
+            //pytest_mod.test_obj.win = this;
+            //Console.WriteLine(pytest_mod.test_obj.val);
         }
 
 

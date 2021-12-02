@@ -9,7 +9,6 @@ namespace WinIO.Models
     public class MenuItemView
     {
         // 最大层级
-        internal static readonly int MaxLayers = 5;
 
         #region Field
 
@@ -17,7 +16,6 @@ namespace WinIO.Models
         private string _title;
         private bool _checkable;
         private bool _check;
-        private int _level;
 
         private List<MenuItemView> _childViewList = new List<MenuItemView>();
 

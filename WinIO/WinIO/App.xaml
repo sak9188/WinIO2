@@ -3,11 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WinIO"
              xmlns:fluentWpf="clr-namespace:WinIO.FluentWPF"
+             xmlns:controls="clr-namespace:WinIO.Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Controls.xaml"></ResourceDictionary>
+                <ResourceDictionary>
+                    <!-- HeadMenu -->
+                    <Style x:Key="HeadMenuItem" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
+                        <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource AncestorType=Menu}}"></Setter>
+                    </Style>
+                    <Style x:Key="HeadMenu" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
+                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"></Setter>
+                        <Setter Property="Height" Value="30"></Setter>
+                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        <Setter Property="ItemContainerStyle" Value="{StaticResource HeadMenuItem}"></Setter>
+                    </Style>
+
+                    <!-- SubMenu -->
+                    <controls:MenuItemContainerStyleSelector x:Key="MenuItemContainerStyleSelector"></controls:MenuItemContainerStyleSelector>
+
+                    <DataTemplate x:Key="MenuItemHeaderTemplate" DataType="{x:Type system:String}">
+                        <TextBlock Text="{Binding}" Margin="-6, 1, 0, 0"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </DataTemplate>
+
+                    <Style x:Key="MenuItemIconStyle" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
+                        <Setter Property="HeaderTemplate" Value="{StaticResource MenuItemHeaderTemplate}"></Setter>
+                    </Style>
+
+                    <Style x:Key="MenuStyle" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
+                        <Setter Property="Height" Value="25"></Setter>
+                        <Setter Property="ItemContainerStyleSelector" Value="{StaticResource MenuItemContainerStyleSelector}"></Setter>
+                    </Style>
+                    
+                    <!-- OutPut-->
+                    <Style x:Key="OutputDocumentStyle" TargetType="FlowDocument">
+                        <Setter Property="FontFamily" Value="Microsoft YaHei UI"></Setter>
+                        <Setter Property="LineHeight" Value="1"></Setter>
+                        <Setter Property="Foreground" Value="{StaticResource SystemBaseHighColorBrush}"></Setter>
+                        <Setter Property="Background" Value="{StaticResource SystemChromeBlackMediumLowColorBrush}"></Setter>
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
