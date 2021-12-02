@@ -88,3 +88,21 @@ namespace WinIO
     }
 }
 
+
+               // <layout:LayoutRoot.LeftSide >
+               //     <layout:LayoutAnchorSide >
+               //         <layout:LayoutAnchorGroup >
+               //             <layout:LayoutAnchorable
+               //                        Title = "AutoHide0 Content"
+               //                 ContentId="AutoHide0Content" >
+               //                 <TextBox Text="{Binding TestTimer, Mode=OneWay, StringFormat='AutoHide Attached to Timer ->\{-1\}'}" />
+               //             </layout:LayoutAnchorable >
+               //             <layout:LayoutAnchorable Title = "AutoHide1 Content" ContentId="AutoHide2Content">
+               //                 <StackPanel Orientation="Vertical">
+               //                     <TextBox />
+               //                     <TextBox />
+               //                 </StackPanel>
+               //             </layout:LayoutAnchorable >
+               //         </layout:LayoutAnchorGroup >
+               //     </layout:LayoutAnchorSide >
+               // </layout:LayoutRoot.LeftSide >
