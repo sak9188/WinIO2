@@ -4,8 +4,7 @@
              xmlns:local="clr-namespace:WinIO"
              xmlns:fluentWpf="clr-namespace:WinIO.FluentWPF"
              xmlns:controls="clr-namespace:WinIO.Controls"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
-             StartupUri="MainWindow.xaml">
+             xmlns:system="clr-namespace:System;assembly=mscorlib">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

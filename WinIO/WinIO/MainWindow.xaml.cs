@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WinIO.Core;
 using WinIO.FluentWPF;
 using WinIO.Models;
 using WinIO.PythonNet;
@@ -26,18 +27,23 @@ namespace WinIO
     {
         public static App app;
 
-        public static void TestFun()
-        {
-            Console.WriteLine("you are the best member");
-        }
-
-        private dynamic pytest_mod; 
+        public Menu PanelMenu => this.MainMenu;
 
         public MainWindow()
         {
             app = Application.Current as App;
             InitializeComponent();
+        }
 
+        public static void TestFun()
+        {
+            Console.WriteLine("you are the best member");
+        }
+
+        private dynamic pytest_mod;
+
+        public void TestPython()
+        {
             //MainOutPanel.AppendLine("etestest");
             //MainOutPanel.AppendLine("sdfasdf");
             //MainOutPanel.AppendLine("sadfasdf");
@@ -50,7 +56,7 @@ namespace WinIO
             a.Click += MenuItem_OnClick;
 
             var b = new MenuItemView() { Title = "test2" };
-            b.Click += MenuItem_OnClick;
+            // b.Click += MenuItem_OnClick;
 
             MainMenu.ItemsSource = new List<MenuItemView>()
             {
@@ -60,18 +66,14 @@ namespace WinIO
                 //new MenuItemView(){ Title = "test3"},
             };
 
-            pytest_mod = Py.Import("test_test");
-            Action<string, string> del = app.Notification;
-            pytest_mod.test_obj.val = del;
-            pytest_mod.test_obj.win = this;
-            Console.WriteLine(pytest_mod.test_obj.val);
+            // pytest_mod = Py.Import("test_test");
+            // Action<string, string> del = app.Notification;
+            // pytest_mod.test_obj.val = del;
+            // pytest_mod.test_obj.win = this;
+            // b.Click += (o, args) => pytest_mod.test_obj.after_click(o, args);
+            // b.Click += PytDelegateConverter.ToHandler(pytest_mod.test_obj.after_click);
+            // Console.WriteLine(pytest_mod.test_obj.val);
         }
-
-        private void Item_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
 
         #region ComponentAddation
         public void AddButton()
@@ -80,7 +82,7 @@ namespace WinIO
 
         public void Recur()
         {
-            pytest_mod.test_obj.recur();
+            pytest_mod.test_obj.invoke_again();
         }
         #endregion
 

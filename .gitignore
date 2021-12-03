@@ -3,4 +3,5 @@ bin
 Debug
 _ReSharper.Caches
 .vs
-.pyc
+*.pyc
+.vscode

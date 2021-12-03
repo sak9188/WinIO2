@@ -104,6 +104,7 @@
     </ApplicationDefinition>
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
     <Compile Include="Controls\OutputDocument.cs" />
+    <Compile Include="Core\PytDelegateConverter.cs" />
     <Compile Include="Models\MenuItemView.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="PythonNet\arrayobject.cs" />

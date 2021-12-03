@@ -12,13 +12,20 @@ class AClass(object):
         self.val("hello", str(self.int_val))
         self.int_val += 1
         
-        button = Button()
-        button.Content = "hello"
-        self.win.GetButtonPanel().Children.Add(button)
+        #button = Button()
+        #button.Content = "hello"
+        #self.win.GetButtonPanel().Children.Add(button)
+
+    def invoke_again(self):
+        self.invoke()
 
     def recur(self):
         print "refunction"
-        #self.win.Recur()
+        self.win.Recur()
+
+    def after_click(self, o, args):
+        self.val("after_click", "after_click")
+
 
 
 test_obj = AClass()
