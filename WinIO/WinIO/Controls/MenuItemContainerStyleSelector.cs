@@ -24,6 +24,7 @@ namespace WinIO.Controls
                 me.IsCheckable = view.Checkable;
                 me.Header = view.Title;
                 me.ItemsSource = view.Children;
+                me.Click += (o, a) => { view.Click(o, a); };
                 if (!string.IsNullOrEmpty(view.Icon))
                 {
                     me.Icon = new Image()

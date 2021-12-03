@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WinIO.Models
 {
@@ -16,7 +17,8 @@ namespace WinIO.Models
         private string _title;
         private bool _checkable;
         private bool _check;
-
+        public RoutedEventHandler Click;
+         
         private List<MenuItemView> _childViewList = new List<MenuItemView>();
 
         public string Icon

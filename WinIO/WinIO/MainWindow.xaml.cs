@@ -47,20 +47,29 @@ namespace WinIO
             a.Title = "test0";
             a.Icon = "../../../splash.png";
             a.Add(new MenuItemView(){ Title = "nononono"});
+            a.Click += MenuItem_OnClick;
+
+            var b = new MenuItemView() { Title = "test2" };
+            b.Click += MenuItem_OnClick;
 
             MainMenu.ItemsSource = new List<MenuItemView>()
             {
                 a,
-                new MenuItemView(){ Title = "test1"},
+                b
                 //new MenuItemView(){ Title = "test2"},
                 //new MenuItemView(){ Title = "test3"},
             };
 
-            //pytest_mod = Py.Import("test_test");
-            //Action<string, string> del = app.Notification;
-            //pytest_mod.test_obj.val = del;
-            //pytest_mod.test_obj.win = this;
-            //Console.WriteLine(pytest_mod.test_obj.val);
+            pytest_mod = Py.Import("test_test");
+            Action<string, string> del = app.Notification;
+            pytest_mod.test_obj.val = del;
+            pytest_mod.test_obj.win = this;
+            Console.WriteLine(pytest_mod.test_obj.val);
+        }
+
+        private void Item_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 

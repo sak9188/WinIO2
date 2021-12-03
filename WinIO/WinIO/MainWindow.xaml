@@ -85,7 +85,7 @@
                             <layout:LayoutDocument Title = "Document 2" ContentId="document2">
                                 <FlowDocumentScrollViewer Margin="0" Padding="0" Background="Aqua" VerticalScrollBarVisibility="Auto">
                                     
-                                <FlowDocument ColumnWidth="400" PagePadding="0" LineHeight="1">
+                                <con:OutputDocument>
                                     <Paragraph>
                                         <Run>
                                             A UIElement element may be embedded directly in flow content
@@ -126,7 +126,7 @@
                                             </StackPanel>
                                         </InlineUIContainer>
                                     </Paragraph>
-                                </FlowDocument>
+                                </con:OutputDocument>
 
                                 </FlowDocumentScrollViewer>
                             </layout:LayoutDocument >
