@@ -119,7 +119,7 @@
                                   ContentSource="Icon"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
-                                  Width="520"
+                                  Width="16"
                                   Height="16"
                                   Margin="3"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />

@@ -7,9 +7,9 @@ using System.Windows;
 
 namespace WinIO.Core
 {
-    public class PytDelegateConverter
+    public class PyDelegateConverter
     {
-        public static RoutedEventHandler ToHandler(dynamic pyObject)
+        public static RoutedEventHandler ToRoutedEventHandler(dynamic pyObject)
         {
             return new RoutedEventHandler((o, a) => pyObject(o, a));
         }

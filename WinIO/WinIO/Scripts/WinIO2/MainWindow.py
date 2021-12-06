@@ -22,7 +22,12 @@ class MainWindow(object):
 		# 那么这样的自动转化毫无意义, 最好的方法就是用原生C#对象, 这样就可以捕捉成员的变化
 		# 1. 包装一下Menu, 但是同样不能达到马上的变化
 		# 2. 直接使用C#原生对象, 可以达到原生变化, 但是API接口相关就得用C#了
-		menu.ItemsSource = List([MenuItem("青龙在手"), MenuItem("test2")])
+		# 3. 继承C#得类, 然后通过Python手动创建, 这样得化, 便可以得双全
+		a = MenuItem("青龙在手", "../../../splash.png")
+		def change_title():
+			a.title = "龙飞凤舞"
+		a.click.append(lambda x,y: change_title())
+		menu.ItemsSource = List([a, MenuItem("test2")])
 
 	def init_ui(self):
 		pass

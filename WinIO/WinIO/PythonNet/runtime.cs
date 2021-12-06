@@ -1584,7 +1584,12 @@ namespace WinIO.PythonNet
 #if PYTHON2 // Python 3 strings are all Unicode
             if (type == PyStringType)
             {
-                return Marshal.PtrToStringAnsi(PyString_AsString(op), PyString_Size(op));
+                var managedArray = new byte[PyString_Size(op)];
+                Marshal.Copy(PyString_AsString(op), managedArray, 0, managedArray.Length);
+
+                // 这里稍微修改了一下源码, 默认以UTF8字节码得方式作为字符串
+                // return Marshal.PtrToStringAnsi(PyString_AsString(op), PyString_Size(op));
+                return Encoding.UTF8.GetString(managedArray);
             }
 #endif
 

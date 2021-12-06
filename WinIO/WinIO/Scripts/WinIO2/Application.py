@@ -3,6 +3,13 @@
 from WinIO import MainProgram
 
 
+class ToolTipIcon:
+	Null = 0
+	Info = 1
+	Warning = 2
+	Error = 3
+
+
 class Application(object):
 	__share__ = {}	
 	
@@ -15,6 +22,12 @@ class Application(object):
 
 	def get_mainwindow(self):
 		return self.main_window
+
+	def eznotify(self, title, context):
+		self.app.Notification(title, context)
+
+	def notify(self, title, context, time=1000, toolicon=ToolTipIcon.Info):
+		self.app.Notification(time, title, context, toolicon)
 
 
 app = Application()

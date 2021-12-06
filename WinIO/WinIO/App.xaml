@@ -28,9 +28,19 @@
                         <TextBlock Text="{Binding}" Margin="-6, 1, 0, 0"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                     </DataTemplate>
+                       
+                    <DataTemplate x:Key="MenuItemHeaderNoneTemplate" DataType="{x:Type system:String}">
+                        <TextBlock Text="{Binding}" Margin="2"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </DataTemplate>
 
-                    <Style x:Key="MenuItemIconStyle" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
+                    <Style x:Key="MenuItemStyle" TargetType="MenuItem" BasedOn="{StaticResource HeadMenuItem}">
                         <Setter Property="HeaderTemplate" Value="{StaticResource MenuItemHeaderTemplate}"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Icon" Value="{x:Null}">
+                                <Setter Property="HeaderTemplate" Value="{StaticResource MenuItemHeaderNoneTemplate}"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
 
                     <Style x:Key="MenuStyle" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
