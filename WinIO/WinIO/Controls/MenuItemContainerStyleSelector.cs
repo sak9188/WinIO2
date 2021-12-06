@@ -13,23 +13,26 @@ namespace WinIO.Controls
 {
     public class MenuItemContainerStyleSelector : StyleSelector
     {
+        static Style MenuItemStyle;
         public override Style SelectStyle(object item, DependencyObject container)
         {
             
             var me = container as MenuItem;
             var view = item as MenuItemView;
-            var dt = me.FindResource("MenuItemStyle") as Style;
+            Style dt;
+            if(MenuItemStyle != null)
+            {
+                dt = MenuItemStyle;
+            }
+            else
+            {
+                dt = me.FindResource("MenuItemStyle") as Style;
+                MenuItemStyle = dt;
+            }
 
             if (view != null && me != null)
             {
-                me.SetBinding(MenuItem.IsCheckableProperty, new Binding("Checkable") { Source=view });
-                me.SetBinding(MenuItem.HeaderProperty, new Binding("Title") { Source = view });
-                me.SetBinding(MenuItem.IconProperty, new Binding("Image") { Source = view });
-
-                me.ItemsSource = view.Children;
                 me.Click += (o, a) => { if(view.Click != null) view.Click(o, a); };
-
-                // me.IsCheckable = view.Checkable;
             }
 
             return dt;

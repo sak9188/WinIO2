@@ -24,7 +24,7 @@ namespace WinIO.Models
         private bool _checkable;
         private bool _check;
         public RoutedEventHandler Click;
-         
+
         private List<MenuItemView> _childViewList = new List<MenuItemView>();
 
         public string Icon
@@ -33,8 +33,8 @@ namespace WinIO.Models
             set
             {
                 _icon = value;
-                
-                if(!string.IsNullOrEmpty(_icon))
+
+                if (!string.IsNullOrEmpty(_icon))
                 {
                     _image = new Image()
                     {
@@ -42,7 +42,7 @@ namespace WinIO.Models
                     };
                 }
 
-                if(PropertyChanged != null)
+                if (PropertyChanged != null)
                 {
 
                     PropertyChanged(this, new PropertyChangedEventArgs("Image"));
@@ -61,7 +61,7 @@ namespace WinIO.Models
             set
             {
                 _title = value;
-                if(PropertyChanged != null)
+                if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("Title"));
                 }

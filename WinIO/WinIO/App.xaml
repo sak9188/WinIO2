@@ -1,6 +1,7 @@
 <Application x:Class="WinIO.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:WinIO"
              xmlns:fluentWpf="clr-namespace:WinIO.FluentWPF"
              xmlns:controls="clr-namespace:WinIO.Controls"
@@ -36,6 +37,10 @@
 
                     <Style x:Key="MenuItemStyle" TargetType="MenuItem" BasedOn="{StaticResource HeadMenuItem}">
                         <Setter Property="HeaderTemplate" Value="{StaticResource MenuItemHeaderTemplate}"></Setter>
+                        <Setter Property="IsCheckable" Value="{Binding Checkable}"></Setter>
+                        <Setter Property="Header" Value="{Binding Title}"></Setter>
+                        <Setter Property="Icon" Value="{Binding Image}"></Setter>
+                        <Setter Property="ItemsSource" Value="{Binding Children}"></Setter>
                         <Style.Triggers>
                             <Trigger Property="Icon" Value="{x:Null}">
                                 <Setter Property="HeaderTemplate" Value="{StaticResource MenuItemHeaderNoneTemplate}"></Setter>
