@@ -34,6 +34,7 @@ namespace WinIO
         {
             app = Application.Current as App;
             InitializeComponent();
+            
             //TestPython();
         }
 
