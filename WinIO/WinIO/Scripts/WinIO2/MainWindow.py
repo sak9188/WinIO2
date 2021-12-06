@@ -15,8 +15,20 @@ class MainWindow(object):
 		self.app = Application()
 		self.main_window = self.app.get_mainwindow()
 		self.init_self()
+
+	def __str__(self):
+		constring = """  _       __ _         ____ ____     
+ | |     / /(_)____   /  _// __ \    
+ | | /| / // // __ \  / / / / / /    
+ | |/ |/ // // / / /_/ / / /_/ /     
+ |__/|__//_//_/ /_//___/ \____/ """
+		return constring
 	
 	def init_self(self):
+		self.init_output()
+		self.init_ui()
+		self.init_input()
+
 		menu = self.main_window.PanelMenu
 		# 这里如果采用自动转换的话, 如果右边的list发生变化, 但是左边的ItemSource并不会发生变化
 		# 那么这样的自动转化毫无意义, 最好的方法就是用原生C#对象, 这样就可以捕捉成员的变化
@@ -31,6 +43,9 @@ class MainWindow(object):
 		# 	a.title = "龙飞凤舞"
 		# a.click.append(lambda x,y: change_title())
 		menu.ItemsSource = List([a, MenuItem("test2")])
+
+	def init_output(self):
+		pass
 
 	def init_ui(self):
 		pass
