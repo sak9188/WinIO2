@@ -17,14 +17,14 @@ namespace WinIO.Controls
             
             var me = container as MenuItem;
             var view = item as MenuItemView;
-            Style dt = base.SelectStyle(item, container);
+            Style dt = me.FindResource("HeadMenuItem") as Style;
 
             if (view != null && me != null)
             {
                 me.IsCheckable = view.Checkable;
                 me.Header = view.Title;
                 me.ItemsSource = view.Children;
-                me.Click += (o, a) => { view.Click(o, a); };
+                me.Click += (o, a) => { if(view.Click != null) view.Click(o, a); };
                 if (!string.IsNullOrEmpty(view.Icon))
                 {
                     me.Icon = new Image()

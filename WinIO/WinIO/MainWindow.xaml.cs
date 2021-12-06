@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -33,6 +34,7 @@ namespace WinIO
         {
             app = Application.Current as App;
             InitializeComponent();
+            //TestPython();
         }
 
         public static void TestFun()
