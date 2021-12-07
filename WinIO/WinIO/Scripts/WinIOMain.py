@@ -2,12 +2,12 @@
 import os
 import sys
 
-from WinIO2.MainWindow import MainWindow
-
 sys = reload(sys)
 sys.setdefaultencoding('utf8')
-sys.path.append("D:/Project/Dev/Develop/PyHelp")
-sys.path.append("D:/Project/Dev/Develop/PyCode")
+sys.path.append("D:/Project/Dev/Develop/PyHelp/")
+sys.path.append("D:/Project/Dev/Develop/PyCode/")
+
+from WinIO2.MainWindow import MainWindow
 
 # path = os.path.realpath(__file__)
 # path = path[:path.find("Develop")] + r"Develop\PyCode"
