@@ -68,7 +68,7 @@ class MainWindow(object):
 		# sys.stdout = self.debug
 		# sys.stderr = self.debug
 
-		self.main_output, self.output = self.create_document("WinIO", OutputPanel())
+		self.output = self.create_document("WinIO", OutputPanel())
 
 		sys.stdout = self.output 
 		sys.stderr = self.output 
@@ -118,8 +118,8 @@ class MainWindow(object):
 		
 		# 一个HooK按钮
 		def test():
-			self.main_output.Content = self.output
-			self.dock_pane.Children.Add(self.main_output)
+			self.output.reset()
+			self.dock_pane.Children.Add(self.output.parent)
 
 		hook = MenuItem("hook", on_click=lambda x,y: test())
 		menu_list.insert(0, hook)
@@ -175,7 +175,7 @@ class MainWindow(object):
 	def create_document(self, name, control):  
 		document = FloatDocument(name, control)
 		self.dock_pane.Children.Add(document)
-		return document, control
+		return control
 
 	def kill_server(self):
 		os.system("TASKKILL /F /IM %s.exe" % Environment.get_game_key())

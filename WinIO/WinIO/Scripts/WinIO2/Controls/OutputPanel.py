@@ -3,9 +3,21 @@ from System.Windows.Controls import FlowDocumentScrollViewer, ScrollBarVisibilit
 from WinIO.Controls import OutputDocument
 
 class OutputPanel(FlowDocumentScrollViewer):
-	def __init__(self):
+	def __init__(self, parent=None):
 		self.VerticalScrollBarVisibility = ScrollBarVisibility.Auto
 		self.Document = OutputDocument()
+		self._parent = parent
+
+	@property
+	def parent(self):
+		return self._parent
+
+	@parent.setter
+	def parent(self, value):
+		self._parent = value
+
+	def reset(self):
+		self._parent.Content = self
 
 	def write(self, s):
 		self.Document.AppendText(s)
