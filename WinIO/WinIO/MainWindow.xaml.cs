@@ -37,16 +37,21 @@ namespace WinIO
 
         public LayoutDocumentPane MainDockPane => MainDockPanel;
 
-        // public LayoutDocumentPaneGroup MainDockGroup => MainGroup;
+        public EventHandler AfterClosed;
 
         public MainWindow()
         {
             app = Application.Current as App;
             InitializeComponent();
+            this.Closed += MainWindow_Closed;
         }
 
-        private void A_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void MainWindow_Closed(object sender, EventArgs e)
         {
+            if(AfterClosed != null)
+            {
+                AfterClosed.Invoke(sender, e);
+            }
         }
 
         public void TestFun()

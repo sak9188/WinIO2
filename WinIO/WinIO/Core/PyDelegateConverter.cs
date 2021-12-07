@@ -13,5 +13,9 @@ namespace WinIO.Core
         {
             return new RoutedEventHandler((o, a) => pyObject(o, a));
         }
+        public static EventHandler ToEventHandler(dynamic pyObject)
+        {
+            return new EventHandler((o, a) => pyObject(o, a));
+        }
     }
 }

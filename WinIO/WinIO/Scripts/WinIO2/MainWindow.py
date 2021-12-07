@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from WinIO.AvalonDock.Layout import LayoutDocument
+from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Application import Application
 from WinIO2.Controls.MenuItem import MenuItem
@@ -33,6 +33,13 @@ class Debug(object):
 		Console.Write(s)
 
 
+class FunctionChain(list):
+
+	def __call__(self, *args, **kwds):
+		for fun in self:
+			fun()
+
+
 class MainWindow(object):
 	__share__ = {}
 
@@ -47,7 +54,10 @@ class MainWindow(object):
 		self.menu_items_dict = {}
 		self.dock_manager = self.main_window.DockMgr
 		self.dock_pane = self.main_window.MainDockPane
+		self.document_dict = {}
 		self.debug = Debug()
+		self.after_closed = FunctionChain() 
+		self.AfterClosed = PyDel.ToEventHandler(self.__after_closed)
 		self.init_self()
 
 	def __str__(self):
@@ -130,8 +140,40 @@ class MainWindow(object):
 		pass
 
 	"""
+	事件函数	
+	"""
+	def __after_closed(self, o, e):
+		self.after_closed(o, e)
+
+	"""
 	功能函数
 	"""
+	def write(self, s):
+		self.output.write(s)
+
+	def on_write(self, s):
+		print "on write"
+		self.output.write(s)
+
+	def on_progress(self, s):
+		pass
+
+	def on_accept(self, key, name):
+		print "on accept"
+		self.create_document(name, OutputPanel())
+
+	def on_recv(self, s):
+		print "on recv"
+		self.output.write(s)
+
+	def on_close(self, name):
+		print "on close"
+		self.shutdown_document(name)
+
+	def on_except(self, s):
+		print "on exp"
+		self.output.write(s)
+
 	def create_menuitem_from_string(self, menu_list, string, fun):
 		# 这里只存储父节点
 		menu_dict = self.menu_items_dict
@@ -175,7 +217,23 @@ class MainWindow(object):
 	def create_document(self, name, control):  
 		document = FloatDocument(name, control)
 		self.dock_pane.Children.Add(document)
+		self.document_dict[name] = control
 		return control
+
+	def shutdown_document(self, name):
+		# 这里是真正的关闭
+		control = self.document_dict.get(name)
+		if not control:
+			return
+		self.dock_pane.RemoveChild(control.parent)
+		self.document_dict.pop(name)
+		del control
+
+	def close_document(self, name):
+		control = self.document_dict.get(name)
+		if not control:
+			return
+		self.dock_pane.RemoveChild(control.parent)
 
 	def kill_server(self):
 		os.system("TASKKILL /F /IM %s.exe" % Environment.get_game_key())
