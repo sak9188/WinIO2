@@ -37,78 +37,21 @@ namespace WinIO
 
         public LayoutDocumentPane MainDockPane => MainDockPanel;
 
+        // public LayoutDocumentPaneGroup MainDockGroup => MainGroup;
+
         public MainWindow()
         {
             app = Application.Current as App;
             InitializeComponent();
-
-            var b = new LayoutDocument() { Title="WinIO" };
-            var a = new FlowDocumentScrollViewer();
-            a.Document = new OutputDocument();
-            b.Content = a;
-            LayoutDocumentPane.Children.Add(b);
         }
 
-        public static void TestFun()
-        {
-            Console.WriteLine("you are the best member");
-        }
-
-        private dynamic pytest_mod;
-
-        public void TestPython()
-        {
-            //MainOutPanel.AppendLine("etestest");
-            //MainOutPanel.AppendLine("sdfasdf");
-            //MainOutPanel.AppendLine("sadfasdf");
-            //MainOutPanel.AppendLine("fuifuifufuifuifufiuif");
-
-            var a = new MenuItemView();
-            a.Title = "test0";
-            a.Icon = "../../../splash.png";
-            a.Add(new MenuItemView(){ Title = "nononono"});
-            a.Click += MenuItem_OnClick;
-
-            var b = new MenuItemView() { Title = "test2" };
-            // b.Click += MenuItem_OnClick;
-
-            MainMenu.ItemsSource = new List<MenuItemView>()
-            {
-                a,
-                b
-                //new MenuItemView(){ Title = "test2"},
-                //new MenuItemView(){ Title = "test3"},
-            };
-
-            // pytest_mod = Py.Import("test_test");
-            // Action<string, string> del = app.Notification;
-            // pytest_mod.test_obj.val = del;
-            // pytest_mod.test_obj.win = this;
-            // b.Click += (o, args) => pytest_mod.test_obj.after_click(o, args);
-            // b.Click += PytDelegateConverter.ToHandler(pytest_mod.test_obj.after_click);
-            // Console.WriteLine(pytest_mod.test_obj.val);
-        }
-
-        #region ComponentAddation
-        public void AddButton()
+        private void A_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
         }
 
-        public void Recur()
+        public void TestFun()
         {
-            pytest_mod.test_obj.invoke_again();
-        }
-        #endregion
-
-        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            pytest_mod.test_obj.invoke();
-            pytest_mod.test_obj.recur();
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("setset");
+            //MainDockPane.Children.Remove(this.Dou);
         }
     }
 }

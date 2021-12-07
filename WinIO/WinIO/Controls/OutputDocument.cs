@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using Brush = System.Windows.Media.Brush;
 using FontFamily = System.Windows.Media.FontFamily;
 
 namespace WinIO.Controls
@@ -19,12 +20,19 @@ namespace WinIO.Controls
             this.Style = this.FindResource("OutputDocumentStyle") as Style;
         }
 
-        public void AppendText(string text, string fm = null, double fs = 0)
+        public void AppendText(string text, Brush fore = null, Brush back=null, string fm = null, double fs = 0)
         {
             // this.Document.Blocks.Add
             var pa = this.Blocks.LastBlock as Paragraph;
+            if(pa == null)
+            {
+                AppendLine(text, fore, back, fm, fs);
+                return;
+            }
             var run = new Run(text);
             if (fs > 0) run.FontSize = fs;
+            if (fore != null) run.Foreground = fore;
+            if (back != null) run.Background = back;
             if (!string.IsNullOrEmpty(fm))
             {
                 run.FontFamily = new FontFamily(fm);
@@ -32,11 +40,13 @@ namespace WinIO.Controls
             pa.Inlines.Add(run);
         }
 
-        public void AppendLine(string text, string fm = null, double fs = 0)
+        public void AppendLine(string text, Brush fore = null, Brush back=null, string fm = null, double fs = 0)
         {
             var pa = new Paragraph();
             var run = new Run(text);
             if (fs > 0) run.FontSize = fs;
+            if (fore != null) run.Foreground = fore;
+            if (back != null) run.Background = back;
             if (!string.IsNullOrEmpty(fm))
             {
                 run.FontFamily = new FontFamily(fm);

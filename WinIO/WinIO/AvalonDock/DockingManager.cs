@@ -2556,7 +2556,9 @@ namespace WinIO.AvalonDock
             layoutItem.Attach(contentToAttach);
             _layoutItems.Add(layoutItem);
             ApplyStyleToLayoutItem(layoutItem);
-            if (contentToAttach?.Content is UIElement) InternalAddLogicalChild(contentToAttach.Content);
+
+            // 这里不需要它来管理
+            // if (contentToAttach?.Content is UIElement) InternalAddLogicalChild(contentToAttach.Content);
         }
 
         /// <summary>
@@ -2576,7 +2578,9 @@ namespace WinIO.AvalonDock
             layoutItem.Attach(contentToAttach);
             _layoutItems.Add(layoutItem);
             ApplyStyleToLayoutItem(layoutItem);
-            if (contentToAttach?.Content is UIElement) InternalAddLogicalChild(contentToAttach.Content);
+
+            // 这里不需要它来管理
+            // if (contentToAttach?.Content is UIElement) InternalAddLogicalChild(contentToAttach.Content);
         }
 
         #endregion LayoutItems

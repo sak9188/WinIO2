@@ -68,7 +68,7 @@
 
             <layout:LayoutRoot>
                 <layout:LayoutPanel Orientation = "Horizontal">
-                    <layout:LayoutDocumentPaneGroup>
+                    <layout:LayoutDocumentPaneGroup x:Name="MainGroup">
                         <layout:LayoutDocumentPane x:Name = "MainDockPanel"></layout:LayoutDocumentPane >
                     </layout:LayoutDocumentPaneGroup >
                 </layout:LayoutPanel >

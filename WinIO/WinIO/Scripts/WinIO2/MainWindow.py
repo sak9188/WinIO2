@@ -1,8 +1,11 @@
 # -*- coding: UTF-8 -*-
+from WinIO.AvalonDock.Layout import LayoutDocument
 
 from WinIO2.Application import Application
 from WinIO2.Controls.MenuItem import MenuItem
 from WinIO2.Core.List import List
+from WinIO2.Controls.OutputPanel import OutputPanel
+from WinIO2.Controls.FloatDocument import FloatDocument
 
 import os
 import datetime
@@ -62,8 +65,15 @@ class MainWindow(object):
 
 	def init_output(self):
 		import sys
-		sys.stdout = self.debug
-		sys.stderr = self.debug
+		# sys.stdout = self.debug
+		# sys.stderr = self.debug
+
+		self.main_output, self.output = self.create_document("WinIO", OutputPanel())
+
+		sys.stdout = self.output 
+		sys.stderr = self.output 
+
+		print self
 
 		# 这里需要初始化基本的面板	
 
@@ -106,6 +116,13 @@ class MainWindow(object):
 				sub_function_item = MenuItem(function_doc, on_click=GIOCore.GMFunction(module_doc, function_doc, module_name, function_name))
 				moudule_item.add(sub_function_item)
 		
+		# 一个HooK按钮
+		def test():
+			self.main_output.Content = self.output
+			self.dock_pane.Children.Add(self.main_output)
+
+		hook = MenuItem("hook", on_click=lambda x,y: test())
+		menu_list.insert(0, hook)
 		# 最后把数据赋值上去
 		self.menu.ItemsSource = List(menu_list)
 
@@ -154,6 +171,11 @@ class MainWindow(object):
 			item = MenuItem(menu_strs[0], fun)
 			menu_dict[item.title] = item
 			menu_list.append(item)
+
+	def create_document(self, name, control):  
+		document = FloatDocument(name, control)
+		self.dock_pane.Children.Add(document)
+		return document, control
 
 	def kill_server(self):
 		os.system("TASKKILL /F /IM %s.exe" % Environment.get_game_key())
