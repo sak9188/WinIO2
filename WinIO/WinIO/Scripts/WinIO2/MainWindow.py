@@ -37,7 +37,8 @@ class FunctionChain(list):
 
 	def __call__(self, *args, **kwds):
 		for fun in self:
-			fun()
+			pass
+			# fun()
 
 
 class MainWindow(object):
@@ -56,8 +57,8 @@ class MainWindow(object):
 		self.dock_pane = self.main_window.MainDockPane
 		self.document_dict = {}
 		self.debug = Debug()
-		self.after_closed = FunctionChain() 
-		self.AfterClosed = PyDel.ToEventHandler(self.__after_closed)
+		# self.after_closed = FunctionChain() 
+		self.main_window.AfterClosed = PyDel.ToEventHandler(self.__after_closed)
 		self.init_self()
 
 	def __str__(self):
@@ -75,13 +76,13 @@ class MainWindow(object):
 
 	def init_output(self):
 		import sys
-		# sys.stdout = self.debug
-		# sys.stderr = self.debug
+		sys.stdout = self.debug
+		sys.stderr = self.debug
 
 		self.output = self.create_document("WinIO", OutputPanel())
 
-		sys.stdout = self.output 
-		sys.stderr = self.output 
+		# sys.stdout = self.output 
+		# sys.stderr = self.output 
 
 		print self
 
@@ -143,7 +144,8 @@ class MainWindow(object):
 	事件函数	
 	"""
 	def __after_closed(self, o, e):
-		self.after_closed(o, e)
+		pass
+		# self.after_closed(o, e)
 
 	"""
 	功能函数

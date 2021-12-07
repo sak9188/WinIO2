@@ -4,9 +4,11 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Threading;
+using WinIO.PythonNet;
 using NotifyIcon = System.Windows.Forms.NotifyIcon;
 using ToolTipIcon = System.Windows.Forms.ToolTipIcon;
 
@@ -20,6 +22,8 @@ namespace WinIO
         #region Field
         private readonly NotifyIcon _notifyIcon;
 
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
+
         #endregion
 
         public App()
@@ -28,6 +32,10 @@ namespace WinIO
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             _notifyIcon.Visible = true;
+
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+            //_timer.Tick += InvokePython;
+            //_timer.Start();
 
             this.Exit += AppExitHandler;
             this.DispatcherUnhandledException += HandleDispatcherException;
@@ -50,6 +58,10 @@ namespace WinIO
             Notification(1000, title, context);
         }
         #endregion
+
+        private void InvokePython(object sender, EventArgs args)
+        {
+        }
 
         #region HandleExption
         private void HandelApplicationException(object sender, UnhandledExceptionEventArgs e)

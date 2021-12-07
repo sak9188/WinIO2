@@ -23,7 +23,9 @@ namespace WinIO
             app.MainWindow = new MainWindow();
             InitPythonEntry();
             app.MainWindow.Show();
+            var state = PythonEngine.BeginAllowThreads();
             app.Run();
+            PythonEngine.EndAllowThreads(state);
             PythonEngine.Shutdown();
         }
 

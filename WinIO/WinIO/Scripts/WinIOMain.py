@@ -23,8 +23,6 @@ from Tool.GameIO import GIONetWork
 io_select = GIONetWork.get_io_select()
 
 
-def TestThread():
-	print "hello "
 
 if GSEnvironment.is_windows():
 	main_window = MainWindow()
@@ -36,13 +34,21 @@ if GSEnvironment.is_windows():
 	io_select.on_close_callback = main_window.on_close
 	io_select.on_except_callback = main_window.on_except
 	
-	main_window.after_closed.append(lambda x, y: io_select.stop())
+	# main_window.after_closed.append(lambda x, y: io_select.stop())
+
+	def TestFun():
+		while True:
+			import time
+			time.sleep(1)
+			print "testeste"
+			main_window.write("test")
+
+	a = threading.Thread(target=TestFun)
+	a.setDaemon(True)
+	a.start()
 
 	main_window.write("PURPLE ======================================================================\n")
 	main_window.write("WinIO2 使用帮助\n")
 	main_window.write("PURPLE ======================================================================\n")
 
-	thd = threading.Thread(target=TestThread)
-	thd.start()
-
-	io_select.start()
+	# io_select.start()
