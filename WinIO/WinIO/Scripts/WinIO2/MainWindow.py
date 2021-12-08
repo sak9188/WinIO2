@@ -225,7 +225,6 @@ class MainWindow(object):
 
 	@ThreadHelper.dispatcher
 	def shutdown_document(self, index):
-		print "shudown document:", index
 		# 这里是真正的关闭
 		control = self.document_dict.get(index)
 		if not control:

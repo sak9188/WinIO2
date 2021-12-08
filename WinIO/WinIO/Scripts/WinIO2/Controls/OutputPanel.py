@@ -1,9 +1,12 @@
 # -*- coding: UTF-8 -*-
 from System.Windows.Controls import FlowDocumentScrollViewer, ScrollBarVisibility
 from WinIO.Controls import OutputDocument
-from WinIO.Core import PyDelegateConverter as PyDel
 
+from WinIO2.Controls.ColorBrush import ColorConfigure
 from WinIO2.Core import ThreadHelper
+
+import StringIO
+
 
 class OutputPanel(FlowDocumentScrollViewer):
 	def __init__(self, parent=None):
@@ -23,9 +26,25 @@ class OutputPanel(FlowDocumentScrollViewer):
 	def reset(self):
 		self._parent.Content = self
 
+	def __get_color(self, s):
+		# 潜规则，如果要显示颜色则必须有一个空格，且大写
+		strs = s.split(" ", 1)
+		if len(strs) > 1:
+			color = ColorConfigure[strs[0]]
+			if color:	
+				return strs[1], color
+		return s, None
+		
+
 	@ThreadHelper.dispatcher
 	def write(self, s):
-		self.Document.AppendText(s)
+		buf = StringIO.StringIO(s)
+		line = buf.readline()
+		while line:
+			line, fore = self.__get_color(line)
+			if line:
+				self.Document.AppendText(line, fore)
+			line = buf.readline()
 
 	@ThreadHelper.dispatcher
 	def append(self, s, fore=None, back=None, fm=None, fs=None):

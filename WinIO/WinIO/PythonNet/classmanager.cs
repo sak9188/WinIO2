@@ -55,7 +55,10 @@ namespace WinIO.PythonNet
             cache.Add(type, cb);
             // Initialize the object later, as this might call this GetClass method
             // recursively (for example when a nested class inherits its declaring class...)
-            InitClassBase(type, cb);
+            using(Py.GIL())
+            {
+                InitClassBase(type, cb);
+            }
             return cb;
         }
 
