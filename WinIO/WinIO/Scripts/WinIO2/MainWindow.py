@@ -56,6 +56,7 @@ class MainWindow(object):
 		self.dock_manager = self.main_window.DockMgr
 		self.dock_pane = self.main_window.MainDockPane
 		self.document_dict = {}
+		self.name_key_dict = {}
 		self.debug = Debug()
 		self.after_closed = FunctionChain() 
 		self.main_window.AfterClosed = PyDel.ToEventHandler(self.__after_closed)
@@ -79,7 +80,7 @@ class MainWindow(object):
 		sys.stdout = self.debug
 		sys.stderr = self.debug
 
-		self.output = self.create_document("WinIO", OutputPanel())
+		self.output = self.create_document(None, "WinIO", OutputPanel())
 
 		print self
 
@@ -126,7 +127,7 @@ class MainWindow(object):
 			menu_list.append(moudule_item)
 			for function_doc, module_name, function_name in function_info_list:
 				# 这里应该是双层级的
-				sub_function_item = MenuItem(function_doc, on_click=GIOCore.GMFunction(module_doc, function_doc, module_name, function_name))
+				sub_function_item = MenuItem(function_doc, on_click=lambda x,y: GIOCore.GMFunction(module_doc, function_doc, module_name, function_name)() )
 				moudule_item.add(sub_function_item)
 		
 		# 一个HooK按钮
@@ -162,13 +163,15 @@ class MainWindow(object):
 
 	@ThreadHelper.dispatcher
 	def on_accept(self, key, name):
-		self.create_document(name, OutputPanel())
+		self.create_document(key, name, OutputPanel())
 
 	def on_recv(self, key, data):
-		pass
+		document = self.document_dict.get(key)
+		if document:
+			document.write(data)
 
-	def on_close(self, name):
-		self.shutdown_document(name)
+	def on_close(self, key):
+		self.shutdown_document(key)
 
 	def on_except(self, s):
 		self.output.write(s)
@@ -183,7 +186,7 @@ class MainWindow(object):
 			# 直接找父亲
 			father_item = menu_dict.get(father_str)
 			# 子节点
-			child_item = MenuItem(child_str, on_click=fun)
+			child_item = MenuItem(child_str, on_click=lambda x,y: fun())
 			if not father_item:
 				# 说明并没有这个父亲， 需要从头开始进行一个搜索
 				fathers = father_str.split("/")
@@ -209,30 +212,31 @@ class MainWindow(object):
 			father_item.add(child_item)
 		else:
 			# 说明自己本身就是一个节点
-			item = MenuItem(menu_strs[0], fun)
+			item = MenuItem(menu_strs[0], on_click=lambda x,y: fun())
 			menu_dict[item.title] = item
 			menu_list.append(item)
 	
 	@ThreadHelper.dispatcher
-	def create_document(self, name, control):
+	def create_document(self, index, name, control):
 		document = FloatDocument(name, control)
 		self.dock_pane.Children.Add(document)
-		self.document_dict[name] = control
+		self.document_dict[index] = control
 		return control
 
 	@ThreadHelper.dispatcher
-	def shutdown_document(self, name):
+	def shutdown_document(self, index):
+		print "shudown document:", index
 		# 这里是真正的关闭
-		control = self.document_dict.get(name)
+		control = self.document_dict.get(index)
 		if not control:
 			return
 		self.dock_pane.RemoveChild(control.parent)
-		self.document_dict.pop(name)
+		self.document_dict.pop(index)
 		del control
 
 	@ThreadHelper.dispatcher
-	def close_document(self, name):
-		control = self.document_dict.get(name)
+	def close_document(self, index):
+		control = self.document_dict.get(index)
 		if not control:
 			return
 		self.dock_pane.RemoveChild(control.parent)

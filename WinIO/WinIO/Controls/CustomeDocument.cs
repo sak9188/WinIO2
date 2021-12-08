@@ -7,7 +7,7 @@ using WinIO.AvalonDock.Layout;
 
 namespace WinIO.Controls
 {
-    public class CustomeDocument : LayoutDocument
+    public class CustomeDocument : LayoutAnchorable
     {
         public CustomeDocument()
         {

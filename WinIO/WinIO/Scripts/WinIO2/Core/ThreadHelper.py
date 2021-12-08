@@ -7,7 +7,6 @@ from WinIO import MainProgram
 
 App = MainProgram.app
 AppThreadID = App.Dispatcher.Thread.ManagedThreadId
-Current = Application.Current
 
 
 def get_thread_id():

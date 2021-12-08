@@ -3,7 +3,7 @@ from System.Windows.Controls import FlowDocumentScrollViewer, ScrollBarVisibilit
 from WinIO.Controls import OutputDocument
 from WinIO.Core import PyDelegateConverter as PyDel
 
-from WinIO2.Core.ThreadHelper import dispatcher
+from WinIO2.Core import ThreadHelper
 
 class OutputPanel(FlowDocumentScrollViewer):
 	def __init__(self, parent=None):
@@ -23,14 +23,14 @@ class OutputPanel(FlowDocumentScrollViewer):
 	def reset(self):
 		self._parent.Content = self
 
-	@dispatcher
+	@ThreadHelper.dispatcher
 	def write(self, s):
 		self.Document.AppendText(s)
 
-	@dispatcher
+	@ThreadHelper.dispatcher
 	def append(self, s, fore=None, back=None, fm=None, fs=None):
 		self.Document.AppendText(s, fore, back, fm, fs)
 
-	@dispatcher
+	@ThreadHelper.dispatcher
 	def append_line(self, s, fore=None, back=None, fm=None, fs=None):
 		self.Document.AppendLine(s, fore, back, fm, fs)

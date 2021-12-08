@@ -50,7 +50,7 @@
         <dk:DockingManager x:Name = "MainDock"
             Grid.Row = "1"
             Background="Transparent"
-            AllowMixedOrientation = "True"
+            AllowMixedOrientation="True"
             AutoWindowSizeWhenOpened = "True"
             IsVirtualizingAnchorable = "True"
             IsVirtualizingDocument = "True" >
@@ -67,10 +67,8 @@
             </dk:DockingManager.DocumentHeaderTemplate >
 
             <layout:LayoutRoot>
-                <layout:LayoutPanel Orientation = "Horizontal">
-                    <layout:LayoutDocumentPaneGroup x:Name="MainGroup">
-                        <layout:LayoutDocumentPane x:Name = "MainDockPanel"></layout:LayoutDocumentPane >
-                    </layout:LayoutDocumentPaneGroup >
+                <layout:LayoutPanel>
+                    <layout:LayoutDocumentPane x:Name = "MainDockPanel"></layout:LayoutDocumentPane >
                 </layout:LayoutPanel >
             </layout:LayoutRoot >
         </dk:DockingManager >
