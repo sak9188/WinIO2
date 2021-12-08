@@ -3,6 +3,7 @@ from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Application import Application
 from WinIO2.Controls.MenuItem import MenuItem
+from WinIO2.Core import ThreadHelper
 from WinIO2.Core.List import List
 from WinIO2.Controls.OutputPanel import OutputPanel
 from WinIO2.Controls.FloatDocument import FloatDocument
@@ -37,8 +38,7 @@ class FunctionChain(list):
 
 	def __call__(self, *args, **kwds):
 		for fun in self:
-			pass
-			# fun()
+			fun(*args, **kwds)
 
 
 class MainWindow(object):
@@ -57,7 +57,7 @@ class MainWindow(object):
 		self.dock_pane = self.main_window.MainDockPane
 		self.document_dict = {}
 		self.debug = Debug()
-		# self.after_closed = FunctionChain() 
+		self.after_closed = FunctionChain() 
 		self.main_window.AfterClosed = PyDel.ToEventHandler(self.__after_closed)
 		self.init_self()
 
@@ -81,11 +81,13 @@ class MainWindow(object):
 
 		self.output = self.create_document("WinIO", OutputPanel())
 
-		# sys.stdout = self.output 
-		# sys.stderr = self.output 
-
 		print self
 
+		def restore_output():
+			sys.stdout = self.debug
+			sys.stderr = self.debug
+
+		self.after_closed.append(lambda x,y: restore_output())
 		# 这里需要初始化基本的面板	
 
 	def init_ui(self):
@@ -144,8 +146,7 @@ class MainWindow(object):
 	事件函数	
 	"""
 	def __after_closed(self, o, e):
-		pass
-		# self.after_closed(o, e)
+		self.after_closed(o, e)
 
 	"""
 	功能函数
@@ -154,26 +155,22 @@ class MainWindow(object):
 		self.output.write(s)
 
 	def on_write(self, s):
-		print "on write"
 		self.output.write(s)
 
 	def on_progress(self, s):
 		pass
 
+	@ThreadHelper.dispatcher
 	def on_accept(self, key, name):
-		print "on accept"
 		self.create_document(name, OutputPanel())
 
-	def on_recv(self, s):
-		print "on recv"
-		self.output.write(s)
+	def on_recv(self, key, data):
+		pass
 
 	def on_close(self, name):
-		print "on close"
 		self.shutdown_document(name)
 
 	def on_except(self, s):
-		print "on exp"
 		self.output.write(s)
 
 	def create_menuitem_from_string(self, menu_list, string, fun):
@@ -215,13 +212,15 @@ class MainWindow(object):
 			item = MenuItem(menu_strs[0], fun)
 			menu_dict[item.title] = item
 			menu_list.append(item)
-
-	def create_document(self, name, control):  
+	
+	@ThreadHelper.dispatcher
+	def create_document(self, name, control):
 		document = FloatDocument(name, control)
 		self.dock_pane.Children.Add(document)
 		self.document_dict[name] = control
 		return control
 
+	@ThreadHelper.dispatcher
 	def shutdown_document(self, name):
 		# 这里是真正的关闭
 		control = self.document_dict.get(name)
@@ -231,6 +230,7 @@ class MainWindow(object):
 		self.document_dict.pop(name)
 		del control
 
+	@ThreadHelper.dispatcher
 	def close_document(self, name):
 		control = self.document_dict.get(name)
 		if not control:

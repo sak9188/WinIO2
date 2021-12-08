@@ -65,7 +65,11 @@ namespace WinIO.PythonNet
             {
                 return handle;
             }
-            handle = CreateType(obj, type);
+
+            using (Py.GIL())
+            {
+                handle = CreateType(obj, type);
+            }
             cache[type] = handle;
             return handle;
         }

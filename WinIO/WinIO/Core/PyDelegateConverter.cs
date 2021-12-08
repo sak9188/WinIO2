@@ -17,5 +17,15 @@ namespace WinIO.Core
         {
             return new EventHandler((o, a) => pyObject(o, a));
         }
+
+        public static Action ToAction(dynamic pyObject)
+        {
+            return new Action(()=> pyObject());
+        }
+
+        public static Func<object> ToFunc(dynamic pyObject)
+        {
+            return new Func<object>(() => { return pyObject(); });
+        }
     }
 }
