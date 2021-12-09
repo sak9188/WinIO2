@@ -2,6 +2,7 @@
 from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Application import Application
+from WinIO2.Controls.BlankWindow import AcrylicWindowStyle, BlankWindow
 from WinIO2.Controls.MenuItem import MenuItem
 from WinIO2.Core import ThreadHelper
 from WinIO2.Core.List import List
@@ -74,6 +75,12 @@ class MainWindow(object):
 		self.init_output()
 		self.init_ui()
 		self.init_input()
+
+		self.tool_window = tool_window = BlankWindow("设置面板")
+		tool_window.set_window_style(AcrylicWindowStyle.NoIcon)
+		tool_window.height = 300
+		tool_window.width = 300
+		tool_window.ShowDialog()
 
 	def init_output(self):
 		import sys
@@ -161,7 +168,7 @@ class MainWindow(object):
 	def on_progress(self, s):
 		pass
 
-	@ThreadHelper.dispatcher
+	@ThreadHelper.begin_invoke
 	def on_accept(self, key, name):
 		self.create_document(key, name, OutputPanel())
 
@@ -216,14 +223,28 @@ class MainWindow(object):
 			menu_dict[item.title] = item
 			menu_list.append(item)
 	
-	@ThreadHelper.dispatcher
+	def kill_server(self):
+		os.system("TASKKILL /F /IM %s.exe" % Environment.get_game_key())
+
+	"""
+	UI相关	
+	"""	
+	def save_layout(self):
+		# 布局相关还没思考怎么做比较合适， 因为页签之间存在层级和逻辑关系
+		pass
+
+	def load_layout(self):
+		# 布局相关还没思考怎么做比较合适， 因为页签之间存在层级和逻辑关系
+		pass
+
+	@ThreadHelper.invoke
 	def create_document(self, index, name, control):
 		document = FloatDocument(name, control)
 		self.dock_pane.Children.Add(document)
 		self.document_dict[index] = control
 		return control
 
-	@ThreadHelper.dispatcher
+	@ThreadHelper.begin_invoke
 	def shutdown_document(self, index):
 		# 这里是真正的关闭
 		control = self.document_dict.get(index)
@@ -233,12 +254,9 @@ class MainWindow(object):
 		self.document_dict.pop(index)
 		del control
 
-	@ThreadHelper.dispatcher
+	@ThreadHelper.begin_invoke
 	def close_document(self, index):
 		control = self.document_dict.get(index)
 		if not control:
 			return
 		self.dock_pane.RemoveChild(control.parent)
-
-	def kill_server(self):
-		os.system("TASKKILL /F /IM %s.exe" % Environment.get_game_key())

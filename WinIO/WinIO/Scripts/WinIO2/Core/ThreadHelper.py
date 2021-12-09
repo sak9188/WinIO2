@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 from System.Threading import Thread
-from System.Windows import Application
 
 from WinIO.Core import PyDelegateConverter as PyDel
 from WinIO import MainProgram
@@ -13,7 +12,7 @@ def get_thread_id():
 	return Thread.CurrentThread.ManagedThreadId
 
 
-def dispatcher(func):
+def invoke(func):
 	def wrapper(*args, **kwargs):
 
 		def __fun():
@@ -24,5 +23,20 @@ def dispatcher(func):
 					PyDel.ToFunc(__fun))
 		else:
 			return func(*args, **kwargs)
+
+	return wrapper
+
+
+def begin_invoke(func):
+	def wrapper(*args, **kwargs):
+
+		def __fun():
+			return func(*args, **kwargs)
+
+		if AppThreadID != get_thread_id():
+			App.Dispatcher.BeginInvoke(
+					PyDel.ToFunc(__fun))
+		else:
+			func(*args, **kwargs)
 
 	return wrapper

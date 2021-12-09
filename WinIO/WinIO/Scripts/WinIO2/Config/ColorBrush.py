@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import re
-from System.Windows.Media import SolidColorBrush, Color, Colors
+from System.Windows.Media import SolidColorBrush, Colors
 
 from WinIO2.Core.Configure import ConfigureMeta
 

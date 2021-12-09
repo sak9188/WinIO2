@@ -54,8 +54,12 @@
                     </Style>
                     
                     <!-- OutPut-->
+                    <FontFamily x:Key="OutputDefaultFontFamily">Microsoft Yahei</FontFamily>
+                    <system:Double x:Key="OutputDefaultFontSize">12</system:Double>
+
                     <Style x:Key="OutputDocumentStyle" TargetType="FlowDocument">
-                        <Setter Property="FontFamily" Value="Microsoft YaHei UI"></Setter>
+                        <Setter Property="FontFamily" Value="{DynamicResource OutputDefaultFontFamily}"></Setter>
+                        <Setter Property="FontSize" Value="{DynamicResource OutputDefaultFontSize}"></Setter>
                         <Setter Property="LineHeight" Value="1"></Setter>
                         <Setter Property="Foreground" Value="{StaticResource SystemBaseHighColorBrush}"></Setter>
                         <Setter Property="Background" Value="{StaticResource SystemChromeBlackMediumLowColorBrush}"></Setter>

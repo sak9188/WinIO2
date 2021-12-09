@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Threading;
 using WinIO.PythonNet;
 using NotifyIcon = System.Windows.Forms.NotifyIcon;
@@ -33,10 +34,6 @@ namespace WinIO
             _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             _notifyIcon.Visible = true;
 
-            _timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
-            //_timer.Tick += InvokePython;
-            //_timer.Start();
-
             this.Exit += AppExitHandler;
             this.DispatcherUnhandledException += HandleDispatcherException;
             AppDomain.CurrentDomain.UnhandledException += HandelApplicationException; 
@@ -58,10 +55,6 @@ namespace WinIO
             Notification(1000, title, context);
         }
         #endregion
-
-        private void InvokePython(object sender, EventArgs args)
-        {
-        }
 
         #region HandleExption
         private void HandelApplicationException(object sender, UnhandledExceptionEventArgs e)

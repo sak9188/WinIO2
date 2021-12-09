@@ -2,7 +2,7 @@
 from System.Windows.Controls import FlowDocumentScrollViewer, ScrollBarVisibility
 from WinIO.Controls import OutputDocument
 
-from WinIO2.Controls.ColorBrush import ColorConfigure
+from WinIO2.Config.ColorBrush import ColorConfigure
 from WinIO2.Core import ThreadHelper
 
 import StringIO
@@ -36,7 +36,7 @@ class OutputPanel(FlowDocumentScrollViewer):
 		return s, None
 		
 
-	@ThreadHelper.dispatcher
+	@ThreadHelper.begin_invoke
 	def write(self, s):
 		buf = StringIO.StringIO(s)
 		line = buf.readline()
@@ -46,10 +46,10 @@ class OutputPanel(FlowDocumentScrollViewer):
 				self.Document.AppendText(line, fore)
 			line = buf.readline()
 
-	@ThreadHelper.dispatcher
+	@ThreadHelper.begin_invoke
 	def append(self, s, fore=None, back=None, fm=None, fs=None):
 		self.Document.AppendText(s, fore, back, fm, fs)
 
-	@ThreadHelper.dispatcher
+	@ThreadHelper.begin_invoke
 	def append_line(self, s, fore=None, back=None, fm=None, fs=None):
 		self.Document.AppendLine(s, fore, back, fm, fs)
