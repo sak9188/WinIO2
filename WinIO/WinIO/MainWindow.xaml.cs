@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using WinIO.AvalonDock;
@@ -27,6 +28,7 @@ namespace WinIO
             app = Application.Current as App;
             InitializeComponent();
             this.Closed += MainWindow_Closed;
+            TestCom.ItemsSource = new List<string>() {"hello", "world"};
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

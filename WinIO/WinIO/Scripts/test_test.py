@@ -1,5 +1,3 @@
-import clr
-
 from System.Windows.Controls import Button
 
 class AClass(object):

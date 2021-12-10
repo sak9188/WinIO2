@@ -3,14 +3,16 @@
 from WinIO.Models import MenuItemView
 from WinIO.Core import PyDelegateConverter as PyDel
 
+from WinIO2.Core.FunctionTool import FunctionChain
+
 class MenuItem(MenuItemView):
 
 	def __init__(self, title, icon=None, on_click=None):
 		self.Icon = icon
 		self.Title = title
-		self.click_fun = []
+		self.click_fun = FunctionChain()
 		self.child_dict = {}
-		self.Click = PyDel.ToRoutedEventHandler(self.__after_click)
+		self.Click = PyDel.ToRoutedEventHandler(self.click_fun)
 		if on_click:
 			self.click_fun.append(on_click)
 
@@ -43,7 +45,3 @@ class MenuItem(MenuItemView):
 	@title.setter
 	def title(self, value):
 		self.Title = value
-
-	def __after_click(self, obj, args):
-		for fun in self.click_fun:
-			fun(obj, args)

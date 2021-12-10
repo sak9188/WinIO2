@@ -68,7 +68,21 @@
 
             <layout:LayoutRoot>
                 <layout:LayoutPanel>
-                    <layout:LayoutDocumentPane x:Name = "MainDockPanel"></layout:LayoutDocumentPane >
+                    <layout:LayoutAnchorablePaneGroup DockWidth="100">
+                        <layout:LayoutAnchorablePane>
+                            <layout:LayoutAnchorable>
+                                <Grid x:Name="TestGrid">
+                                    <Label Grid.Row="1" Style="{StaticResource BaseSettingLabel}">
+                                        <TextBlock Text="Testset" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                                    </Label>
+                                    <ComboBox Grid.Row="2" Name="TestCom" Height="30" Style="{StaticResource ComboBoxRevealStyle}"></ComboBox>
+                                </Grid>
+                            </layout:LayoutAnchorable>
+                        </layout:LayoutAnchorablePane>
+                    </layout:LayoutAnchorablePaneGroup>
+                    <layout:LayoutDocumentPaneGroup>
+                        <layout:LayoutDocumentPane x:Name = "MainDockPanel"></layout:LayoutDocumentPane >
+                    </layout:LayoutDocumentPaneGroup>
                 </layout:LayoutPanel >
             </layout:LayoutRoot >
         </dk:DockingManager >

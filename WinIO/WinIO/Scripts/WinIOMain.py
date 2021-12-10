@@ -8,6 +8,19 @@ sys.setdefaultencoding('utf8')
 sys.path.append("D:/Project/Dev/Develop/PyHelp/")
 sys.path.append("D:/Project/Dev/Develop/PyCode/")
 
+class Debug(object):
+
+	def write(self, s):
+		from System import Console
+		Console.Write(s)
+
+
+import sys
+debug = Debug()
+sys.stdout = debug
+sys.stderr = debug
+
+
 from WinIO2.MainWindow import MainWindow
 
 # path = os.path.realpath(__file__)

@@ -64,6 +64,11 @@
                         <Setter Property="Foreground" Value="{StaticResource SystemBaseHighColorBrush}"></Setter>
                         <Setter Property="Background" Value="{StaticResource SystemChromeBlackMediumLowColorBrush}"></Setter>
                     </Style>
+
+                    <!-- Setting -->
+                    <Style x:Key="BaseSettingLabel" TargetType="Label">
+                        <Setter Property="Padding" Value="5"></Setter>
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

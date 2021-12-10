@@ -1,9 +1,8 @@
 # -*- coding: UTF-8 -*-
-
-import re
 from System.Windows.Media import SolidColorBrush, Colors
 
-from WinIO2.Core.Configure import ConfigureMeta
+from WinIO2.Config.Configure import ConfigureMeta
+
 
 class BrushString(object):
 	BLUE = "BLUE"
@@ -17,13 +16,13 @@ class BrushString(object):
 
 class ColorConfigure(object):
 	ConfigDict = {
-		BrushString.BLUE: SolidColorBrush(Colors.Blue),
-		BrushString.GREEN: SolidColorBrush(Colors.Green),
-		BrushString.YELLOW: SolidColorBrush(Colors.Yellow),
-		BrushString.RED: SolidColorBrush(Colors.Red),
-		BrushString.GRAY: SolidColorBrush(Colors.Gray),
-		BrushString.PURPLE: SolidColorBrush(Colors.Purple),
-		BrushString.ORANGE: SolidColorBrush(Colors.Orange)
+		BrushString.BLUE: ("蓝色", SolidColorBrush(Colors.Blue)),
+		BrushString.GREEN: ("绿色", SolidColorBrush(Colors.Green)),
+		BrushString.YELLOW: ("黄色", SolidColorBrush(Colors.Yellow)),
+		BrushString.RED: ("红色", SolidColorBrush(Colors.Red)),
+		BrushString.GRAY: ("灰色", SolidColorBrush(Colors.Gray)),
+		BrushString.PURPLE: ("紫色", SolidColorBrush(Colors.Purple)),
+		BrushString.ORANGE: ("橙色", SolidColorBrush(Colors.Orange))
 	}
 
 	__metaclass__ = ConfigureMeta

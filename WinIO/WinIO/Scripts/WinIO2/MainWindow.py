@@ -2,9 +2,12 @@
 from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Application import Application
+from WinIO2.Config.Application import ApplicationCofigure
 from WinIO2.Controls.BlankWindow import AcrylicWindowStyle, BlankWindow
 from WinIO2.Controls.MenuItem import MenuItem
+from WinIO2.Controls.SettingWindow import SettingWindow
 from WinIO2.Core import ThreadHelper
+from WinIO2.Core.FunctionTool import FunctionChain
 from WinIO2.Core.List import List
 from WinIO2.Controls.OutputPanel import OutputPanel
 from WinIO2.Controls.FloatDocument import FloatDocument
@@ -35,13 +38,6 @@ class Debug(object):
 		Console.Write(s)
 
 
-class FunctionChain(list):
-
-	def __call__(self, *args, **kwds):
-		for fun in self:
-			fun(*args, **kwds)
-
-
 class MainWindow(object):
 	__share__ = {}
 
@@ -60,7 +56,7 @@ class MainWindow(object):
 		self.name_key_dict = {}
 		self.debug = Debug()
 		self.after_closed = FunctionChain() 
-		self.main_window.AfterClosed = PyDel.ToEventHandler(self.__after_closed)
+		self.main_window.AfterClosed = PyDel.ToEventHandler(self.after_closed)
 		self.init_self()
 
 	def __str__(self):
@@ -76,26 +72,17 @@ class MainWindow(object):
 		self.init_ui()
 		self.init_input()
 
-		self.tool_window = tool_window = BlankWindow("设置面板")
+		self.tool_window = tool_window = SettingWindow("设置面板")
 		tool_window.set_window_style(AcrylicWindowStyle.NoIcon)
 		tool_window.height = 300
 		tool_window.width = 300
+		tool_window.load_configure(ApplicationCofigure)
 		tool_window.ShowDialog()
 
 	def init_output(self):
-		import sys
-		sys.stdout = self.debug
-		sys.stderr = self.debug
-
 		self.output = self.create_document(None, "WinIO", OutputPanel())
 
 		print self
-
-		def restore_output():
-			sys.stdout = self.debug
-			sys.stderr = self.debug
-
-		self.after_closed.append(lambda x,y: restore_output())
 		# 这里需要初始化基本的面板	
 
 	def init_ui(self):
@@ -149,12 +136,6 @@ class MainWindow(object):
 
 	def init_input(self):
 		pass
-
-	"""
-	事件函数	
-	"""
-	def __after_closed(self, o, e):
-		self.after_closed(o, e)
 
 	"""
 	功能函数

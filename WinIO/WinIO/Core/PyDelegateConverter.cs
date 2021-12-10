@@ -25,7 +25,7 @@ namespace WinIO.Core
 
         public static Func<object> ToFunc(dynamic pyObject)
         {
-            return new Func<object>(() => { return pyObject(); });
+            return new Func<object>(() => {return pyObject();});
         }
     }
 }
