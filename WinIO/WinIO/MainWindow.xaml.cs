@@ -17,6 +17,7 @@ namespace WinIO
         public static App app;
 
         public Menu PanelMenu => this.MainMenu;
+        public Menu WindowMenu => this.HeadMenu;
 
         public DockingManager DockMgr => this.MainDock;
 

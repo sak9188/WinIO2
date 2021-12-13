@@ -48,6 +48,7 @@ class MainWindow(object):
 		self.__dict__ = self.__share__
 		self.app = Application()
 		self.main_window = self.app.get_mainwindow()
+		self.window_menu = self.main_window.WindowMenu
 		self.menu = self.main_window.PanelMenu
 		self.menu_items_dict = {}
 		self.dock_manager = self.main_window.DockMgr
@@ -60,25 +61,39 @@ class MainWindow(object):
 		self.init_self()
 
 	def __str__(self):
-		constring = """  _       __ _         ____ ____     
+		constring = \
+"""
+  _       __ _         ____ ____     
  | |     / /(_)____   /  _// __ \    
  | | /| / // // __ \  / / / / / /    
  | |/ |/ // // / / /_/ / / /_/ /     
- |__/|__//_//_/ /_//___/ \____/ """
+ |__/|__//_//_/ /_//___/ \____/ 
+"""
 		return constring
 	
 	def init_self(self):
 		self.init_output()
-		self.init_ui()
+		self.init_base()
+		self.init_gmui()
 		self.init_input()
 
+	def init_base(self):
+		# 这里初始化一些基本UI
+		menu_list = []
 		self.tool_window = tool_window = SettingWindow("设置面板")
 		tool_window.set_window_style(AcrylicWindowStyle.NoIcon)
 		tool_window.height = 300
 		tool_window.width = 500
 		tool_window.load_configure(ApplicationCofigure)
-		print "Parent is: ", tool_window
-		tool_window.ShowDialog()
+
+		tool_menu = MenuItem("工具")
+		def _open_setting_panel():
+			print tool_window
+			tool_window.ShowDialog()
+		setting_item = MenuItem("设置", on_click=lambda x,y: _open_setting_panel())		
+		tool_menu.add(setting_item)
+		menu_list.append(tool_menu)
+		self.window_menu.ItemsSource = List(menu_list)
 
 	def init_output(self):
 		self.output = self.create_document(None, "WinIO", OutputPanel())
@@ -86,7 +101,7 @@ class MainWindow(object):
 		print self
 		# 这里需要初始化基本的面板	
 
-	def init_ui(self):
+	def init_gmui(self):
 		# 这里的皮
 		# for os_name in GameDefine.OperatingSystemList:
 		# 	self.create_menu_item("IO工具/设置批处理参数/" + os_name, GEvent(self, "change_bat_param", os_name))

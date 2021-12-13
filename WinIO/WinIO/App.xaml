@@ -11,18 +11,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Controls.xaml"></ResourceDictionary>
                 <ResourceDictionary>
-                    <!-- HeadMenu -->
+                    <!-- SubMenu -->
                     <Style x:Key="HeadMenuItem" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
                         <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource AncestorType=Menu}}"></Setter>
                     </Style>
-                    <Style x:Key="HeadMenu" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
-                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"></Setter>
-                        <Setter Property="Height" Value="30"></Setter>
-                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                        <Setter Property="ItemContainerStyle" Value="{StaticResource HeadMenuItem}"></Setter>
-                    </Style>
 
-                    <!-- SubMenu -->
                     <controls:MenuItemContainerStyleSelector x:Key="MenuItemContainerStyleSelector"></controls:MenuItemContainerStyleSelector>
 
                     <DataTemplate x:Key="MenuItemHeaderTemplate" DataType="{x:Type system:String}">
@@ -48,6 +41,16 @@
                         </Style.Triggers>
                     </Style>
 
+                    <!-- HeadMenu -->
+                    <Style x:Key="HeadMenu" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
+                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"></Setter>
+                        <Setter Property="Margin" Value="0,5"></Setter>
+                        <Setter Property="Height" Value="25"></Setter>
+                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        <Setter Property="ItemContainerStyleSelector" Value="{StaticResource MenuItemContainerStyleSelector}"></Setter>
+                    </Style>
+            
+                    <!-- PanelMenu -->
                     <Style x:Key="MenuStyle" TargetType="Menu" BasedOn="{StaticResource AcrylicMenuStyle}">
                         <Setter Property="Height" Value="25"></Setter>
                         <Setter Property="ItemContainerStyleSelector" Value="{StaticResource MenuItemContainerStyleSelector}"></Setter>
@@ -66,6 +69,10 @@
                     </Style>
 
                     <!-- Setting -->
+                    <Style x:Key="BaseSettingStackPanel" TargetType="StackPanel">
+                        <Setter Property="Margin" Value="1"></Setter>
+                    </Style>
+                    
                     <Style x:Key="BaseSettingLabel" TargetType="Label">
                         <Setter Property="Padding" Value="20,3"></Setter>
                         <Setter Property="VerticalAlignment" Value="Center"></Setter>

@@ -74,11 +74,11 @@ class ConfigDiscriber(object):
 		fun(row, self)
 
 
-from System import Double
+from System import Double, Single
 from System.Windows.Controls import Label, TextBlock
 from System.Windows.Media import FontFamily
 
-from WinIO.Controls import FontComboBox
+from WinIO.Controls import FontComboBox, AdvanceTextBox
 
 def __font_family(row, disc):
 	lab = Label()
@@ -96,16 +96,16 @@ ConfigDiscriber.reg_control(FontFamily, __font_family)
 
 
 def __input_nummber(row, disc):
-	return
 	lab = Label()
-	input_number = 1
+	input_number = AdvanceTextBox(disc, AdvanceTextBox.EInputType.eInteger) 
 	text_block = TextBlock()
 	lab.Content = text_block
 	row.Children.Add(lab)
-	row.Children.Add(font_combo)
+	row.Children.Add(input_number)
 	
 	lab.Style = App.TryFindResource("BaseSettingLabel")
 	text_block.Text = disc.text
 	text_block.Style = App.TryFindResource("BaseTextBlockStyle")
 
 ConfigDiscriber.reg_control(Double, __input_nummber)
+ConfigDiscriber.reg_control(float, __input_nummber)

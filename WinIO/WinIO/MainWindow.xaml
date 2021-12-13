@@ -21,17 +21,7 @@
             </Grid.ColumnDefinitions>
             <Image Height="24" Width="24" Stretch="UniformToFill" Source="splash.png" Margin="5" RenderOptions.BitmapScalingMode="HighQuality"></Image>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <Menu x:Name="HeadMenu" Style="{StaticResource HeadMenu}">
-                    <MenuItem Header="工具">
-                        <MenuItem Header="主题设置"></MenuItem>
-                        <MenuItem Header="设置"></MenuItem>
-                    </MenuItem>
-                    <MenuItem Header="窗口">
-                        <MenuItem Header="重置"></MenuItem>
-                    </MenuItem>
-                    <MenuItem Header="帮助"></MenuItem>
-                    <MenuItem Header="我的Redmine"></MenuItem>
-                </Menu>
+                <Menu x:Name="HeadMenu" Style="{StaticResource HeadMenu}"></Menu>
             </StackPanel>
             <TextBlock Grid.Column="2" Background="{StaticResource SystemChromeLowColorBrush}" 
                        Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType=Window}}" 
