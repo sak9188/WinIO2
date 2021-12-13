@@ -695,7 +695,9 @@ namespace WinIO.PythonNet
 
             try
             {
-                result = binding.info.Invoke(binding.inst, BindingFlags.Default, null, binding.args, null);
+                // 这里必定单线程
+                using (Py.GIL())
+                    result = binding.info.Invoke(binding.inst, BindingFlags.Default, null, binding.args, null);
             }
             catch (Exception e)
             {

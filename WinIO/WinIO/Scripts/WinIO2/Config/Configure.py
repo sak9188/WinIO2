@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 from WinIO2.Core import ThreadHelper
-from WinIO2.Core.List import List
 
 
 App = ThreadHelper.App
@@ -76,29 +75,37 @@ class ConfigDiscriber(object):
 
 
 from System import Double
-from System.Windows import Style
-from System.Windows.Controls import Label, TextBlock, ComboBox
+from System.Windows.Controls import Label, TextBlock
 from System.Windows.Media import FontFamily
 
+from WinIO.Controls import FontComboBox
 
 def __font_family(row, disc):
 	lab = Label()
-	font_combo = ComboBox()
+	font_combo = FontComboBox(disc)
 	text_block = TextBlock()
 	lab.Content = text_block
 	row.Children.Add(lab)
 	row.Children.Add(font_combo)
 	
-	lab.Style = (Style)(App.TryFindResource("BaseSettingLabel"))
+	lab.Style = App.TryFindResource("BaseSettingLabel")
 	text_block.Text = disc.text
-	text_block.Style = (Style)(App.TryFindResource("BaseTextBlockStyle"))
-
-	font_combo.Style = (Style)(App.TryFindResource("ComboBoxRevealStyle"))
-	font_combo.ItemsSource = List(["test_0", "tset_1", "tset_2"])
+	text_block.Style = App.TryFindResource("BaseTextBlockStyle")
 
 ConfigDiscriber.reg_control(FontFamily, __font_family)
 
 
 def __input_nummber(row, disc):
-	pass
+	return
+	lab = Label()
+	input_number = 1
+	text_block = TextBlock()
+	lab.Content = text_block
+	row.Children.Add(lab)
+	row.Children.Add(font_combo)
+	
+	lab.Style = App.TryFindResource("BaseSettingLabel")
+	text_block.Text = disc.text
+	text_block.Style = App.TryFindResource("BaseTextBlockStyle")
+
 ConfigDiscriber.reg_control(Double, __input_nummber)

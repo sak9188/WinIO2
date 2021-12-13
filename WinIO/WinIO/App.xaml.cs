@@ -22,9 +22,8 @@ namespace WinIO
     {
         #region Field
         private readonly NotifyIcon _notifyIcon;
-
+        
         private readonly DispatcherTimer _timer = new DispatcherTimer();
-
         #endregion
 
         public App()

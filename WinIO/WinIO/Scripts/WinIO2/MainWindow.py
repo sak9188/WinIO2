@@ -75,8 +75,9 @@ class MainWindow(object):
 		self.tool_window = tool_window = SettingWindow("设置面板")
 		tool_window.set_window_style(AcrylicWindowStyle.NoIcon)
 		tool_window.height = 300
-		tool_window.width = 300
+		tool_window.width = 500
 		tool_window.load_configure(ApplicationCofigure)
+		print "Parent is: ", tool_window
 		tool_window.ShowDialog()
 
 	def init_output(self):

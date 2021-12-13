@@ -102,7 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AdvanceTextBox.cs" />
     <Compile Include="Controls\CustomeDocument.cs" />
+    <Compile Include="Controls\FontComboBox.cs" />
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
     <Compile Include="Controls\OutputDocument.cs" />
     <Compile Include="Core\PyDelegateConverter.cs" />

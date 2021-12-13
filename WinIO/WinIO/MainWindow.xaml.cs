@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using WinIO.AvalonDock;
 using WinIO.AvalonDock.Layout;
 using WinIO.FluentWPF;
@@ -28,7 +29,7 @@ namespace WinIO
             app = Application.Current as App;
             InitializeComponent();
             this.Closed += MainWindow_Closed;
-            TestCom.ItemsSource = new List<string>() {"hello", "world"};
+            TestCom.ItemsSource = new List<string>() { "AutoBike", "AutoSercke"};
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

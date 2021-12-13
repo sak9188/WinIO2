@@ -67,7 +67,14 @@
 
                     <!-- Setting -->
                     <Style x:Key="BaseSettingLabel" TargetType="Label">
-                        <Setter Property="Padding" Value="5"></Setter>
+                        <Setter Property="Padding" Value="20,3"></Setter>
+                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    </Style>
+
+                    <Style x:Key="BaseSettingComboBox" TargetType="ComboBox" BasedOn="{StaticResource ComboBoxRevealStyle}">
+                        <Setter Property="IsEditable" Value="True"></Setter>
+                        <Setter Property="IsTextSearchEnabled" Value="True"></Setter>
+                        <Setter Property="MinWidth" Value="250"></Setter>
                     </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

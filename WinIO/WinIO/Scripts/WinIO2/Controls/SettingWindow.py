@@ -24,4 +24,4 @@ class SettingWindow(BlankWindow):
 		self.loaded_config.add(class_obj)
 
 		for discriber in disc_dict.itervalues():
-			self.__add_discriber(discriber)	
+			self.__add_discriber(discriber)

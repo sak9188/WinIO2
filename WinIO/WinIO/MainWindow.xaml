@@ -72,10 +72,16 @@
                         <layout:LayoutAnchorablePane>
                             <layout:LayoutAnchorable>
                                 <Grid x:Name="TestGrid">
-                                    <Label Grid.Row="1" Style="{StaticResource BaseSettingLabel}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Style="{StaticResource BaseSettingLabel}">
                                         <TextBlock Text="Testset" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
                                     </Label>
-                                    <ComboBox Grid.Row="2" Name="TestCom" Height="30" Style="{StaticResource ComboBoxRevealStyle}"></ComboBox>
+                                    <ComboBox Grid.Row="1" IsEditable="True" Name="TestCom" Height="30"></ComboBox>
+                                    <TextBox Grid.Row="2"></TextBox>
                                 </Grid>
                             </layout:LayoutAnchorable>
                         </layout:LayoutAnchorablePane>
