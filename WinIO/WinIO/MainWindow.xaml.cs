@@ -25,6 +25,8 @@ namespace WinIO
 
         public LayoutDocumentPane MainDockPane => MainDockPanel;
 
+        public LayoutAnchorablePane LeftMainDockPane => LeftMainDockPanel;
+
         public EventHandler AfterClosed;
 
         private Color _originalFallColor;
@@ -48,7 +50,7 @@ namespace WinIO
             }
         }
 
-        public void SetBackgroundImage(string imgPath)
+        public void SetBackground(string imgPath)
         {
             if(string.IsNullOrEmpty(imgPath))
             {

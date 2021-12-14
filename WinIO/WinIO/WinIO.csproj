@@ -108,6 +108,7 @@
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
     <Compile Include="Controls\OutputDocument.cs" />
     <Compile Include="Controls\ReuseWindow.cs" />
+    <Compile Include="Controls\TextBoxDialog.cs" />
     <Compile Include="Core\PyDelegateConverter.cs" />
     <Compile Include="Models\MenuItemView.cs" />
     <Compile Include="MainProgram.cs" />

@@ -58,9 +58,9 @@
 
             <layout:LayoutRoot>
                 <layout:LayoutPanel>
-                    <layout:LayoutAnchorablePaneGroup DockWidth="100">
-                        <layout:LayoutAnchorablePane>
-                            <layout:LayoutAnchorable>
+                    <layout:LayoutAnchorablePaneGroup DockWidth="200">
+                        <layout:LayoutAnchorablePane x:Name="LeftMainDockPanel">
+                            <layout:LayoutAnchorable Title="Test">
                                 <Grid x:Name="TestGrid">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"></RowDefinition>

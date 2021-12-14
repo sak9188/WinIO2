@@ -1,13 +1,13 @@
 # -*- coding: UTF-8 -*-
-from signal import SIG_BLOCK
 from WinIO2.Core import ThreadHelper
 
+from collections import OrderedDict
 
 App = ThreadHelper.App
 
 class ConfigureMeta(type):
-	ConfigDict = {}
-	Discribers = {}
+	ConfigDict = OrderedDict() 
+	Discribers = OrderedDict()
 
 	def __init__(self, name, bases, attr_dict):
 		for key, item in self.ConfigDict.iteritems():
@@ -33,6 +33,9 @@ class ConfigureMeta(type):
 		# 如果存在描述器的话, 那个Value必然是对应的控件
 		discriber.control = value
 		self.Discribers[key] = discriber
+
+	def get_discriber(self, name):
+		return self.Discribers.get(name)
 
 	def get_discribers(self):
 		return self.Discribers
@@ -67,8 +70,11 @@ class ConfigDiscriber(object):
 		self.__notify()
 
 	@classmethod
-	def reg_control(cls, control, fun):
-		cls.RegControl[control] = fun
+	def reg_control(cls, control, fun, sub_type=None):
+		if not sub_type:
+			cls.RegControl[control] = fun
+		else:
+			cls.RegControl[control, sub_type] = fun
 
 	def reg_observer(self, fun):
 		self.callback.add(fun)
@@ -79,7 +85,11 @@ class ConfigDiscriber(object):
 	
 	def convert_row(self, row):
 		# 将Row转化成对应的配置行
-		fun = self.RegControl.get(type(self.control))
+		_t = type(self.control)
+		if self.sub_type:
+			fun = self.RegControl.get((_t, self.sub_type))	
+		else:
+			fun = self.RegControl.get(type(self.control))
 		if not fun:
 			return
 		fun(row, self)
@@ -94,7 +104,7 @@ from System import Double
 from System.Windows.Controls import Label, TextBlock
 from System.Windows.Media import FontFamily
 
-from WinIO.Controls import FontComboBox, AdvanceTextBox
+from WinIO.Controls import FontComboBox, AdvanceTextBox, TextBoxDialog
 
 def __font_family(row, disc):
 	lab = Label()
@@ -127,5 +137,17 @@ ConfigDiscriber.reg_control(Double, __input_nummber)
 ConfigDiscriber.reg_control(float, __input_nummber)
 
 
-def __input_string(row, disc):
-	pass
+def __input_string_dialog(row, disc):
+	lab = Label()
+	dialog = TextBoxDialog(disc) 
+	text_block = TextBlock()
+	lab.Content = text_block
+	row.Children.Add(lab)
+	row.Children.Add(dialog)
+
+	lab.Style = App.TryFindResource("BaseSettingLabel")
+	text_block.Text = disc.text
+	text_block.Style = App.TryFindResource("BaseTextBlockStyle")
+
+# 对于DialogString的注册
+ConfigDiscriber.reg_control(str, __input_string_dialog, StringType.Dialog)

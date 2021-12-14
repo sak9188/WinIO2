@@ -13,22 +13,10 @@ from WinIO2.Controls.OutputPanel import OutputPanel
 from WinIO2.Controls.FloatDocument import FloatDocument
 
 import os
-import datetime
-import traceback
-import subprocess
-import threading
-import StringIO
-import cPickle
-import time
-import json
 
-import GameDefine
 from Tool import ToolHelp, BatCallPythonFunction
 from Common import File, Environment, String
 from Tool.GameIO import GUnmanaged, GIOGM, GIOCore
-from Tool.Check import CheckPY
-from Tool.Build import BuildHelp
-from Platform import PlatformHelp
 
 
 class MainWindow(object):
@@ -46,9 +34,9 @@ class MainWindow(object):
 		self.menu_items_dict = {}
 		self.dock_manager = self.main_window.DockMgr
 		self.dock_pane = self.main_window.MainDockPane
+		self.left_dock_pane = self.main_window.LeftMainDockPane
 		self.document_dict = {}
-		self.name_key_dict = {}
-		self.debug = Debug()
+		self.anchora_dict= {}
 		self.after_closed = FunctionChain() 
 		self.main_window.AfterClosed = PyDel.ToEventHandler(self.after_closed)
 		self.init_self()
@@ -155,7 +143,7 @@ class MainWindow(object):
 		app_string = ApplicationString
 		app_config = ApplicationCofigure
 		# 注册配置事件
-		desc = app_config[app_string.BackgroundImage] 
+		desc = app_config.get_discriber(app_string.BackgroundImage)
 		desc.reg_observer(self.after_change_background)
 
 	"""
@@ -244,6 +232,13 @@ class MainWindow(object):
 		document = FloatDocument(name, control)
 		self.dock_pane.Children.Add(document)
 		self.document_dict[index] = control
+		return control
+
+	@ThreadHelper.invoke
+	def create_anchorable(self, name, control):
+		document = FloatDocument(name, control)
+		self.left_dock_pane.Children.Add(document)
+		self.anchora_dict[name] = control
 		return control
 
 	@ThreadHelper.begin_invoke
