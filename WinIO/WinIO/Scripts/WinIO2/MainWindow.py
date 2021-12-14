@@ -3,7 +3,7 @@ from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Application import Application
 from WinIO2.Config.Application import ApplicationCofigure
-from WinIO2.Controls.BlankWindow import AcrylicWindowStyle, BlankWindow
+from WinIO2.Controls.BlankWindow import AcrylicWindowStyle
 from WinIO2.Controls.MenuItem import MenuItem
 from WinIO2.Controls.SettingWindow import SettingWindow
 from WinIO2.Core import ThreadHelper
@@ -29,13 +29,6 @@ from Tool.GameIO import GUnmanaged, GIOGM, GIOCore
 from Tool.Check import CheckPY
 from Tool.Build import BuildHelp
 from Platform import PlatformHelp
-
-
-class Debug(object):
-
-	def write(self, s):
-		from System import Console
-		Console.Write(s)
 
 
 class MainWindow(object):
@@ -76,6 +69,7 @@ class MainWindow(object):
 		self.init_base()
 		self.init_gmui()
 		self.init_input()
+		self.init_config()
 
 	def init_base(self):
 		# 这里初始化一些基本UI
@@ -88,9 +82,11 @@ class MainWindow(object):
 
 		tool_menu = MenuItem("工具")
 		def _open_setting_panel():
-			print tool_window
 			tool_window.ShowDialog()
-		setting_item = MenuItem("设置", on_click=lambda x,y: _open_setting_panel())		
+
+		self.after_closed.append(lambda x,y: tool_window.RealClose())
+
+		setting_item = MenuItem("设置", on_click=lambda x,y: _open_setting_panel())
 		tool_menu.add(setting_item)
 		menu_list.append(tool_menu)
 		self.window_menu.ItemsSource = List(menu_list)
@@ -152,6 +148,15 @@ class MainWindow(object):
 
 	def init_input(self):
 		pass
+
+	def init_config(self):
+		# 这里进行一些初始化配置信息
+		from WinIO2.Config.Application import ApplicationString, ApplicationCofigure
+		app_string = ApplicationString
+		app_config = ApplicationCofigure
+		# 注册配置事件
+		desc = app_config[app_string.BackgroundImage] 
+		desc.reg_observer(self.after_change_background)
 
 	"""
 	功能函数
@@ -257,3 +262,9 @@ class MainWindow(object):
 		if not control:
 			return
 		self.dock_pane.RemoveChild(control.parent)
+
+	"""
+	配置回调	
+	"""
+	def after_change_background(self, desc):
+		self.main_window.SetBackground(desc.control)

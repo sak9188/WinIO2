@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from signal import SIG_BLOCK
 from WinIO2.Core import ThreadHelper
 
 
@@ -10,8 +11,7 @@ class ConfigureMeta(type):
 
 	def __init__(self, name, bases, attr_dict):
 		for key, item in self.ConfigDict.iteritems():
-			_s, _c = item
-			self.Discribers[key] = ConfigDiscriber(_s, _c, key)	
+			self.Discribers[key] = ConfigDiscriber(*item, key=key)	
 
 	def __getitem__(self, name):
 		discriber = self.Discribers.get(name)
@@ -41,10 +41,12 @@ class ConfigureMeta(type):
 class ConfigDiscriber(object):
 	RegControl = {}
 
-	def __init__(self, tip_string, control, key=None):
+	def __init__(self, tip_string, control, sub_type=None, key=None):
 		self.text = tip_string
 		self.key = key
+		self.sub_type = sub_type
 		self.is_resource = False
+		self.callback = set()
 
 		# 如果这里是空的话， 说明要从资源列表里获取资源
 		if control is None:
@@ -58,14 +60,23 @@ class ConfigDiscriber(object):
 
 	@control.setter
 	def control(self, value):
+		self._control = value
 		if self.is_resource:
 			App.Resources[self.key] = value
-		self._control = value
+		# 这里要进行一个通知
+		self.__notify()
 
 	@classmethod
 	def reg_control(cls, control, fun):
 		cls.RegControl[control] = fun
 
+	def reg_observer(self, fun):
+		self.callback.add(fun)
+
+	def __notify(self):
+		for fun in self.callback:
+			fun(self)
+	
 	def convert_row(self, row):
 		# 将Row转化成对应的配置行
 		fun = self.RegControl.get(type(self.control))
@@ -74,7 +85,12 @@ class ConfigDiscriber(object):
 		fun(row, self)
 
 
-from System import Double, Single
+class StringType(object):
+	Normal = 0
+	Dialog = 1
+
+
+from System import Double
 from System.Windows.Controls import Label, TextBlock
 from System.Windows.Media import FontFamily
 
@@ -109,3 +125,7 @@ def __input_nummber(row, disc):
 
 ConfigDiscriber.reg_control(Double, __input_nummber)
 ConfigDiscriber.reg_control(float, __input_nummber)
+
+
+def __input_string(row, disc):
+	pass

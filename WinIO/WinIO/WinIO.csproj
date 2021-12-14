@@ -107,6 +107,7 @@
     <Compile Include="Controls\FontComboBox.cs" />
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
     <Compile Include="Controls\OutputDocument.cs" />
+    <Compile Include="Controls\ReuseWindow.cs" />
     <Compile Include="Core\PyDelegateConverter.cs" />
     <Compile Include="Models\MenuItemView.cs" />
     <Compile Include="MainProgram.cs" />

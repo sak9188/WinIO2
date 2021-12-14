@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from WinIO.FluentWPF import AcrylicWindow
+from WinIO.Controls import ReuseWindow
 
 
 class AcrylicWindowStyle(object):
@@ -8,7 +8,7 @@ class AcrylicWindowStyle(object):
 	Null = 2
 
 
-class BlankWindow(AcrylicWindow):
+class BlankWindow(ReuseWindow):
 
 	@property
 	def title(self):
