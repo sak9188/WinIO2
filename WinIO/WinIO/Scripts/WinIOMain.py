@@ -48,8 +48,8 @@ if GSEnvironment.is_windows():
 	
 	main_window.after_closed.append(lambda x, y: io_select.stop())
 
-	main_window.write("PURPLE ======================================================================\n")
+	main_window.write("PURPLE ===============================================\n")
 	main_window.write("WinIO2 使用帮助\n")
-	main_window.write("PURPLE ======================================================================\n")
+	main_window.write("PURPLE ===============================================\n")
 
 	io_select.start()

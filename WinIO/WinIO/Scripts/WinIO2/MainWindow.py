@@ -80,7 +80,7 @@ class MainWindow(object):
 		self.window_menu.ItemsSource = List(menu_list)
 
 	def init_output(self):
-		self.output = self.create_document(None, "WinIO", OutputPanel())
+		self.output = self.create_anchorable("WinIO", OutputPanel())
 
 		print self
 		# 这里需要初始化基本的面板	
@@ -125,12 +125,19 @@ class MainWindow(object):
 				moudule_item.add(sub_function_item)
 		
 		# 一个HooK按钮
-		def test():
-			self.output.reset()
-			self.dock_pane.Children.Add(self.output.parent)
+		def test_save():
+			from WinIO2.Config.Configure import ConfigureMeta
+			ConfigureMeta.save_config()
 
-		hook = MenuItem("hook", on_click=lambda x,y: test())
+		def test_load():
+			from WinIO2.Config.Configure import ConfigureMeta
+			ConfigureMeta.load_config()
+
+		hook = MenuItem("序列化测试", on_click=lambda x,y: test_save())
+		hook1 = MenuItem("反序列化测试", on_click=lambda x,y: test_load())
+
 		menu_list.insert(0, hook)
+		menu_list.insert(1, hook1)
 		# 最后把数据赋值上去
 		self.menu.ItemsSource = List(menu_list)
 

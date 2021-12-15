@@ -38,7 +38,6 @@ namespace WinIO
             app = Application.Current as App;
             InitializeComponent();
             this.Closed += MainWindow_Closed;
-            TestCom.ItemsSource = new List<string>() { "AutoBike", "AutoSercke"};
             _originalFallColor = this.FallbackColor;
         }
 

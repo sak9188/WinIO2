@@ -10,7 +10,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:con="clr-namespace:WinIO.Controls"
         mc:Ignorable="d"
-        Title="WinIO 2.0" Height="450" Width="800"
+        Title="WinIO 2.0" Height="600" Width="1000"
         x:ClassModifier="internal" Icon="splash.png" TitleBarMode="Extend">
     <fluentWpf:AcrylicWindow.TitleBar>
         <Grid>
@@ -58,9 +58,9 @@
 
             <layout:LayoutRoot>
                 <layout:LayoutPanel>
-                    <layout:LayoutAnchorablePaneGroup DockWidth="200">
+                    <layout:LayoutAnchorablePaneGroup DockWidth="300">
                         <layout:LayoutAnchorablePane x:Name="LeftMainDockPanel">
-                            <layout:LayoutAnchorable Title="Test">
+                            <!--<layout:LayoutAnchorable Title="Test">
                                 <Grid x:Name="TestGrid">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"></RowDefinition>
@@ -73,7 +73,7 @@
                                     <ComboBox Grid.Row="1" IsEditable="True" Name="TestCom" Height="30"></ComboBox>
                                     <TextBox Grid.Row="2"></TextBox>
                                 </Grid>
-                            </layout:LayoutAnchorable>
+                            </layout:LayoutAnchorable>-->
                         </layout:LayoutAnchorablePane>
                     </layout:LayoutAnchorablePaneGroup>
                     <layout:LayoutDocumentPaneGroup>
