@@ -12,7 +12,6 @@ class ConfigureMeta(type):
 
 	ConfigDict = OrderedDict() 
 	Discribers = OrderedDict()
-
 	ConfigSerialDict = {}
 
 	def __init__(self, name, bases, attr_dict):
@@ -20,12 +19,11 @@ class ConfigureMeta(type):
 			ConfigureMeta.ConfigSerialDict = ConfigureMeta.load_config()
 		serial_config = ConfigureMeta.ConfigSerialDict.get(name, {})
 		for key, item in self.ConfigDict.iteritems():
+			desc = ConfigDiscriber(*item, key=key)
 			serial = serial_config.get(key)
 			if serial:
-				desc = ConfigDiscriber(item[0], *serial)
-			else:
-				desc = ConfigDiscriber(*item, key=key)
-			self.Discribers[key] = desc	
+				desc.control = desc.get_deserialize(serial)
+			self.Discribers[key] = desc
 		ConfigureMeta.ConfigSerialDict[name] = self
 
 	def __getitem__(self, name):
@@ -60,15 +58,16 @@ class ConfigureMeta(type):
 		big_config = {}
 		for name, serial_config in self.ConfigSerialDict.iteritems():
 			kvd = {}
-			discribers = serial_config.Discribers
+			discribers = serial_config.get_discribers()
 			for key, disc in discribers.iteritems():
 				ser_obj = disc.get_serialize()
 				kvd[key] = ser_obj
 			big_config[name] = kvd
 
+		print big_config 
 		# 这里要存储到文件里
 		with open(ConfigureMeta.ConfigBinName, "wb+") as f:
-			pickle.dump(kvd, f)
+			pickle.dump(big_config, f)
 
 	@classmethod
 	def load_config(self):
@@ -113,6 +112,7 @@ class ConfigDiscriber(object):
 			App.Resources[self.key] = value
 		# 这里要进行一个通知
 		self.__notify()
+		self.serial = None
 
 	@classmethod
 	def reg_control(cls, control, fun, sub_type=None):
@@ -128,20 +128,23 @@ class ConfigDiscriber(object):
 	def get_serialize(self):
 		if self.serial:
 			return self.serial
-		servalue = self.RegSerialize.get(self)
+		servalue = self.RegSerialize.get(self.real_type)
 		if servalue:
 			ser_fun, _ = servalue
 			serial = ser_fun(self.control)
 		else:
 			serial = self.control
 		self.serial = serial
-		return serial, self.sub_type, self.key
+		return serial 
 
-	@classmethod
 	def get_deserialize(self, obj):
-		_, deser = self.RegSerialize.get(self)
-		deser_obj = deser(obj)
-		return deser_obj
+		deservalue = self.RegSerialize.get(self.real_type)
+		if deservalue:
+			_, deser = deservalue
+			deser_obj = deser(obj)
+			return deser_obj
+		else:
+			return obj
 	
 	def reg_observer(self, fun):
 		self.callback.add(fun)
@@ -163,11 +166,10 @@ class ConfigDiscriber(object):
 
 from System import Double
 from System.Windows.Controls import Label, TextBlock
-from System.Windows.Media import FontFamily
-
+from System.Windows.Media import FontFamily, SolidColorBrush, ColorConverter
 from WinIO.Controls import FontComboBox, AdvanceTextBox, TextBoxDialog
 
-
+# 这里封装成类可能更好一点
 # 下面是序列化的创建(因为C#对象不能直接被Python给序列化，又因为控件并不是都需要提供一个可序列化)
 def _ser_fontfamily(control):
 	return control.Source
@@ -179,6 +181,16 @@ def _deser_fontfamily(obj):
 
 ConfigDiscriber.reg_serialize_fun(FontFamily, _ser_fontfamily, _deser_fontfamily)
 
+
+def _ser_colorbrush(control):
+	return control.Color.ToString()
+
+
+def _deser_colorbrush(obj):
+	return SolidColorBrush(ColorConverter.ConvertFromString(obj))
+
+
+ConfigDiscriber.reg_serialize_fun(SolidColorBrush, _ser_colorbrush, _deser_colorbrush)
 
 # 下面是控件的创建
 class StringType(object):
