@@ -634,6 +634,15 @@
     <Folder Include="Themes\FluentAero\Assets\Icons\" />
     <Folder Include="Themes\FluentAero\Assets\Menu\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\ui.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\medium.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

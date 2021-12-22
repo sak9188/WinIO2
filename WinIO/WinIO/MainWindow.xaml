@@ -40,8 +40,21 @@
         <Menu Name="ToolMenu" Style="{StaticResource MenuStyle}" Grid.Row="0">
             <MenuItem Header="8列排开"></MenuItem>
             <Separator/>
-            <MenuItem Header="FGUI"></MenuItem>
-            <MenuItem Header="项目文件夹"></MenuItem>
+            <MenuItem Header="FGUI" VerticalAlignment="Center">
+                <MenuItem.Icon>
+                    <Image Source="Assets/Icons/ui.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="项目文件夹">
+                <MenuItem.Icon>
+                    <Image Source="Assets/Icons/folder.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="查看所有图标">
+                <MenuItem.Icon>
+                    <Image Source="Assets/Icons/medium.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
         </Menu>
         <Menu Name="MainMenu" Style="{StaticResource MenuStyle}" Grid.Row="1"></Menu>
 
