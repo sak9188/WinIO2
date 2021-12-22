@@ -108,6 +108,7 @@
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
     <Compile Include="Controls\OutputDocument.cs" />
     <Compile Include="Controls\ReuseWindow.cs" />
+    <Compile Include="Controls\StatusControl.cs" />
     <Compile Include="Controls\TextBoxDialog.cs" />
     <Compile Include="Core\PyDelegateConverter.cs" />
     <Compile Include="Models\MenuItemView.cs" />
@@ -199,6 +200,10 @@
     <Compile Include="Themes\VS2013\Vs2013BlueTheme.cs" />
     <Compile Include="Themes\VS2013\Vs2013DarkTheme.cs" />
     <Compile Include="Themes\VS2013\Vs2013LightTheme.cs" />
+    <Page Include="Controls\StatusControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

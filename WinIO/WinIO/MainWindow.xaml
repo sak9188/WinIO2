@@ -34,6 +34,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Name="MainMenu" Style="{StaticResource MenuStyle}"></Menu>
 
@@ -82,5 +83,6 @@
                 </layout:LayoutPanel >
             </layout:LayoutRoot >
         </dk:DockingManager >
+        <con:StatusControl Grid.Row="2"></con:StatusControl>
     </Grid>
 </fluentWpf:AcrylicWindow>

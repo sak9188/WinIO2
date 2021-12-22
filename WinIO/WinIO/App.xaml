@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Controls.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Controls/StatusControl.xaml"></ResourceDictionary>
                 <ResourceDictionary>
                     <!-- SubMenu -->
                     <Style x:Key="HeadMenuItem" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
