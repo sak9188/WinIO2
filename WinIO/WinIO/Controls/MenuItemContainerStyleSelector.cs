@@ -16,10 +16,16 @@ namespace WinIO.Controls
         static Style MenuItemStyle;
         public override Style SelectStyle(object item, DependencyObject container)
         {
-            
+            if (container is Separator)
+            {
+                var a = container as Separator;
+                return a.FindResource("Tester") as Style;
+            }
+
             var me = container as MenuItem;
-            var view = item as MenuItemView;
+
             Style dt;
+            var view = item as MenuItemView;
             if(MenuItemStyle != null)
             {
                 dt = MenuItemStyle;

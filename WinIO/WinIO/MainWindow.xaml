@@ -33,13 +33,20 @@
     <Grid x:Name="MainGrid" fluentWpf:PointerTracker.Enabled="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Name="MainMenu" Style="{StaticResource MenuStyle}"></Menu>
+        <Menu Name="ToolMenu" Style="{StaticResource MenuStyle}" Grid.Row="0">
+            <MenuItem Header="8列排开"></MenuItem>
+            <Separator/>
+            <MenuItem Header="FGUI"></MenuItem>
+            <MenuItem Header="项目文件夹"></MenuItem>
+        </Menu>
+        <Menu Name="MainMenu" Style="{StaticResource MenuStyle}" Grid.Row="1"></Menu>
 
         <dk:DockingManager x:Name = "MainDock"
-            Grid.Row = "1"
+            Grid.Row = "2"
             Background="Transparent"
             AllowMixedOrientation="True"
             AutoWindowSizeWhenOpened = "True"
@@ -83,6 +90,6 @@
                 </layout:LayoutPanel >
             </layout:LayoutRoot >
         </dk:DockingManager >
-        <con:StatusControl Grid.Row="2"></con:StatusControl>
+        <con:StatusControl Grid.Row="3"></con:StatusControl>
     </Grid>
 </fluentWpf:AcrylicWindow>
