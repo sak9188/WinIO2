@@ -13,7 +13,7 @@
                 <ResourceDictionary Source="Controls/StatusControl.xaml"></ResourceDictionary>
                 <ResourceDictionary>
                     <!-- Seperator -->
-                    <Style x:Key="Tester" TargetType="Separator">
+                    <Style x:Key="Separator" TargetType="Separator">
                         <Setter Property="Background" Value="{x:Static fwr:AccentColors.ImmersiveSystemAccentBrush}"/>
                         <Setter Property="Margin" Value="2"/>
                         <Setter Property="Focusable" Value="false"/>

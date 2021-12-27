@@ -105,6 +105,7 @@
     <Compile Include="Controls\AdvanceTextBox.cs" />
     <Compile Include="Controls\CustomeDocument.cs" />
     <Compile Include="Controls\FontComboBox.cs" />
+    <Compile Include="Controls\GResources.cs" />
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
     <Compile Include="Controls\OutputDocument.cs" />
     <Compile Include="Controls\ReuseWindow.cs" />
@@ -642,6 +643,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\medium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

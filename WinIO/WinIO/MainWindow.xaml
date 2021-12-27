@@ -55,6 +55,11 @@
                     <Image Source="Assets/Icons/medium.png"></Image>
                 </MenuItem.Icon>
             </MenuItem>
+            <MenuItem Header="添加快捷指令">
+                <MenuItem.Icon>
+                    <Image Source="Assets/Icons/plus.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
         </Menu>
         <Menu Name="MainMenu" Style="{StaticResource MenuStyle}" Grid.Row="1"></Menu>
 

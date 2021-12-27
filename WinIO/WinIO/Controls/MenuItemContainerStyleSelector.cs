@@ -14,32 +14,27 @@ namespace WinIO.Controls
     public class MenuItemContainerStyleSelector : StyleSelector
     {
         static Style MenuItemStyle;
+        static Style SeperatorStyle;
         public override Style SelectStyle(object item, DependencyObject container)
         {
             if (container is Separator)
             {
-                var a = container as Separator;
-                return a.FindResource("Tester") as Style;
+                var sep = container as Separator;
+                if (SeperatorStyle == null) { SeperatorStyle = sep.FindResource("Separator") as Style; }
+                return SeperatorStyle;
             }
 
             var me = container as MenuItem;
 
             Style dt;
             var view = item as MenuItemView;
-            if(MenuItemStyle != null)
-            {
-                dt = MenuItemStyle;
-            }
+            if(MenuItemStyle != null) { dt = MenuItemStyle; }
             else
             {
                 dt = me.FindResource("MenuItemStyle") as Style;
                 MenuItemStyle = dt;
             }
-
-            if (view != null && me != null)
-            {
-                me.Click += (o, a) => { if(view.Click != null) view.Click(o, a); };
-            }
+            if (view != null && me != null) { me.Click += (o, a) => { if(view.Click != null) view.Click(o, a); }; }
 
             return dt;
         }
