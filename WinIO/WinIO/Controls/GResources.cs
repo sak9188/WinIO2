@@ -23,6 +23,16 @@ namespace WinIO.Controls
 
         private static List<Image> _images;
 
+        public static IEnumerable<string> GetImageStrings()
+        {
+            return _imageStrings;
+        }
+
+        public static string GetImageStringPath(string str)
+        {
+            return IconPath + str;
+        }
+
         public static IEnumerable<Image> GetImages()
         {
             // 在这里获得所有的图片

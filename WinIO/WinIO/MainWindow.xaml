@@ -50,7 +50,7 @@
                     <Image Source="Assets/Icons/folder.png"></Image>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="查看所有图标">
+            <MenuItem Header="查看所有图标" Click="MenuItem_Click">
                 <MenuItem.Icon>
                     <Image Source="Assets/Icons/medium.png"></Image>
                 </MenuItem.Icon>

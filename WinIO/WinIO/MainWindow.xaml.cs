@@ -70,6 +70,11 @@ namespace WinIO
             this.Background = brush;
             this.FallbackColor = _imageFallColor;
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // 这里是一个测试函数
+        }
     }
 }
 
