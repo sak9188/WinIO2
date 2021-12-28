@@ -103,7 +103,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\AdvanceTextBox.cs" />
+    <Compile Include="Controls\CommandControl.cs" />
     <Compile Include="Controls\CustomeDocument.cs" />
+    <Compile Include="Controls\EditCommandWindow.cs" />
     <Compile Include="Controls\FontComboBox.cs" />
     <Compile Include="Controls\GResources.cs" />
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
@@ -201,6 +203,14 @@
     <Compile Include="Themes\VS2013\Vs2013BlueTheme.cs" />
     <Compile Include="Themes\VS2013\Vs2013DarkTheme.cs" />
     <Compile Include="Themes\VS2013\Vs2013LightTheme.cs" />
+    <Page Include="Controls\CommandControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EditCommandWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\StatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

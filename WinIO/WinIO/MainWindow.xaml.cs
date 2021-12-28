@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WinIO.AvalonDock;
 using WinIO.AvalonDock.Layout;
+using WinIO.Controls;
 using WinIO.FluentWPF;
 
 namespace WinIO
@@ -74,6 +75,22 @@ namespace WinIO
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             // 这里是一个测试函数
+            AcrylicPopup acrylicPopup = new AcrylicPopup();
+            StackPanel stackPanel = new StackPanel();
+            acrylicPopup.Child = stackPanel;
+
+            stackPanel.Orientation = Orientation.Horizontal;
+
+            foreach(var img in GResources.GetImages())
+            {
+                img.Style = FindResource("ShowIconStyle") as Style;
+                stackPanel.Children.Add(img);
+            }
+
+            acrylicPopup.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            acrylicPopup.PlacementTarget = sender as MenuItem;
+            acrylicPopup.PopupAnimation = System.Windows.Controls.Primitives.PopupAnimation.Fade;
+            acrylicPopup.IsOpen = true;
         }
     }
 }

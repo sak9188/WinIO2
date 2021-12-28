@@ -42,7 +42,7 @@ namespace WinIO.Controls
 
                 foreach (var item in _imageStrings)
                 {
-                    Image img = new Image() {Source = new BitmapImage(new Uri(IconPath + item, UriKind.Relative)) };
+                    Image img = new Image() {Source = new BitmapImage(new Uri(IconPath + item + ".png", UriKind.Relative)) };
                     _images.Add(img);
                 }
             }
