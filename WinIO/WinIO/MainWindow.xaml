@@ -55,7 +55,7 @@
                     <Image Source="Assets/Icons/medium.png"></Image>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="添加快捷指令">
+            <MenuItem Header="添加快捷指令" Click="MenuItem_Click_1">
                 <MenuItem.Icon>
                     <Image Source="Assets/Icons/plus.png"></Image>
                 </MenuItem.Icon>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace WinIO.Controls
 {
@@ -14,15 +15,15 @@ namespace WinIO.Controls
     public partial class CommandControl : UserControl
     {
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
-           "Icon", typeof(string), typeof(CommandControl));
-        public string Icon
+           "Icon", typeof(ImageSource), typeof(CommandControl));
+        public ImageSource Icon
         {
-            get { return (string)GetValue(IconProperty); }
+            get { return (ImageSource)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
 
         public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
-            "Header", typeof(double), typeof(CommandControl));
+            "Header", typeof(string), typeof(CommandControl));
         public string Header
         {
             get { return (string)GetValue(HeaderProperty); }
@@ -37,9 +38,15 @@ namespace WinIO.Controls
             set { SetValue(CommandStringProperty, value); }
         }
 
+        private static ImageSource _defaultImage;
         public CommandControl()
         {
             InitializeComponent();
+            if(_defaultImage == null)
+            {
+                _defaultImage = GResources.GetImage("folder").Source;
+            }
+            Icon = _defaultImage;
         }
     }
 }

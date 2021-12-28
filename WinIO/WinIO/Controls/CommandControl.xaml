@@ -4,15 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WinIO.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type local:CommandControl}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CommandControl}">
-                            <Grid>
+                            <Grid Background="{StaticResource SystemBaseMediumHighColorBrush}" Margin="2">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"></RowDefinition>
                                 </Grid.RowDefinitions>
@@ -21,8 +20,14 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image></Image>
-                                <TextBlock Text="{TemplateBinding Header}"></TextBlock>
+
+                                <Image Source="{TemplateBinding Icon}" Grid.Column="0" Width="64" Height="64" Margin="4,2,2,2"></Image>
+                                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" VerticalAlignment="Center">
+                                    <TextBox Text="{TemplateBinding Header}" Style="{StaticResource TextBoxRevealStyle}"
+                                             Margin="2"></TextBox>
+                                    <TextBox IsReadOnly="True" Text="{TemplateBinding CommandString}" Style="{StaticResource TextBoxRevealStyle}"
+                                             Margin="2"></TextBox>
+                                </StackPanel>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>

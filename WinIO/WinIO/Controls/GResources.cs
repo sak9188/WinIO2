@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace WinIO.Controls
 {
     public static class GResources
     {
-        public static string AssetPath = "Assets/";
+        public static string AssetPath = "/Assets/";
         public static string IconPath = AssetPath + "Icons/";
 
         private static List<string> _imageStrings = new List<string>
@@ -21,7 +22,23 @@ namespace WinIO.Controls
             "ui"
         };
 
-        private static List<Image> _images;
+        private static Dictionary<string, Image> _images;
+
+        private static Dictionary<string, Image> GetImageDict()
+        {
+            // 在这里获得所有的图片
+            if(_images == null)
+            {
+                _images = new Dictionary<string, Image>();
+
+                foreach (var item in _imageStrings)
+                {
+                    Image img = new Image() {Source = new BitmapImage(new Uri(IconPath + item + ".png", UriKind.Relative)) };
+                    _images.Add(item, img);
+                }
+            }
+            return _images;
+        }
 
         public static IEnumerable<string> GetImageStrings()
         {
@@ -35,18 +52,16 @@ namespace WinIO.Controls
 
         public static IEnumerable<Image> GetImages()
         {
-            // 在这里获得所有的图片
-            if(_images == null)
-            {
-                _images = new List<Image>();
+            var images = GetImageDict();
+            return images.Values.ToList();
+        }
 
-                foreach (var item in _imageStrings)
-                {
-                    Image img = new Image() {Source = new BitmapImage(new Uri(IconPath + item + ".png", UriKind.Relative)) };
-                    _images.Add(img);
-                }
-            }
-            return _images;
+        public static Image GetImage(string name)
+        {
+            var images = GetImageDict();
+            Image outImage;
+            images.TryGetValue(name, out outImage);
+            return outImage;
         }
     }
 }

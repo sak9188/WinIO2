@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:WinIO.Controls"
         mc:Ignorable="d"
         Title="EditCommandWindow" Height="450" Width="450">
-    <StackPanel Orientation="Vertical">
-        
+    <StackPanel Orientation="Vertical" Margin="4" >
+        <StackPanel x:Name="Items">
+            <local:CommandControl Header="这是一个测试" CommandString="这是一个测试文本" Icon="/Assets/Icons/ui.png"></local:CommandControl>
+        </StackPanel>
+        <Button Content="添加一个快捷命令" Style="{StaticResource ButtonRevealStyle}" Height="40" Click="AddQuickCommand"></Button>
     </StackPanel>
 </local:ReuseWindow>

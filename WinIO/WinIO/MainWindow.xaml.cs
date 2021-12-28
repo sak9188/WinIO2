@@ -30,6 +30,8 @@ namespace WinIO
 
         public EventHandler AfterClosed;
 
+        private EditCommandWindow _editCommandWindow = new EditCommandWindow();
+
         private Color _originalFallColor;
 
         private static Color _imageFallColor = Color.FromArgb(153, 0, 0, 0);
@@ -75,22 +77,28 @@ namespace WinIO
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             // 这里是一个测试函数
-            AcrylicPopup acrylicPopup = new AcrylicPopup();
-            StackPanel stackPanel = new StackPanel();
-            acrylicPopup.Child = stackPanel;
+            // AcrylicPopup acrylicPopup = new AcrylicPopup();
+            // StackPanel stackPanel = new StackPanel();
+            // acrylicPopup.Child = stackPanel;
 
-            stackPanel.Orientation = Orientation.Horizontal;
+            // stackPanel.Orientation = Orientation.Horizontal;
 
-            foreach(var img in GResources.GetImages())
-            {
-                img.Style = FindResource("ShowIconStyle") as Style;
-                stackPanel.Children.Add(img);
-            }
+            // foreach(var img in GResources.GetImages())
+            // {
+            //     img.Style = FindResource("ShowIconStyle") as Style;
+            //     stackPanel.Children.Add(img);
+            // }
 
-            acrylicPopup.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
-            acrylicPopup.PlacementTarget = sender as MenuItem;
-            acrylicPopup.PopupAnimation = System.Windows.Controls.Primitives.PopupAnimation.Fade;
-            acrylicPopup.IsOpen = true;
+            // acrylicPopup.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            // acrylicPopup.PlacementTarget = sender as MenuItem;
+            // acrylicPopup.PopupAnimation = System.Windows.Controls.Primitives.PopupAnimation.Fade;
+            // acrylicPopup.IsOpen = true;
+        }
+        
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            _editCommandWindow.ShowDialog();
         }
     }
 }
