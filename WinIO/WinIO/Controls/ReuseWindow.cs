@@ -4,17 +4,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using WinIO.FluentWPF;
 
 namespace WinIO.Controls
 {
     public class ReuseWindow : AcrylicWindow
     {
+        private static List<ReuseWindow> _resuses = new List<ReuseWindow>();
         private bool CanClose = false;
 
         public ReuseWindow()
         {
-            
+            _resuses.Add(this);
         }
 
         public void RealClose()
@@ -30,6 +32,13 @@ namespace WinIO.Controls
             {
                 e.Cancel = true; 
                 this.Visibility = System.Windows.Visibility.Hidden;
+            }
+        }
+        public static void AppExitHandler(object sender, ExitEventArgs e)
+        {
+            foreach (var item in _resuses)
+            {
+                item.RealClose();
             }
         }
     }

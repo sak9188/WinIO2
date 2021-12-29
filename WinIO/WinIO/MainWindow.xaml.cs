@@ -50,6 +50,9 @@ namespace WinIO
             {
                 AfterClosed.Invoke(sender, e);
             }
+            
+            // 只要主界面退出, 那么整个应用程序直接退出
+            app.Shutdown();
         }
 
         public void SetBackground(string imgPath)

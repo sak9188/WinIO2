@@ -11,7 +11,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CommandControl}">
-                            <Grid Background="{StaticResource SystemBaseMediumHighColorBrush}" Margin="2">
+                            <Grid Background="{StaticResource SystemBaseLowColorBrush}" Margin="2">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"></RowDefinition>
                                 </Grid.RowDefinitions>

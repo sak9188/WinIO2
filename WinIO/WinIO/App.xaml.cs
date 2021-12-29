@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
+using WinIO.Controls;
 using WinIO.PythonNet;
 using NotifyIcon = System.Windows.Forms.NotifyIcon;
 using ToolTipIcon = System.Windows.Forms.ToolTipIcon;
@@ -34,6 +35,7 @@ namespace WinIO
             _notifyIcon.Visible = true;
 
             this.Exit += AppExitHandler;
+            this.Exit += ReuseWindow.AppExitHandler;
             this.DispatcherUnhandledException += HandleDispatcherException;
             AppDomain.CurrentDomain.UnhandledException += HandelApplicationException; 
         }

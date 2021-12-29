@@ -402,4 +402,26 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="AcrylicContextMenuStyle" TargetType="{x:Type ContextMenu}">
+        <Setter Property="Foreground" Value="{DynamicResource SystemBaseHighColorBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContextMenu}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource AcrylicMenuItemStyle}" />
+                    </ControlTemplate.Resources>
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
