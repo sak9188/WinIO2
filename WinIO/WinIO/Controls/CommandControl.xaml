@@ -23,10 +23,13 @@
 
                                 <Image Source="{TemplateBinding Icon}" Grid.Column="0" Width="64" Height="64" Margin="4,2,2,2"></Image>
                                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" VerticalAlignment="Center">
-                                    <TextBox Text="{TemplateBinding Header}" Style="{StaticResource TextBoxRevealStyle}"
+                                    <TextBox Text="{Binding Path=Header, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                                             Style="{StaticResource TextBoxRevealStyle}"
                                              Margin="2"></TextBox>
-                                    <TextBox IsReadOnly="True" Text="{TemplateBinding CommandString}" Style="{StaticResource TextBoxRevealStyle}"
-                                             Margin="2"></TextBox>
+                                    <TextBox x:Name="CommandInput" IsReadOnly="True" 
+                                             Text="{Binding Path=CommandString, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                             Style="{StaticResource TextBoxRevealStyle}"
+                                             Margin="2" MouseDoubleClick="CommandInputMouseDoubleClick"></TextBox>
                                 </StackPanel>
                             </Grid>
                         </ControlTemplate>

@@ -46,7 +46,6 @@ namespace WinIO.Controls
         private void MouseEventHandler(object sender, MouseEventArgs e)
         {
             _currentControl = sender as CommandControl;
-            Console.WriteLine(_currentControl);
         }
     }
 }

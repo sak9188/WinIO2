@@ -47,6 +47,12 @@ namespace WinIO.Controls
                 _defaultImage = GResources.GetImage("folder").Source;
             }
             Icon = _defaultImage;
+            CommandString = "# 双击输入指令";
+        }
+
+        private void CommandInputMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Console.WriteLine(this.Header);
         }
     }
 }
