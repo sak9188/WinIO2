@@ -11,7 +11,8 @@
         xmlns:con="clr-namespace:WinIO.Controls"
         mc:Ignorable="d"
         Title="WinIO 2.0" Height="600" Width="1000"
-        x:ClassModifier="internal" Icon="splash.png" TitleBarMode="Extend">
+        x:ClassModifier="internal" Icon="splash.png" TitleBarMode="Extend"
+        WindowStartupLocation="CenterScreen">
     <fluentWpf:AcrylicWindow.TitleBar>
         <Grid>
             <Grid.ColumnDefinitions>

@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace WinIO.Controls
 {
-    public class StatusControl : UserControl
+    public partial class StatusControl : UserControl
     {
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text", typeof(string), typeof(StatusControl));

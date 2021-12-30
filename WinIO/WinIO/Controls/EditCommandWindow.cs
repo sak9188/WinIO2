@@ -18,7 +18,6 @@ namespace WinIO.Controls
         public EditCommandWindow()
         {
             InitializeComponent();
-
             Items.MouseLeave += ItemsMouseLeave;
         }
         public void AddQuickCommand(object sender, EventArgs arggs)
@@ -33,6 +32,12 @@ namespace WinIO.Controls
         private void ItemsMouseLeave(object sender, MouseEventArgs e)
         {
             _currentControl = null;
+        }
+        private void ModifyCommandIcon(object sender, EventArgs arggs)
+        {
+            if(_currentControl != null)
+            {
+            }
         }
 
         private void DeleteCommandControl(object sender, EventArgs arggs)

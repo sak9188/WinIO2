@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fw="clr-namespace:WinIO.FluentWPF"
              xmlns:local="clr-namespace:WinIO.Controls"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -21,15 +22,19 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Source="{TemplateBinding Icon}" Grid.Column="0" Width="64" Height="64" Margin="4,2,2,2"></Image>
+                                <Image Source="{TemplateBinding Icon}" Grid.Column="0" Width="64" Height="64" Margin="4,2,2,2"> </Image>
+                                <fw:AcrylicPopup AllowsTransparency="True" Focusable="False"
+                                                 PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                                                 Placement="Bottom">
+                                    <Border BorderBrush="{DynamicResource SystemAltMediumColorBrush}" >
+                                    </Border>
+                                </fw:AcrylicPopup>
                                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" VerticalAlignment="Center">
                                     <TextBox Text="{Binding Path=Header, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
                                              Style="{StaticResource TextBoxRevealStyle}"
                                              Margin="2"></TextBox>
-                                    <TextBox x:Name="CommandInput" IsReadOnly="True" 
-                                             Text="{Binding Path=CommandString, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                             Style="{StaticResource TextBoxRevealStyle}"
-                                             Margin="2" MouseDoubleClick="CommandInputMouseDoubleClick"></TextBox>
+                                    <Button Content="点击编辑命令" Click="CommandInputMouseDoubleClick" Style="{StaticResource ButtonRevealStyle}"
+                                            Margin="2" Height="35"></Button>
                                 </StackPanel>
                             </Grid>
                         </ControlTemplate>

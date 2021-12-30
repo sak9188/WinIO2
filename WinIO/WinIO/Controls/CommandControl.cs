@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
+using WinIO.FluentWPF;
 
 namespace WinIO.Controls
 {
@@ -39,6 +41,8 @@ namespace WinIO.Controls
         }
 
         private static ImageSource _defaultImage;
+        private ReuseWindow _commandTextWindow;
+        private TextBox _commandBox; 
         public CommandControl()
         {
             InitializeComponent();
@@ -47,12 +51,40 @@ namespace WinIO.Controls
                 _defaultImage = GResources.GetImage("folder").Source;
             }
             Icon = _defaultImage;
-            CommandString = "# 双击输入指令";
+            CommandString = "# 输入指令";
         }
 
-        private void CommandInputMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CommandInputMouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(this.Header);
+            if (_commandTextWindow == null)
+            { 
+                ReuseWindow window = new ReuseWindow();
+                StackPanel stackPanel = new StackPanel();
+                window.Content = stackPanel;
+                TextBox textbox = new TextBox();
+                _commandTextWindow = window;
+                _commandTextWindow.Owner = Window.GetWindow(this);
+                _commandTextWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                _commandBox = textbox;
+                _commandBox.Style = this.FindResource("TextBoxRevealStyle") as Style;
+                _commandBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                _commandBox.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+
+                Binding binding = new Binding();
+                binding.Source = this;
+                binding.Path = new PropertyPath("CommandString");
+                binding.Mode = BindingMode.TwoWay;
+                _commandBox.SetBinding(TextBox.TextProperty, binding);
+
+                stackPanel.Children.Add(textbox);
+                textbox.AcceptsReturn = true;
+                textbox.AcceptsTab = true;
+                textbox.Width = 400;
+                textbox.Height = 400;
+                window.Height = 450;
+                window.Width = 450;
+            }
+            _commandTextWindow.ShowDialog();
         }
     }
 }
