@@ -25,12 +25,28 @@ namespace WinIO.Controls
         public ImageSource SelectImage
         {
             get { return (ImageSource)GetValue(SelectImageProperty); }
-            set { SetValue(SelectImageProperty, value); }
+            set
+            { 
+                SetValue(SelectImageProperty, value);
+                SetSelectedImage(value);
+            }
         }
 
         public ModifyIconWindow()
         {
             InitializeComponent();
+        }
+
+        private void SetSelectedImage(ImageSource source)
+        {
+            for (int i = 0; i < SelectPanel.Items.Count; i++)
+            {
+                if (((Image)SelectPanel.Items[i]).Source == source)
+                {
+                    SelectPanel.SelectedIndex = i;
+                    break;
+                }
+            }
         }
     }
 }

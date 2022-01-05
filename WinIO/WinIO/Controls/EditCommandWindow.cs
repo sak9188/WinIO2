@@ -40,6 +40,7 @@ namespace WinIO.Controls
             if(_currentControl != null)
             {
                 var curcontrl = _currentControl;
+
                 _modifyIconWindow.SelectImage = curcontrl.Icon;
                 _modifyIconWindow.ShowDialog();
                 curcontrl.Icon = _modifyIconWindow.SelectImage;
