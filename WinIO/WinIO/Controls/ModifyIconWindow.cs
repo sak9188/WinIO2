@@ -20,7 +20,7 @@ namespace WinIO.Controls
     public partial class ModifyIconWindow : ReuseWindow
     {
         public static readonly DependencyProperty SelectImageProperty = DependencyProperty.Register(
-            "SelectImage", typeof(ImageSource), typeof(ModifyIconWindow));
+            "SelectImage", typeof(ImageSource), typeof(ModifyIconWindow), new PropertyMetadata(null, OnSelectImageChange));
 
         public ImageSource SelectImage
         {
@@ -47,6 +47,11 @@ namespace WinIO.Controls
                     break;
                 }
             }
+        }
+
+        private static void OnSelectImageChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            
         }
     }
 }
