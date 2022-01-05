@@ -1,0 +1,41 @@
+<local:ReuseWindow x:Class="WinIO.Controls.ModifyIconWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WinIO.Controls"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="修改图标" Height="250" Width="250">
+    <Window.Resources>
+        <local:ImageToSourceConverter x:Key="ImageConverter" />
+    </Window.Resources>
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView x:Name="SelectPanel" ItemsSource="{x:Static local:GResources.Images}"
+                  Background="Transparent" BorderThickness="0"
+                  SelectedItem="{Binding SelectImage, Mode=TwoWay,
+                                 RelativeSource={RelativeSource AncestorType=local:ModifyIconWindow},
+                                 Converter={StaticResource ImageConverter}}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Source}" Height="38" Width="32"></Image>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!-- 
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="2">
+                <Button Content="确定" Style="{StaticResource ButtonRevealStyle}"
+                        Height="30" Width="100" Click="SureButtonClick"></Button>
+            </StackPanel>
+        -->
+    </Grid>
+</local:ReuseWindow>

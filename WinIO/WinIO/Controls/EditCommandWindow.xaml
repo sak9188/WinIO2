@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinIO.Controls"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" 
         Title="命令编辑" Height="522.866" Width="450">
     <StackPanel Orientation="Vertical" Margin="4" >
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="445">
             <StackPanel x:Name="Items">
                 <StackPanel.ContextMenu>
                     <ContextMenu Style="{StaticResource AcrylicContextMenuStyle}" Background="{StaticResource SystemChromeMediumLowColorBrush}">
-                        <MenuItem Header="修改图标" Click="DeleteCommandControl"></MenuItem> 
+                        <MenuItem Header="修改图标" Click="ModifyCommandIcon"></MenuItem> 
                         <MenuItem Header="删除" Click="DeleteCommandControl"></MenuItem> 
                     </ContextMenu>
                 </StackPanel.ContextMenu>

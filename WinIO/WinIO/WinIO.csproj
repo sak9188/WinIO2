@@ -108,7 +108,9 @@
     <Compile Include="Controls\EditCommandWindow.cs" />
     <Compile Include="Controls\FontComboBox.cs" />
     <Compile Include="Controls\GResources.cs" />
+    <Compile Include="Controls\ImageToSourceConverter.cs" />
     <Compile Include="Controls\MenuItemContainerStyleSelector.cs" />
+    <Compile Include="Controls\ModifyIconWindow.cs" />
     <Compile Include="Controls\OutputDocument.cs" />
     <Compile Include="Controls\ReuseWindow.cs" />
     <Compile Include="Controls\StatusControl.cs" />
@@ -208,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\EditCommandWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ModifyIconWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

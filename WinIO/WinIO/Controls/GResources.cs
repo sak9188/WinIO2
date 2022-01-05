@@ -13,6 +13,7 @@ namespace WinIO.Controls
     {
         public static string AssetPath = "/Assets/";
         public static string IconPath = AssetPath + "Icons/";
+        public static IEnumerable<Image> Images => GetImages();
 
         private static List<string> _imageStrings = new List<string>
         {

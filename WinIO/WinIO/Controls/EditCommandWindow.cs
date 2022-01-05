@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace WinIO.Controls
@@ -13,6 +14,7 @@ namespace WinIO.Controls
 
         private CommandControl _currentControl;
 
+        private ModifyIconWindow _modifyIconWindow = new ModifyIconWindow();
         public IEnumerable<CommandControl> Child => _commandControls;
 
         public EditCommandWindow()
@@ -37,6 +39,10 @@ namespace WinIO.Controls
         {
             if(_currentControl != null)
             {
+                var curcontrl = _currentControl;
+                _modifyIconWindow.SelectImage = curcontrl.Icon;
+                _modifyIconWindow.ShowDialog();
+                curcontrl.Icon = _modifyIconWindow.SelectImage;
             }
         }
 
