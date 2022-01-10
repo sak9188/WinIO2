@@ -12,8 +12,6 @@ namespace WinIO.Models
 {
     public class MenuItemView : INotifyPropertyChanged
     {
-        // 最大层级
-
         #region Field
 
         public event PropertyChangedEventHandler PropertyChanged;

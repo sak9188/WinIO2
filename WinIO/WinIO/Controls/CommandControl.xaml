@@ -30,7 +30,7 @@
                                     </Border>
                                 </fw:AcrylicPopup>
                                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" VerticalAlignment="Center">
-                                    <TextBox Text="{Binding Path=Header, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                                    <TextBox Text="{Binding Path=View.Header, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
                                              Style="{StaticResource TextBoxRevealStyle}"
                                              Margin="2"></TextBox>
                                     <Button Content="点击编辑命令" Click="CommandInputMouseDoubleClick" Style="{StaticResource ButtonRevealStyle}"

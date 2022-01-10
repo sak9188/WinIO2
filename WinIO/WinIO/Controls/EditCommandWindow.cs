@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WinIO.Models;
 
 namespace WinIO.Controls
 {
@@ -15,6 +16,7 @@ namespace WinIO.Controls
         private CommandControl _currentControl;
 
         private ModifyIconWindow _modifyIconWindow = new ModifyIconWindow();
+
         public IEnumerable<CommandControl> Child => _commandControls;
 
         public EditCommandWindow()
@@ -40,7 +42,6 @@ namespace WinIO.Controls
             if(_currentControl != null)
             {
                 var curcontrl = _currentControl;
-
                 _modifyIconWindow.SelectControl = curcontrl;
                 _modifyIconWindow.ShowDialog();
             }
@@ -57,6 +58,12 @@ namespace WinIO.Controls
         private void MouseEventHandler(object sender, MouseEventArgs e)
         {
             _currentControl = sender as CommandControl;
+        }
+
+        public void AddShortcutCommand(CommandView commandView)
+        {
+            // 这里是一个后端接口, 方便直接再代码层面操作
+                
         }
     }
 }

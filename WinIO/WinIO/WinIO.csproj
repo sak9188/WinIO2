@@ -116,6 +116,7 @@
     <Compile Include="Controls\StatusControl.cs" />
     <Compile Include="Controls\TextBoxDialog.cs" />
     <Compile Include="Core\PyDelegateConverter.cs" />
+    <Compile Include="Models\CommandView.cs" />
     <Compile Include="Models\MenuItemView.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="PythonNet\arrayobject.cs" />

@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using WinIO.FluentWPF;
+using WinIO.Models;
 
 namespace WinIO.Controls
 {
@@ -24,25 +25,34 @@ namespace WinIO.Controls
             set { SetValue(IconProperty, value); }
         }
 
-        public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
-            "Header", typeof(string), typeof(CommandControl));
-        public string Header
-        {
-            get { return (string)GetValue(HeaderProperty); }
-            set { SetValue(HeaderProperty, value); }
-        }
+        //public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
+        //    "Header", typeof(string), typeof(CommandControl));
+        //public string Header
+        //{
+        //    get { return (string)GetValue(HeaderProperty); }
+        //    set { SetValue(HeaderProperty, value); }
+        //}
 
-        public static readonly DependencyProperty CommandStringProperty = DependencyProperty.Register(
-            "CommandString", typeof(string), typeof(CommandControl));
-        public string CommandString
-        {
-            get { return (string)GetValue(CommandStringProperty); }
-            set { SetValue(CommandStringProperty, value); }
-        }
+        //public static readonly DependencyProperty CommandStringProperty = DependencyProperty.Register(
+        //    "CommandString", typeof(string), typeof(CommandControl));
+        //public string CommandString
+        //{
+        //    get { return (string)GetValue(CommandStringProperty); }
+        //    set { SetValue(CommandStringProperty, value); }
+        //}
 
         private static ImageSource _defaultImage;
         private ReuseWindow _commandTextWindow;
-        private TextBox _commandBox; 
+        private TextBox _commandBox;
+
+        public static readonly DependencyProperty ViewProperty = DependencyProperty.Register(
+            "View", typeof(CommandView), typeof(CommandControl), new PropertyMetadata(new CommandView()));
+        public CommandView View
+        {
+            get { return (CommandView)GetValue(ViewProperty); }
+            set { SetValue(ViewProperty, value); }
+        }
+
         public CommandControl()
         {
             InitializeComponent();
@@ -51,7 +61,8 @@ namespace WinIO.Controls
                 _defaultImage = GResources.GetImage("folder").Source;
             }
             Icon = _defaultImage;
-            CommandString = "# 输入指令";
+            View.Command = "# 输入指令";
+            // CommandString = "# 输入指令";
         }
 
         private void CommandInputMouseDoubleClick(object sender, RoutedEventArgs e)
@@ -72,7 +83,7 @@ namespace WinIO.Controls
 
                 Binding binding = new Binding();
                 binding.Source = this;
-                binding.Path = new PropertyPath("CommandString");
+                binding.Path = new PropertyPath("View.Command");
                 binding.Mode = BindingMode.TwoWay;
                 _commandBox.SetBinding(TextBox.TextProperty, binding);
 

@@ -8,6 +8,7 @@ using WinIO.AvalonDock;
 using WinIO.AvalonDock.Layout;
 using WinIO.Controls;
 using WinIO.FluentWPF;
+using WinIO.Models;
 
 namespace WinIO
 {
@@ -16,8 +17,17 @@ namespace WinIO
     /// </summary>
     internal partial class MainWindow : AcrylicWindow 
     {
-        public static App app;
+        #region PrivateField
+        private EditCommandWindow _editCommandWindow;
 
+        private Color _originalFallColor;
+
+        private static Color _imageFallColor = Color.FromArgb(153, 0, 0, 0);
+
+        public static App app;
+        #endregion
+
+        #region PublicField
         public Menu PanelMenu => this.MainMenu;
 
         public Menu WindowMenu => this.HeadMenu;
@@ -27,21 +37,19 @@ namespace WinIO
         public LayoutDocumentPane MainDockPane => MainDockPanel;
 
         public LayoutAnchorablePane LeftMainDockPane => LeftMainDockPanel;
+        #endregion
 
         public EventHandler AfterClosed;
-
-        private EditCommandWindow _editCommandWindow = new EditCommandWindow();
-
-        private Color _originalFallColor;
-
-        private static Color _imageFallColor = Color.FromArgb(153, 0, 0, 0);
 
         public MainWindow()
         {
             app = Application.Current as App;
             InitializeComponent();
+
             this.Closed += MainWindow_Closed;
+                
             _originalFallColor = this.FallbackColor;
+            _editCommandWindow = new EditCommandWindow();
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
@@ -99,9 +107,20 @@ namespace WinIO
         }
         
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void AddShortcutCommand(object sender, RoutedEventArgs e)
         {
             _editCommandWindow.ShowDialog();
+        }
+        public void AddToolCommand(CommandView commandView)
+        {
+            // 这里是一个后端接口, 方便直接再代码层面操作
+            // 增加一个前面的一个快捷命令，这个命令不可直接通过UI编辑
+        }
+
+        public void AddShortcutCommand(CommandView commandView)
+        {
+            // 这里是一个后端接口, 方便直接再代码层面操作
+            
         }
     }
 }
