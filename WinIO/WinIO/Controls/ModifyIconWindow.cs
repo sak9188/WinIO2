@@ -32,9 +32,32 @@ namespace WinIO.Controls
             }
         }
 
+        private CommandControl _selectControl;
+        public CommandControl SelectControl
+        {
+            get 
+            {
+                return _selectControl;
+            }
+            set 
+            {
+                if(value != null)
+                {
+                    SelectImage = value.Icon;
+                }
+                _selectControl = value; 
+            }
+        }
+
         public ModifyIconWindow()
         {
             InitializeComponent();
+            this.Closing += ModifyIconWindowClosing;
+        }
+
+        private void ModifyIconWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SelectControl = null;
         }
 
         private void SetSelectedImage(ImageSource source)
@@ -51,7 +74,11 @@ namespace WinIO.Controls
 
         private static void OnSelectImageChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            
+            ModifyIconWindow window = sender as ModifyIconWindow;
+            if(window.SelectControl != null)
+            {
+                window.SelectControl.Icon = window.SelectImage;
+            }  
         }
     }
 }

@@ -41,9 +41,8 @@ namespace WinIO.Controls
             {
                 var curcontrl = _currentControl;
 
-                _modifyIconWindow.SelectImage = curcontrl.Icon;
+                _modifyIconWindow.SelectControl = curcontrl;
                 _modifyIconWindow.ShowDialog();
-                curcontrl.Icon = _modifyIconWindow.SelectImage;
             }
         }
 
