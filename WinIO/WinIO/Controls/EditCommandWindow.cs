@@ -24,13 +24,23 @@ namespace WinIO.Controls
             InitializeComponent();
             Items.MouseLeave += ItemsMouseLeave;
         }
-        public void AddQuickCommand(object sender, EventArgs arggs)
+
+        private void AddCommand(CommandView view = null)
         {
             CommandControl command = new CommandControl();
             command.MouseEnter += MouseEventHandler;
 
             _commandControls.Add(command);
             Items.Children.Add(command);
+            
+            if(view != null)
+            {
+                command.View = view;
+            }
+        }
+        public void AddQuickCommand(object sender, EventArgs arggs)
+        {
+            AddCommand();
         }
 
         private void ItemsMouseLeave(object sender, MouseEventArgs e)
@@ -63,7 +73,7 @@ namespace WinIO.Controls
         public void AddShortcutCommand(CommandView commandView)
         {
             // 这里是一个后端接口, 方便直接再代码层面操作
-                
+            AddCommand(commandView);
         }
     }
 }

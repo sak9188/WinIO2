@@ -38,15 +38,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Name="ToolMenu" Style="{StaticResource MenuStyle}" Grid.Row="0">
-            <MenuItem Header="8列排开"></MenuItem>
-            <Separator/>
-            <MenuItem Header="添加快捷指令" Click="AddShortcutCommand">
-                <MenuItem.Icon>
-                    <Image Source="Assets/Icons/plus.png"></Image>
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
+        <Menu Name="ToolMenu" Style="{StaticResource MenuStyle}" Grid.Row="0"></Menu>
         <Menu Name="MainMenu" Style="{StaticResource MenuStyle}" Grid.Row="1"></Menu>
 
         <dk:DockingManager x:Name = "MainDock"

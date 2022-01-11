@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WinIO.AvalonDock;
@@ -18,13 +20,18 @@ namespace WinIO
     internal partial class MainWindow : AcrylicWindow 
     {
         #region PrivateField
+        private static Color _imageFallColor = Color.FromArgb(153, 0, 0, 0);
+
+        public static App app;
+
         private EditCommandWindow _editCommandWindow;
 
         private Color _originalFallColor;
 
-        private static Color _imageFallColor = Color.FromArgb(153, 0, 0, 0);
+        private Separator _menuSeperator;
 
-        public static App app;
+        // MenuItemView的观察者集合
+        private ObservableCollection<object> _menuItemViews = new ObservableCollection<object>();
         #endregion
 
         #region PublicField
@@ -43,13 +50,28 @@ namespace WinIO
 
         public MainWindow()
         {
+            // 初始化一些必要的资源
             app = Application.Current as App;
             InitializeComponent();
-
-            this.Closed += MainWindow_Closed;
-                
             _originalFallColor = this.FallbackColor;
+
+            // 初始化事件
+            this.Closed += MainWindow_Closed;
+
+            // 初始化子组件
             _editCommandWindow = new EditCommandWindow();
+            ToolMenu.ItemsSource = _menuItemViews;
+        
+            // 分割线
+            _menuSeperator = new Separator();
+            _menuItemViews.Add(_menuSeperator);
+
+            // 命令View
+            var commandView = new MenuItemView();
+            commandView.Title = "添加一个快捷指令";
+            commandView.Icon = "Assets/Icons/plus.png";
+            commandView.Click += AddShortcutCommand;
+            _menuItemViews.Add(commandView);
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
@@ -111,16 +133,22 @@ namespace WinIO
         {
             _editCommandWindow.ShowDialog();
         }
-        public void AddToolCommand(CommandView commandView)
+        public void AddToolCommand(MenuItemView menuItemView)
         {
             // 这里是一个后端接口, 方便直接再代码层面操作
             // 增加一个前面的一个快捷命令，这个命令不可直接通过UI编辑
+            _menuItemViews.Insert(_menuItemViews.IndexOf(_menuSeperator) - 1, menuItemView);
         }
 
         public void AddShortcutCommand(CommandView commandView)
         {
             // 这里是一个后端接口, 方便直接再代码层面操作
-            
+            _editCommandWindow.AddShortcutCommand(commandView);
+            MenuItemView view = new MenuItemView();
+            view.CommandView = commandView;
+
+            // -1 是最后一个, -2是倒数第一个之前
+            _menuItemViews.Insert(_menuItemViews.Count-2, view);
         }
     }
 }

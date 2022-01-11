@@ -21,6 +21,8 @@ namespace WinIO.Models
         private string _title;
         private bool _checkable;
         private bool _check;
+        private CommandView _commandView;
+
         public RoutedEventHandler Click;
 
         private List<MenuItemView> _childViewList = new List<MenuItemView>();
@@ -62,6 +64,20 @@ namespace WinIO.Models
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("Title"));
+                }
+            }
+        }
+        public CommandView CommandView
+        {
+            get => _commandView;
+            set
+            {
+                _commandView = value;
+                // 这里需要加入一些事件
+
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("CommandView"));
                 }
             }
         }
