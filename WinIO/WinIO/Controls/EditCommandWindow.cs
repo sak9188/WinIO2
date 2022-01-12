@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WinIO.Models;
@@ -18,6 +19,11 @@ namespace WinIO.Controls
         private ModifyIconWindow _modifyIconWindow = new ModifyIconWindow();
 
         public IEnumerable<CommandControl> Child => _commandControls;
+
+        public static readonly RoutedEvent AddCommandEvent = EventManager.RegisterRoutedEvent(
+        "AddCommand", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(EditCommandWindow));
+
+        public RoutedEventHandler AfterAddCommand;
 
         public EditCommandWindow()
         {
@@ -37,6 +43,8 @@ namespace WinIO.Controls
             {
                 command.View = view;
             }
+
+            AfterAddCommand?.Invoke(this, new RoutedEventArgs(AddCommandEvent, view));
         }
         public void AddQuickCommand(object sender, EventArgs arggs)
         {

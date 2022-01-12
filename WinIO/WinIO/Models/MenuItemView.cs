@@ -72,8 +72,10 @@ namespace WinIO.Models
             get => _commandView;
             set
             {
+                // 对之前的 view进行清理
+
                 _commandView = value;
-                // 这里需要加入一些事件
+                // 对后面的View进行一个事件绑定
 
                 if (PropertyChanged != null)
                 {

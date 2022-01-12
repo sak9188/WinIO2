@@ -60,6 +60,7 @@ namespace WinIO
 
             // 初始化子组件
             _editCommandWindow = new EditCommandWindow();
+            _editCommandWindow.AfterAddCommand += AfterAddCommand;
             ToolMenu.ItemsSource = _menuItemViews;
         
             // 分割线
@@ -133,6 +134,7 @@ namespace WinIO
         {
             _editCommandWindow.ShowDialog();
         }
+
         public void AddToolCommand(MenuItemView menuItemView)
         {
             // 这里是一个后端接口, 方便直接再代码层面操作
@@ -144,11 +146,16 @@ namespace WinIO
         {
             // 这里是一个后端接口, 方便直接再代码层面操作
             _editCommandWindow.AddShortcutCommand(commandView);
-            MenuItemView view = new MenuItemView();
-            view.CommandView = commandView;
+        }
+        private void AfterAddCommand(object sender, RoutedEventArgs e)
+        {
+            CommandView view = e.Source as CommandView;
 
-            // -1 是最后一个, -2是倒数第一个之前
-            _menuItemViews.Insert(_menuItemViews.Count-2, view);
+            MenuItemView menuView = new MenuItemView();
+            menuView.CommandView = view;
+
+            // -1 是倒数第二个
+            _menuItemViews.Insert(_menuItemViews.Count - 1, menuView);
         }
     }
 }
