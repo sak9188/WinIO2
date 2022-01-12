@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -19,10 +20,8 @@ namespace WinIO
     /// </summary>
     internal partial class MainWindow : AcrylicWindow 
     {
-        #region PrivateField
+        #region PublicField
         private static Color _imageFallColor = Color.FromArgb(153, 0, 0, 0);
-
-        public static App app;
 
         private EditCommandWindow _editCommandWindow;
 
@@ -35,6 +34,8 @@ namespace WinIO
         #endregion
 
         #region PublicField
+        public static App app;
+
         public Menu PanelMenu => this.MainMenu;
 
         public Menu WindowMenu => this.HeadMenu;
@@ -56,12 +57,19 @@ namespace WinIO
             _originalFallColor = this.FallbackColor;
 
             // 初始化事件
-            this.Closed += MainWindow_Closed;
+            this.Closed += MainWindowClosed;
 
             // 初始化子组件
             _editCommandWindow = new EditCommandWindow();
             _editCommandWindow.AfterAddCommand += AfterAddCommand;
+            _editCommandWindow.AfterRemoveCommand += AfterRemoveCommand;
             ToolMenu.ItemsSource = _menuItemViews;
+
+            // 八列重拍按钮
+            var eightView = new MenuItemView();
+            eightView.Title = "四列重排";
+            eightView.Click += (o,e) => FourColumnsResort();
+            _menuItemViews.Add(eightView);
         
             // 分割线
             _menuSeperator = new Separator();
@@ -73,17 +81,6 @@ namespace WinIO
             commandView.Icon = "Assets/Icons/plus.png";
             commandView.Click += AddShortcutCommand;
             _menuItemViews.Add(commandView);
-        }
-
-        private void MainWindow_Closed(object sender, EventArgs e)
-        {
-            if(AfterClosed != null)
-            {
-                AfterClosed.Invoke(sender, e);
-            }
-            
-            // 只要主界面退出, 那么整个应用程序直接退出
-            app.Shutdown();
         }
 
         public void SetBackground(string imgPath)
@@ -128,13 +125,8 @@ namespace WinIO
             // acrylicPopup.PopupAnimation = System.Windows.Controls.Primitives.PopupAnimation.Fade;
             // acrylicPopup.IsOpen = true;
         }
-        
 
-        private void AddShortcutCommand(object sender, RoutedEventArgs e)
-        {
-            _editCommandWindow.ShowDialog();
-        }
-
+        #region Exposure
         public void AddToolCommand(MenuItemView menuItemView)
         {
             // 这里是一个后端接口, 方便直接再代码层面操作
@@ -147,6 +139,46 @@ namespace WinIO
             // 这里是一个后端接口, 方便直接再代码层面操作
             _editCommandWindow.AddShortcutCommand(commandView);
         }
+
+        public void FourColumnsResort()
+        {
+            // 四列排算法
+            // 每个窗口按序分布在4列2行的布局上
+            var group = MainDock.Layout.Descendents().OfType<LayoutDocumentPaneGroup>().First();
+            group.RemoveAllChild();
+
+            // 获得所有的子窗口
+            var anchors = MainDock.Layout.Descendents().OfType<CustomeDocument>().ToList();
+            var a = new CustomeDocument();
+            if()
+            {
+            
+            }else if(groups.Count < 4)
+            {
+
+            }
+            // pane.InsertChildAt(0, new CustomeDocument());
+            // group.InsertChildAt(0, pane);
+        }
+        #endregion
+
+        #region EventHandler
+        private void MainWindowClosed(object sender, EventArgs e)
+        {
+            if(AfterClosed != null)
+            {
+                AfterClosed.Invoke(sender, e);
+            }
+            
+            // 只要主界面退出, 那么整个应用程序直接退出
+            app.Shutdown();
+        }
+
+        private void AddShortcutCommand(object sender, RoutedEventArgs e)
+        {
+            _editCommandWindow.ShowDialog();
+        }
+
         private void AfterAddCommand(object sender, RoutedEventArgs e)
         {
             CommandView view = e.Source as CommandView;
@@ -157,6 +189,20 @@ namespace WinIO
             // -1 是倒数第二个
             _menuItemViews.Insert(_menuItemViews.Count - 1, menuView);
         }
+        private void AfterRemoveCommand(object sender, RoutedEventArgs e)
+        {
+            CommandView view = e.Source as CommandView;
+
+            var query = from o in _menuItemViews.OfType<MenuItemView>().ToList()
+                        where o.CommandView == view select o;
+
+            if (query.First() != null)
+            {
+                // -1 是倒数第二个
+                _menuItemViews.Remove(query.First());
+            }
+        }
+        #endregion
     }
 }
 

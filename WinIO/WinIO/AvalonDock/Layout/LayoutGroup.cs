@@ -106,6 +106,10 @@ namespace WinIO.AvalonDock.Layout
 			if (element is T t)
 				_children.Remove(t);
 		}
+		public void RemoveAllChild()
+		{
+			_children.Clear();
+		}
 
 		/// <inheritdoc cref="ILayoutContainer" />
 		public void ReplaceChild(ILayoutElement oldElement, ILayoutElement newElement)

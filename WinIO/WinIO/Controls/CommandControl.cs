@@ -46,8 +46,10 @@ namespace WinIO.Controls
             CommandControl cc = d as CommandControl;
             CommandView view = e.OldValue as CommandView;
             cc.View.Icon = cc.Icon.ToString();
-            cc.View.Header = view.Header;
-            cc.View.Command = view.Command;
+
+            // 这里旧的就直接干掉就行了， 只有Icon比较特殊
+            // cc.View.Header = view.Header;
+            // cc.View.Command = view.Command;
         }
         #endregion
 

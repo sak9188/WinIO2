@@ -20,10 +20,12 @@ namespace WinIO.Controls
 
         public IEnumerable<CommandControl> Child => _commandControls;
 
-        public static readonly RoutedEvent AddCommandEvent = EventManager.RegisterRoutedEvent(
+        public static readonly RoutedEvent CommandEvent = EventManager.RegisterRoutedEvent(
         "AddCommand", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(EditCommandWindow));
 
         public RoutedEventHandler AfterAddCommand;
+
+        public RoutedEventHandler AfterRemoveCommand;
 
         public EditCommandWindow()
         {
@@ -45,8 +47,16 @@ namespace WinIO.Controls
             }
             command.View = view;
 
-            AfterAddCommand?.Invoke(this, new RoutedEventArgs(AddCommandEvent, view));
+            AfterAddCommand?.Invoke(this, new RoutedEventArgs(CommandEvent, view));
         }
+
+        private void RemoveCommand(CommandControl control)
+        {
+            Items.Children.Remove(control);
+
+            AfterRemoveCommand?.Invoke(this, new RoutedEventArgs(CommandEvent, control.View));
+        }
+
         public void AddQuickCommand(object sender, EventArgs arggs)
         {
             AddCommand();
@@ -70,7 +80,8 @@ namespace WinIO.Controls
         {
             if(_currentControl != null)
             {
-                Items.Children.Remove(_currentControl);
+                var control = _currentControl;
+                RemoveCommand(control);
             }
         }
 

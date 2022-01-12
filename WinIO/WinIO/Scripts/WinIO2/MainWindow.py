@@ -29,7 +29,9 @@ class MainWindow(object):
 		self.__dict__ = self.__share__
 		self.app = Application()
 		self.main_window = self.app.get_mainwindow()
+		# 最顶工具栏
 		self.window_menu = self.main_window.WindowMenu
+		# GM工具栏
 		self.menu = self.main_window.PanelMenu
 		self.menu_items_dict = {}
 		self.dock_manager = self.main_window.DockMgr
@@ -68,6 +70,7 @@ class MainWindow(object):
 		tool_window.width = 500
 		tool_window.load_configure(ApplicationCofigure)
 
+		# 最顶的工具栏
 		tool_menu = MenuItem("工具")
 		def _open_setting_panel():
 			tool_window.ShowDialog()
@@ -79,18 +82,19 @@ class MainWindow(object):
 		menu_list.append(tool_menu)
 		self.window_menu.ItemsSource = List(menu_list)
 
+		# 第二顶的工具栏
+		# mitem = MenuItem("4列平铺窗口")
+
+
+
 	def init_output(self):
 		self.output = self.create_anchorable("WinIO", OutputPanel())
 
 		print self
-		# 这里需要初始化基本的面板	
+		# 这里需要初始化基本的面板
 
 	def init_gmui(self):
-		# 这里的皮
-		# for os_name in GameDefine.OperatingSystemList:
-		# 	self.create_menu_item("IO工具/设置批处理参数/" + os_name, GEvent(self, "change_bat_param", os_name))
-		# for language_name in PlatformHelp.get_now_all_language_list():
-		# 	self.create_menu_item("IO工具/设置批处理参数/" + language_name, GEvent(self, "change_bat_param", language_name))
+		# 这里处理GM命令
 		menu_dict = self.menu_items_dict
 		menu_list = []		
 
