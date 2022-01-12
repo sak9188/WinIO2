@@ -39,10 +39,11 @@ namespace WinIO.Controls
             _commandControls.Add(command);
             Items.Children.Add(command);
             
-            if(view != null)
+            if(view == null)
             {
-                command.View = view;
+                view = new CommandView();
             }
+            command.View = view;
 
             AfterAddCommand?.Invoke(this, new RoutedEventArgs(AddCommandEvent, view));
         }

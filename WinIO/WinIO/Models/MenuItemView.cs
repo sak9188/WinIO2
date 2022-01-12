@@ -36,15 +36,22 @@ namespace WinIO.Models
 
                 if (!string.IsNullOrEmpty(_icon))
                 {
+                    Uri imageUri;
+                    if (Uri.IsWellFormedUriString(value, UriKind.Relative))
+                    {
+                        imageUri = new Uri(value, UriKind.Relative);
+                    } else
+                    {
+                        imageUri = new Uri(value, UriKind.Absolute);
+                    }
                     _image = new Image()
                     {
-                        Source = new BitmapImage(new Uri(_icon, UriKind.Relative))
+                        Source = new BitmapImage(imageUri)
                     };
-                }
+                };
 
                 if (PropertyChanged != null)
                 {
-
                     PropertyChanged(this, new PropertyChangedEventArgs("Image"));
                 }
             }
@@ -72,16 +79,30 @@ namespace WinIO.Models
             get => _commandView;
             set
             {
-                // 对之前的 view进行清理
+                if(_commandView != null)
+                {
+                    _commandView.PropertyChanged -= AfterViewPropertyChanged;
+                }
+                
+                if(value != null)
+                {
+                    value.PropertyChanged += AfterViewPropertyChanged;
+
+                    this.Icon = value.Icon;
+                    this.Title = value.Header;
+                }
 
                 _commandView = value;
-                // 对后面的View进行一个事件绑定
-
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("CommandView"));
                 }
             }
+        }
+
+        private void Value_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Checkable
@@ -114,5 +135,19 @@ namespace WinIO.Models
             this._childViewList.Insert(index, view);
         }
         #endregion
+    
+        private void AfterViewPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            CommandView view = sender as CommandView;
+            switch (e.PropertyName)
+            {
+                case var s when s == "Icon":
+                    this.Icon = view.Icon;
+                    return;
+                case var s when s == "Header":
+                    this.Title = view.Header;
+                    return;
+            }
+        }
     }
 }

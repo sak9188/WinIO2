@@ -17,41 +17,45 @@ namespace WinIO.Controls
     /// </summary>
     public partial class CommandControl : UserControl
     {
+        #region Property
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
-           "Icon", typeof(ImageSource), typeof(CommandControl));
+           "Icon", typeof(ImageSource), typeof(CommandControl), new PropertyMetadata(null, AfterIconPropertyChanged));
         public ImageSource Icon
         {
             get { return (ImageSource)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
 
-        //public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
-        //    "Header", typeof(string), typeof(CommandControl));
-        //public string Header
-        //{
-        //    get { return (string)GetValue(HeaderProperty); }
-        //    set { SetValue(HeaderProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty CommandStringProperty = DependencyProperty.Register(
-        //    "CommandString", typeof(string), typeof(CommandControl));
-        //public string CommandString
-        //{
-        //    get { return (string)GetValue(CommandStringProperty); }
-        //    set { SetValue(CommandStringProperty, value); }
-        //}
-
-        private static ImageSource _defaultImage;
-        private ReuseWindow _commandTextWindow;
-        private TextBox _commandBox;
+        public static void AfterIconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            CommandControl cc = d as CommandControl;
+            cc.View.Icon = cc.Icon.ToString();
+        }
 
         public static readonly DependencyProperty ViewProperty = DependencyProperty.Register(
-            "View", typeof(CommandView), typeof(CommandControl), new PropertyMetadata(new CommandView()));
+            "View", typeof(CommandView), typeof(CommandControl), 
+            new PropertyMetadata(new CommandView(), AfterViewPropertyChanged));
         public CommandView View
         {
             get { return (CommandView)GetValue(ViewProperty); }
             set { SetValue(ViewProperty, value); }
         }
+
+        public static void AfterViewPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            CommandControl cc = d as CommandControl;
+            CommandView view = e.OldValue as CommandView;
+            cc.View.Icon = cc.Icon.ToString();
+            cc.View.Header = view.Header;
+            cc.View.Command = view.Command;
+        }
+        #endregion
+
+        #region Field
+        private static ImageSource _defaultImage;
+        private ReuseWindow _commandTextWindow;
+        private TextBox _commandBox;
+        #endregion
 
         public CommandControl()
         {

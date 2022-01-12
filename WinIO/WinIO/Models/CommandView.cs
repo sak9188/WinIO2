@@ -10,10 +10,23 @@ namespace WinIO.Models
     public class CommandView : INotifyPropertyChanged
     {
         #region Field
+        private string _icon;
         private string _header;
         private string _command;
         
         public event PropertyChangedEventHandler PropertyChanged;
+        public string Icon
+        {
+            get => _icon;
+            set
+            {
+                _icon = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Icon"));
+                }
+            }
+        }
             
         public string Header
         {
