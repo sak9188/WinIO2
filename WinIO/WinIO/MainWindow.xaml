@@ -80,7 +80,7 @@
                             </layout:LayoutAnchorable>-->
                         </layout:LayoutAnchorablePane>
                     </layout:LayoutAnchorablePaneGroup>
-                    <layout:LayoutDocumentPaneGroup>
+                    <layout:LayoutDocumentPaneGroup x:Name="MainPanelGroup">
                         <layout:LayoutDocumentPane x:Name = "MainDockPanel"></layout:LayoutDocumentPane >
                     </layout:LayoutDocumentPaneGroup>
                 </layout:LayoutPanel >

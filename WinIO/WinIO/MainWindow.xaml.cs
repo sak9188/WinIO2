@@ -65,10 +65,25 @@ namespace WinIO
             _editCommandWindow.AfterRemoveCommand += AfterRemoveCommand;
             ToolMenu.ItemsSource = _menuItemViews;
 
-            // 八列重拍按钮
+            // 面板重排算法
             var eightView = new MenuItemView();
-            eightView.Title = "四列重排";
-            eightView.Click += (o,e) => FourColumnsResort();
+            eightView.Title = "AllIn One";
+            eightView.Click += (o,e) => ColumnsResort(1, 1);
+            _menuItemViews.Add(eightView);
+
+            eightView = new MenuItemView();
+            eightView.Title = "两行两列";
+            eightView.Click += (o,e) => ColumnsResort(2, 2);
+            _menuItemViews.Add(eightView);
+
+            eightView = new MenuItemView();
+            eightView.Title = "两行四列";
+            eightView.Click += (o,e) => ColumnsResort(2, 4);
+            _menuItemViews.Add(eightView);
+
+            eightView = new MenuItemView();
+            eightView.Title = "三行三列";
+            eightView.Click += (o,e) => ColumnsResort(3, 3);
             _menuItemViews.Add(eightView);
         
             // 分割线
@@ -97,7 +112,7 @@ namespace WinIO
                 brush.ImageSource = new BitmapImage(new Uri(imgPath, UriKind.Relative));
             }
             // 这里一般都是没有找到， 或者IO错误， 如果有问题就直接不管了
-            catch (Exception)
+            catch (Exception) 
             {
                 return;
             }
@@ -140,25 +155,99 @@ namespace WinIO
             _editCommandWindow.AddShortcutCommand(commandView);
         }
 
-        public void FourColumnsResort()
+        public void ColumnsResort(int row, int col)
         {
-            // 四列排算法
-            // 每个窗口按序分布在4列2行的布局上
-            var group = MainDock.Layout.Descendents().OfType<LayoutDocumentPaneGroup>().First();
+            // Check一下
+            if (row <= 0) row = 1;
+            if (col <= 0) col = 1;
+
+            // 排列算法
+            // 获得所有的子窗口
+            var anchors = MainDock.Layout.Descendents().OfType<CustomeDocument>().Where(x => !x.BanResort).ToList();
+
+            var group = MainPanelGroup;
             group.RemoveAllChild();
 
-            // 获得所有的子窗口
-            var anchors = MainDock.Layout.Descendents().OfType<CustomeDocument>().ToList();
-            var a = new CustomeDocument();
-            if()
+            // 然后干掉它们的父亲节点
+            foreach (var anchor in anchors)
             {
-            
-            }else if(groups.Count < 4)
-            {
-
+                // 先全部移除子节点
+                anchor.Parent.RemoveChild(anchor);
             }
-            // pane.InsertChildAt(0, new CustomeDocument());
-            // group.InsertChildAt(0, pane);
+            int maxNum = row * col; 
+            if(anchors.Count >= maxNum)
+            {
+                // 创建容器
+                var paneGroups = new List<LayoutDocumentPaneGroup>();
+                var panes = new List<LayoutDocumentPane>();
+                for (int j = 0; j < col; j++)
+                {
+                    var newGroup = new LayoutDocumentPaneGroup();
+                    newGroup.Orientation = Orientation.Vertical;
+                    
+                    for(int k = 0; k < row; k++)
+                    {
+                        var child = new LayoutDocumentPane();
+                        newGroup.InsertChildAt(0, child);
+                        panes.Add(child);
+                    }
+
+                    paneGroups.Add(newGroup);
+                }
+
+                // 插入已经弄好的容器
+                int i = 0;
+                foreach (var item in anchors)
+                {
+                    panes[i % maxNum].InsertChildAt(0, item);
+                    i += 1;
+                }
+                
+                // 插入容器里
+                group.Orientation = Orientation.Horizontal;
+                foreach(var panegroup in paneGroups)
+                {
+                    group.InsertChildAt(0, panegroup);
+                }
+            }
+            else if(anchors.Count >= col)
+            {
+                // 创建容器
+                var paneGroups = new List<LayoutDocumentPaneGroup>();
+                var panes = new List<LayoutDocumentPane>();
+                for (int j = 0; j < col; j++)
+                {
+                    var newGroup = new LayoutDocumentPaneGroup();
+                    newGroup.Orientation = Orientation.Vertical;
+                    paneGroups.Add(newGroup);
+                }
+
+                for(int k = 0; k < anchors.Count; k++)
+                {
+                    var paneGroup = paneGroups[k % row];
+                    var pane = new LayoutDocumentPane();
+                    pane.InsertChildAt(0, anchors[k]);
+                    group.InsertChildAt(0, pane);
+                }
+
+                // 插入容器里
+                foreach(var panegroup in paneGroups)
+                {
+                    group.InsertChildAt(0, panegroup);
+                }
+            }
+            else
+            {
+                foreach(var anchor in anchors)
+                {
+                    var pane = new LayoutDocumentPane();
+                    pane.InsertChildAt(0, anchor);
+                    group.InsertChildAt(0, pane);
+                }
+            }
+
+            // 收集一下垃圾
+            MainDock.Layout.CollectGarbage();
         }
         #endregion
 

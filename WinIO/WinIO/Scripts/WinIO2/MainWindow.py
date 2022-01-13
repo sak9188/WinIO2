@@ -89,6 +89,8 @@ class MainWindow(object):
 
 	def init_output(self):
 		self.output = self.create_anchorable("WinIO", OutputPanel())
+		# 禁止WinIO的重新排序
+		self.output.parent.ban_resort = True
 
 		print self
 		# 这里需要初始化基本的面板
@@ -241,14 +243,14 @@ class MainWindow(object):
 	@ThreadHelper.invoke
 	def create_document(self, index, name, control):
 		document = FloatDocument(name, control)
-		self.dock_pane.Children.Add(document)
+		self.dock_pane.InsertChildAt(0, document)
 		self.document_dict[index] = control
 		return control
 
 	@ThreadHelper.invoke
 	def create_anchorable(self, name, control):
 		document = FloatDocument(name, control)
-		self.left_dock_pane.Children.Add(document)
+		self.left_dock_pane.InsertChildAt(0, document)
 		self.anchora_dict[name] = control
 		return control
 

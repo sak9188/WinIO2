@@ -6,3 +6,11 @@ class FloatDocument(CustomeDocument):
 		self.Title = title
 		self.Content = control
 		control.parent = self
+
+	@property
+	def ban_resort(self):
+		return self.BanResort
+
+	@ban_resort.setter
+	def ban_resort(self, value):
+		self.BanResort= value
