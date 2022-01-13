@@ -13,8 +13,10 @@ class MenuItem(MenuItemView):
 		self.click_fun = FunctionChain()
 		self.child_dict = {}
 		self.Click = PyDel.ToRoutedEventHandler(self.click_fun)
+
+		# 添加点击函数
 		if on_click:
-			self.click_fun.append(on_click)
+			self.click_fun += on_click
 
 	def add(self, menu_item):
 		self.Add(menu_item)

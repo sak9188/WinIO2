@@ -4,6 +4,7 @@ from WinIO.Core import PyDelegateConverter as PyDel
 from WinIO2.Application import Application
 from WinIO2.Config.Application import ApplicationCofigure
 from WinIO2.Controls.BlankWindow import AcrylicWindowStyle
+from WinIO2.Controls.CommandItem import CommandItem
 from WinIO2.Controls.MenuItem import MenuItem
 from WinIO2.Controls.SettingWindow import SettingWindow
 from WinIO2.Core import ThreadHelper
@@ -83,7 +84,8 @@ class MainWindow(object):
 		self.window_menu.ItemsSource = List(menu_list)
 
 		# 第二顶的工具栏
-		# mitem = MenuItem("4列平铺窗口")
+		comand_view = CommandItem("FGUI", "/Assets/Icons/ui.png", "print '打印测试工具'")
+		self.main_window.AddShortcutCommand(comand_view)
 
 
 

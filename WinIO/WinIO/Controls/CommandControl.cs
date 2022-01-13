@@ -45,8 +45,22 @@ namespace WinIO.Controls
         {
             CommandControl cc = d as CommandControl;
             CommandView view = e.OldValue as CommandView;
-            cc.View.Icon = cc.Icon.ToString();
+            
+            // 这里设计的有问题, 但是还是打一个补丁吧
+            if(string.IsNullOrEmpty(cc.View.Icon))
+            {
+                // 只有第一次通过代码创建的MenuItem才有用
+                // 如果不是的话, 再代码运行中去更改就没有用了
+                // 因为之前设想的设计是可以通过代码去加一个Command, 但是设计上是代码不能直接控制Icon
+                // 只有通过GUI控制才有用, 所以就导致了这个问题
 
+                // 如果后期有需要这样的可能的话可以考虑重构一下这部分, 当然重构也相对来说比较简单
+                cc.Icon = GResources.GetUriImage(cc.View.Icon).Source;
+            }
+            else
+            {
+                cc.View.Icon = cc.Icon.ToString();
+            }
             // 这里旧的就直接干掉就行了， 只有Icon比较特殊
             // cc.View.Header = view.Header;
             // cc.View.Command = view.Command;

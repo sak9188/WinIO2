@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using WinIO.Controls;
+using WinIO.PythonNet;
 
 namespace WinIO.Models
 {
@@ -34,21 +36,7 @@ namespace WinIO.Models
             {
                 _icon = value;
 
-                if (!string.IsNullOrEmpty(_icon))
-                {
-                    Uri imageUri;
-                    if (Uri.IsWellFormedUriString(value, UriKind.Relative))
-                    {
-                        imageUri = new Uri(value, UriKind.Relative);
-                    } else
-                    {
-                        imageUri = new Uri(value, UriKind.Absolute);
-                    }
-                    _image = new Image()
-                    {
-                        Source = new BitmapImage(imageUri)
-                    };
-                };
+                _image = GResources.GetUriImage(value);
 
                 if (PropertyChanged != null)
                 {
@@ -82,6 +70,7 @@ namespace WinIO.Models
                 if(_commandView != null)
                 {
                     _commandView.PropertyChanged -= AfterViewPropertyChanged;
+                    this.Click -= _commandView.AfterClickCommand;
                 }
                 
                 if(value != null)
@@ -90,6 +79,8 @@ namespace WinIO.Models
 
                     this.Icon = value.Icon;
                     this.Title = value.Header;
+
+                    this.Click += value.AfterClickCommand;
                 }
 
                 _commandView = value;
@@ -98,11 +89,6 @@ namespace WinIO.Models
                     PropertyChanged(this, new PropertyChangedEventArgs("CommandView"));
                 }
             }
-        }
-
-        private void Value_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public bool Checkable

@@ -149,6 +149,7 @@ namespace WinIO
             _menuItemViews.Insert(_menuItemViews.IndexOf(_menuSeperator) - 1, menuItemView);
         }
 
+
         public void AddShortcutCommand(CommandView commandView)
         {
             // 这里是一个后端接口, 方便直接再代码层面操作
@@ -164,6 +165,10 @@ namespace WinIO
             // 排列算法
             // 获得所有的子窗口
             var anchors = MainDock.Layout.Descendents().OfType<CustomeDocument>().Where(x => !x.BanResort).ToList();
+
+            // 没有窗口的话，排个吉尔
+            if (anchors.Count == 0)
+                return;
 
             var group = MainPanelGroup;
             group.RemoveAllChild();

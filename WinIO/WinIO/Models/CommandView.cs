@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using WinIO.PythonNet;
 
 namespace WinIO.Models
 {
@@ -54,5 +56,12 @@ namespace WinIO.Models
             }
         }
         #endregion
+        public void AfterClickCommand(object sender, RoutedEventArgs e)
+        {
+            using(Py.GIL())
+            {
+                PythonEngine.Exec(this.Command);
+            }
+        }
     }
 }

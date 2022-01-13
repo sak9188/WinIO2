@@ -64,5 +64,27 @@ namespace WinIO.Controls
             images.TryGetValue(name, out outImage);
             return outImage;
         }
+
+        public static Image GetUriImage(string uri)
+        {
+            Image image = null;
+            if (!string.IsNullOrEmpty(uri))
+            {
+                Uri imageUri;
+                if (Uri.IsWellFormedUriString(uri, UriKind.Relative))
+                {
+                    imageUri = new Uri(uri, UriKind.Relative);
+                } else
+                {
+                    imageUri = new Uri(uri, UriKind.Absolute);
+                }
+
+                image = new Image()
+                {
+                    Source = new BitmapImage(imageUri)
+                };
+            };
+            return image;
+        }
     }
 }
