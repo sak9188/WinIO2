@@ -47,7 +47,7 @@ namespace WinIO.Controls
             CommandView view = e.OldValue as CommandView;
             
             // 这里设计的有问题, 但是还是打一个补丁吧
-            if(string.IsNullOrEmpty(cc.View.Icon))
+            if(!string.IsNullOrEmpty(cc.View.Icon))
             {
                 // 只有第一次通过代码创建的MenuItem才有用
                 // 如果不是的话, 再代码运行中去更改就没有用了

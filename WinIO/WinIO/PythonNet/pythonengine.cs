@@ -552,7 +552,17 @@ namespace WinIO.PythonNet
                 }
             }
         }
+        public static void ExecEx(string code, IntPtr? locals = null)
+    {
+            if(!locals.HasValue)
+            {
+                locals = Runtime.PyDict_New();
+            }
 
+            PyString str = new PyString(code);
+            Runtime.PyDict_SetItemString(locals.Value, "s", str.Handle);
+            PythonEngine.Exec("exec(s)", null, locals);
+        }
 
         /// <summary>
         /// RunString Method. Function has been deprecated and will be removed.

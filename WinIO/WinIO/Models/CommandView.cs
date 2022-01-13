@@ -60,7 +60,7 @@ namespace WinIO.Models
         {
             using(Py.GIL())
             {
-                PythonEngine.Exec(this.Command);
+                PythonEngine.ExecEx(this.Command);
             }
         }
     }

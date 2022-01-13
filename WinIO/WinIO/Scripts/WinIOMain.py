@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
-import os
+from distutils.log import debug
 import sys
-import threading
 
 sys = reload(sys)
 sys.setdefaultencoding('utf8')
@@ -10,15 +9,22 @@ sys.path.append("D:/Project/Dev/Develop/PyCode/")
 
 class Debug(object):
 
+	def __init__(self):
+		sys.stdout = self
+		sys.stderr = self
+
 	def write(self, s):
 		from System import Console
 		Console.Write(s)
 
+	def redirect(self, o):
+		if not o:
+			return
+		sys.stdout = o
+		sys.stderr = o
 
-import sys
+
 debug = Debug()
-sys.stdout = debug
-sys.stderr = debug
 
 
 from WinIO2.MainWindow import MainWindow
@@ -38,6 +44,8 @@ io_select = GIONetWork.get_io_select()
 
 if GSEnvironment.is_windows():
 	main_window = MainWindow()
+
+	debug.redirect(main_window)
 
 	io_select.on_write_callback = main_window.on_write
 	io_select.on_progress_callback = main_window.on_progress
