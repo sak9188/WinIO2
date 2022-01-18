@@ -2,6 +2,7 @@
 from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Application import Application
+from WinIO2.CodeFactory import OpenFGUI
 from WinIO2.Config.Application import ApplicationCofigure
 from WinIO2.Controls.BlankWindow import AcrylicWindowStyle
 from WinIO2.Controls.CommandItem import CommandItem
@@ -85,12 +86,10 @@ class MainWindow(object):
 
 		# 第二顶的工具栏
 		io_edit_view = CommandItem("指令台", "/Assets/Icons/io.png", "print '打印测试工具'")
-		comand_view = CommandItem("FGUI", "/Assets/Icons/ui.png", "print '打印测试工具'")
+		comand_view = CommandItem("FGUI", "/Assets/Icons/ui.png", OpenFGUI.OpenFGUI)
 
 		self.main_window.AddShortcutCommand(io_edit_view)
 		self.main_window.AddShortcutCommand(comand_view)
-
-
 
 	def init_output(self):
 		self.output = self.create_anchorable("WinIO", OutputPanel())

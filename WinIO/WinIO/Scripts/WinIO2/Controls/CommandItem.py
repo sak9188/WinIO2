@@ -1,7 +1,13 @@
 # -*- coding: UTF-8 -*-
 
+from signal import valid_signals
+
+from matplotlib.pyplot import vlines
 from WinIO.Models import CommandView
 from WinIO.Core import PyDelegateConverter as PyDel
+
+from WinIO2.CodeFactory import BaseCodeFactory
+from WinIO2.Core import code
 
 class CommandItem(CommandView):
 
@@ -24,4 +30,8 @@ class CommandItem(CommandView):
 
 	@header.setter
 	def command(self, value):
-		self.command = value
+		if type(value) is str:
+			self.Command = value
+		elif issubclass(value, BaseCodeFactory.BaseCodeFacotry) is type:
+			# 如果这里是类型话可能要做其他的操作
+			self.Command = code.get_view(value)
