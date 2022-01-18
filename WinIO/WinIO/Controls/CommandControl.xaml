@@ -22,7 +22,15 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Source="{TemplateBinding Icon}" Grid.Column="0" Width="64" Height="64" Margin="4,2,2,2"> </Image>
+                                <Image Source="{TemplateBinding Icon}" Grid.Column="0" Width="64" Height="64" Margin="4,2,2,2">
+                                    <Image.ContextMenu>
+                                        <ContextMenu Style="{StaticResource AcrylicContextMenuStyle}" 
+                                                     Background="{StaticResource SystemChromeMediumLowColorBrush}">
+                                            <MenuItem Header="修改图标" Click="ModifyCommandIcon"></MenuItem> 
+                                            <MenuItem Header="删除" Click="DeleteCommandControl"></MenuItem> 
+                                        </ContextMenu>
+                                    </Image.ContextMenu>
+                                </Image>
                                 <fw:AcrylicPopup AllowsTransparency="True" Focusable="False"
                                                  PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                                                  Placement="Bottom">

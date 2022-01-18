@@ -117,5 +117,16 @@ namespace WinIO.Controls
             }
             _commandTextWindow.ShowDialog();
         }
+        private void ModifyCommandIcon(object sender, EventArgs arggs)
+        {
+            var window = Window.GetWindow(this) as EditCommandWindow;
+            window.ModifyCommandIcon(this);
+        }
+
+        private void DeleteCommandControl(object sender, EventArgs arggs)
+        {
+            var window = Window.GetWindow(this) as EditCommandWindow;
+            window.RemoveCommand(this);
+        }
     }
 }

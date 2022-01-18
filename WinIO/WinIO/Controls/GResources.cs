@@ -20,7 +20,8 @@ namespace WinIO.Controls
             "folder",
             "medium",
             "plus",
-            "ui"
+            "ui",
+            "io"
         };
 
         private static Dictionary<string, Image> _images;

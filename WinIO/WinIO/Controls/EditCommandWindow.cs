@@ -27,6 +27,16 @@ namespace WinIO.Controls
 
         public RoutedEventHandler AfterRemoveCommand;
 
+        private void ItemsMouseLeave(object sender, MouseEventArgs e)
+        {
+            _currentControl = null;
+        }
+
+        private void MouseEventHandler(object sender, MouseEventArgs e)
+        {
+            _currentControl = sender as CommandControl;
+        }
+
         public EditCommandWindow()
         {
             InitializeComponent();
@@ -50,44 +60,22 @@ namespace WinIO.Controls
             AfterAddCommand?.Invoke(this, new RoutedEventArgs(CommandEvent, view));
         }
 
-        private void RemoveCommand(CommandControl control)
+        public void RemoveCommand(CommandControl control)
         {
             Items.Children.Remove(control);
 
             AfterRemoveCommand?.Invoke(this, new RoutedEventArgs(CommandEvent, control.View));
         }
 
+        public void ModifyCommandIcon(CommandControl control)
+        {
+            _modifyIconWindow.SelectControl = control;
+            _modifyIconWindow.ShowDialog();
+        }
+
         public void AddQuickCommand(object sender, EventArgs arggs)
         {
             AddCommand();
-        }
-
-        private void ItemsMouseLeave(object sender, MouseEventArgs e)
-        {
-            _currentControl = null;
-        }
-        private void ModifyCommandIcon(object sender, EventArgs arggs)
-        {
-            if(_currentControl != null)
-            {
-                var curcontrl = _currentControl;
-                _modifyIconWindow.SelectControl = curcontrl;
-                _modifyIconWindow.ShowDialog();
-            }
-        }
-
-        private void DeleteCommandControl(object sender, EventArgs arggs)
-        {
-            if(_currentControl != null)
-            {
-                var control = _currentControl;
-                RemoveCommand(control);
-            }
-        }
-
-        private void MouseEventHandler(object sender, MouseEventArgs e)
-        {
-            _currentControl = sender as CommandControl;
         }
 
         public void AddShortcutCommand(CommandView commandView)

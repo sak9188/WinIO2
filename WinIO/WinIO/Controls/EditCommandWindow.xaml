@@ -10,13 +10,6 @@
     <StackPanel Orientation="Vertical" Margin="4" >
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="445">
             <StackPanel x:Name="Items">
-                <StackPanel.ContextMenu>
-                    <ContextMenu Style="{StaticResource AcrylicContextMenuStyle}" 
-                                 Background="{StaticResource SystemChromeMediumLowColorBrush}">
-                        <MenuItem Header="修改图标" Click="ModifyCommandIcon"></MenuItem> 
-                        <MenuItem Header="删除" Click="DeleteCommandControl"></MenuItem> 
-                    </ContextMenu>
-                </StackPanel.ContextMenu>
             </StackPanel>
         </ScrollViewer>
         <Button Content="添加一个快捷命令" Style="{StaticResource ButtonRevealStyle}" Height="40" Click="AddQuickCommand"></Button>

@@ -84,7 +84,10 @@ class MainWindow(object):
 		self.window_menu.ItemsSource = List(menu_list)
 
 		# 第二顶的工具栏
+		io_edit_view = CommandItem("指令台", "/Assets/Icons/io.png", "print '打印测试工具'")
 		comand_view = CommandItem("FGUI", "/Assets/Icons/ui.png", "print '打印测试工具'")
+
+		self.main_window.AddShortcutCommand(io_edit_view)
 		self.main_window.AddShortcutCommand(comand_view)
 
 

@@ -643,7 +643,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PythonNet\resources\clr.py" />
-    <Resource Include="splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
@@ -663,6 +662,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\io.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="splash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
