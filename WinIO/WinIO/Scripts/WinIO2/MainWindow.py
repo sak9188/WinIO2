@@ -16,8 +16,8 @@ from WinIO2.Controls.FloatDocument import FloatDocument
 
 import os
 
-from Tool import ToolHelp, BatCallPythonFunction
-from Common import File, Environment, String
+from Tool import BatCallPythonFunction
+from Common import Environment
 from Tool.GameIO import GUnmanaged, GIOGM, GIOCore
 
 

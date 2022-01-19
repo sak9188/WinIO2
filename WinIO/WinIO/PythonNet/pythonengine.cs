@@ -553,7 +553,12 @@ namespace WinIO.PythonNet
             }
         }
         public static void ExecEx(string code, IntPtr? locals = null)
-    {
+        {
+            if (string.IsNullOrEmpty(code))
+            {
+                return;
+            }
+
             if(!locals.HasValue)
             {
                 locals = Runtime.PyDict_New();

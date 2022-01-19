@@ -86,6 +86,15 @@ namespace WinIO
             eightView.Click += (o,e) => ColumnsResort(3, 3);
             _menuItemViews.Add(eightView);
         
+            eightView = new MenuItemView();
+            eightView.Title = "打开测试命令台";
+            eightView.Click += (o,e) => 
+            {
+                var newWindow = new ComandWindow();
+                newWindow.Show();
+            };
+            _menuItemViews.Add(eightView);
+
             // 分割线
             _menuSeperator = new Separator();
             _menuItemViews.Add(_menuSeperator);
@@ -96,6 +105,7 @@ namespace WinIO
             commandView.Icon = "Assets/Icons/plus.png";
             commandView.Click += AddShortcutCommand;
             _menuItemViews.Add(commandView);
+
         }
 
         public void SetBackground(string imgPath)

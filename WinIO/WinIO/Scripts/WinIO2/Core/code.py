@@ -6,11 +6,12 @@ wrap_view = """
 # 这里是自动生成的代码，修改了是无法保存的
 from WinIO2.Core import code
 
-code.execute(%s)
+code.execute("%s")
 """
 
 def get_code(value_class):
 	cls_name = value_class.__name__
+	class_dict[cls_name] = value_class
 	return wrap_view % cls_name
 
 
