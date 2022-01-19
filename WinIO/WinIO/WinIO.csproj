@@ -788,33 +788,33 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AvalonEdit\Highlighting\Resources\ASPX.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\Boo.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\Coco-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\CPP-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\CSharp-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\CSS-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\HTML-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\Java-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\JavaScript-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\Json.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\MarkDown-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\MarkDownWithFontSize-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\ModeV1.xsd">
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\ASPX.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\Boo.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\Coco-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\CPP-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\CSharp-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\CSS-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\HTML-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\Java-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\JavaScript-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\Json.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\MarkDown-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\MarkDownWithFontSize-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\ModeV1.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="AvalonEdit\Highlighting\Resources\ModeV2.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\ModeV2.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="AvalonEdit\Highlighting\Resources\Patch-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\PHP-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\PowerShell.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\Python-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\Tex-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\TSQL-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\VB-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\XML-Mode.xshd" />
-    <None Include="AvalonEdit\Highlighting\Resources\XmlDoc.xshd" />
+    </EmbeddedResource>
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\Patch-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\PHP-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\PowerShell.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\Python-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\Tex-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\TSQL-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\VB-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\XML-Mode.xshd" />
+    <EmbeddedResource Include="AvalonEdit\Highlighting\Resources\XmlDoc.xshd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

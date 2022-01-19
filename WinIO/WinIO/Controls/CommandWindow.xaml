@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WinIO.FluentWPF"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:WinIO.FluentWPF" xmlns:avalonEdit="clr-namespace:WinIO.AvalonEdit"
+                     mc:Ignorable="d"
         Title="ComandWindow" Height="1000" Width="1400">
     <Grid>
         <Grid.RowDefinitions>
@@ -31,6 +31,13 @@
             </TreeView>
         </StackPanel>
         <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
-        <Canvas Grid.Row="0" Grid.Column="2" Background="Azure"></Canvas>
+        <avalonEdit:TextEditor
+        Grid.Row="0" Grid.Column="2"
+        x:Name="textEditor" FontFamily="Consolas"
+        FontSize="11pt" SyntaxHighlighting="C#"
+        ShowLineNumbers="True"
+        >Welcome to AvalonEdit!
+        </avalonEdit:TextEditor>
+
     </Grid>
 </local:AcrylicWindow>

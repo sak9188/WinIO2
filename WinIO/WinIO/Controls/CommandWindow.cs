@@ -23,6 +23,12 @@ namespace WinIO.Controls
         public ComandWindow()
         {
             InitializeComponent();
+        
+            // 初始化选项
+            textEditor.Options.ShowColumnRuler = true;
+            textEditor.Options.ShowEndOfLine = true;
+            textEditor.Options.ShowTabs = true;
+            textEditor.Options.ShowSpaces = true;
         }
     }
 }
