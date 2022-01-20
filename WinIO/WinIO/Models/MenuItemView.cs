@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace WinIO.Models
 
         public RoutedEventHandler Click;
 
-        private List<MenuItemView> _childViewList = new List<MenuItemView>();
+        private ObservableCollection<MenuItemView> _childViewList = new ObservableCollection<MenuItemView>();
 
         public string Icon
         {

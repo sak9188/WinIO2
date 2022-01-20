@@ -27,6 +27,7 @@ class OutputPanel(FlowDocumentScrollViewer):
 		self._parent.Content = self
 
 	def __get_color(self, s):
+		# 这里需要修改一下
 		# 潜规则，如果要显示颜色则必须有一个空格，且大写
 		strs = s.split(" ", 1)
 		if len(strs) > 1:

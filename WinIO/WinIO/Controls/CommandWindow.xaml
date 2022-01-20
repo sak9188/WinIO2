@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WinIO.FluentWPF" xmlns:avalonEdit="clr-namespace:WinIO.AvalonEdit"
-                     mc:Ignorable="d"
-        Title="ComandWindow" Height="1000" Width="1400">
+        xmlns:con="clr-namespace:WinIO.Controls" 
+        xmlns:v="clr-namespace:WinIO.Models"
+        xmlns:local="clr-namespace:WinIO.FluentWPF" 
+        xmlns:avalonEdit="clr-namespace:WinIO.AvalonEdit"
+        mc:Ignorable="d"
+        Title="ComandWindow" Height="800" Width="1050">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -13,31 +16,40 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="5"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
+        
+        <!-- StackPanel -->
         <StackPanel Grid.Row="0" Grid.Column="0">
-            <TreeView>
-                <TreeViewItem Header="Employee1">
-                    <TreeViewItem Header="Jesper"/>
-                    <TreeViewItem Header="Aaberg"/>
-                    <TreeViewItem Header="12345"/>
-                </TreeViewItem>
-                <TreeViewItem Header="Employee2">
-                    <TreeViewItem Header="Dominik"/>
-                    <TreeViewItem Header="Paiha"/>
-                    <TreeViewItem Header="98765"/>
-                </TreeViewItem>
+            <TreeView x:Name="LeftTree">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type v:TreeItemView}" ItemsSource="{Binding Children}">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsChecked}"></CheckBox>
+                            <Label Content="{Binding Name}" 
+                                   Style="{StaticResource AcrylicContentControlStyle}"></Label>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
             </TreeView>
         </StackPanel>
-        <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
-        <avalonEdit:TextEditor
-        Grid.Row="0" Grid.Column="2"
-        x:Name="textEditor" FontFamily="Consolas"
-        FontSize="11pt" SyntaxHighlighting="C#"
-        ShowLineNumbers="True"
-        >Welcome to AvalonEdit!
-        </avalonEdit:TextEditor>
 
+        <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
+        <FlowDocumentScrollViewer Grid.Row="0" Grid.Column="2" VerticalScrollBarVisibility="Auto">
+            <con:OutputDocument x:Name="OutPanel"></con:OutputDocument>
+        </FlowDocumentScrollViewer>
+        <GridSplitter Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch"></GridSplitter>
+        <Canvas Grid.Row="0" Grid.Column="4" x:Name="RightCanvas">
+            <avalonEdit:TextEditor  x:Name="textEditor" FontFamily="Consolas"
+                                   FontSize="11pt" SyntaxHighlighting="C#" ShowLineNumbers="True"
+                                    Height="{Binding ActualHeight, ElementName=RightCanvas}"
+                                    Width="{Binding ActualWidth, ElementName=RightCanvas}"
+            >Welcome to AvalonEdit!
+            </avalonEdit:TextEditor>
+            <Button Style="{StaticResource ButtonRevealStyle}" 
+                    Canvas.Bottom="20" Canvas.Right="20" Padding="7" FontSize="14">运行</Button>
+        </Canvas>
     </Grid>
 </local:AcrylicWindow>

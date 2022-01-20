@@ -335,6 +335,7 @@
     <Compile Include="Models\CommandView.cs" />
     <Compile Include="Models\MenuItemView.cs" />
     <Compile Include="MainProgram.cs" />
+    <Compile Include="Models\TreeItemView.cs" />
     <Compile Include="PythonNet\arrayobject.cs" />
     <Compile Include="PythonNet\assemblymanager.cs" />
     <Compile Include="PythonNet\BorrowedReference.cs" />
