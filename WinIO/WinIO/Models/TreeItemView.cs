@@ -29,10 +29,7 @@ namespace WinIO.Models
             set
             {
                 _name = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Name"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
             }
         }
 
@@ -46,10 +43,7 @@ namespace WinIO.Models
             set
             {
                 this._isChecked = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsChecked"));
                 foreach (TreeItemView child in this.Children)
                 {
                     child.IsChecked = value;
@@ -67,10 +61,7 @@ namespace WinIO.Models
             set
             {
                 this._children = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Children"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Children"));
             }
         }
         #endregion

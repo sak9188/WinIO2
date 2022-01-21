@@ -39,10 +39,7 @@ namespace WinIO.Models
 
                 _image = GResources.GetUriImage(value);
 
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Image"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Image"));
             }
         }
 
@@ -57,10 +54,7 @@ namespace WinIO.Models
             set
             {
                 _title = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Title"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
             }
         }
         public CommandView CommandView
@@ -85,10 +79,7 @@ namespace WinIO.Models
                 }
 
                 _commandView = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("CommandView"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CommandView"));
             }
         }
 

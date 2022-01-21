@@ -23,10 +23,7 @@ namespace WinIO.Models
             set
             {
                 _icon = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Icon"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Icon"));
             }
         }
             
@@ -36,10 +33,7 @@ namespace WinIO.Models
             set
             {
                 _header = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Header"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Header"));
             }
         }
 
@@ -49,10 +43,7 @@ namespace WinIO.Models
             set
             {
                 _command = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Command"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Command"));
             }
         }
         #endregion
