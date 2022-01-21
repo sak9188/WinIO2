@@ -23,14 +23,16 @@
         
         <!-- StackPanel -->
         <StackPanel Grid.Row="0" Grid.Column="0">
-            <TreeView x:Name="LeftTree" Background="Transparent" BorderThickness="0">
+            <TreeView x:Name="LeftTree" Background="Transparent" BorderThickness="0"
+                      SelectedItemChanged="LeftTreeSelectedItemChanged">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type v:TreeItemView}" ItemsSource="{Binding Children}">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox IsChecked="{Binding IsChecked}"></CheckBox>
                             <Label Content="{Binding Name}" 
                                    Style="{StaticResource AcrylicContentControlStyle}"
-                                   Foreground="AliceBlue"></Label>
+                                   Foreground="{StaticResource SystemBaseHighColorBrush}"
+                                   ></Label>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>

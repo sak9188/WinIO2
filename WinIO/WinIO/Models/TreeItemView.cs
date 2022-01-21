@@ -19,6 +19,8 @@ namespace WinIO.Models
         private string _name;
         private bool _isChecked;
 
+        public RoutedEventHandler Click;
+
         public string Name
         {
             get

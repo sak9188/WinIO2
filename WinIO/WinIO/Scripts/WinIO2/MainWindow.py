@@ -253,6 +253,7 @@ class MainWindow(object):
 
 	@ThreadHelper.invoke
 	def create_anchorable(self, name, control):
+		# 这里是不可关闭得anchorable
 		document = FloatDocument(name, control)
 		self.left_dock_pane.InsertChildAt(0, document)
 		self.anchora_dict[name] = control

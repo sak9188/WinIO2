@@ -25,6 +25,11 @@ namespace WinIO.Controls
         public static readonly ObservableCollection<TreeItemView> Items
             = new ObservableCollection<TreeItemView>();
 
+        private Dictionary<TreeItemView, OutputDocument> _viewOutpanels 
+            = new Dictionary<TreeItemView, OutputDocument>();
+
+        public OutputDocument Output => OutPanel;
+
         public ComandWindow()
         {
             InitializeComponent();
@@ -34,21 +39,20 @@ namespace WinIO.Controls
             textEditor.Options.ShowEndOfLine = true;
             textEditor.Options.ShowTabs = true;
             textEditor.Options.ShowSpaces = true;
+        }
 
-            // 初始化TreeView
-            TreeItemView view = new TreeItemView() { Name="测试1" };
-            TreeItemView view1 = new TreeItemView() { Name="测试2" };
-            TreeItemView view2 = new TreeItemView() { Name="测试3" };
-            TreeItemView view3 = new TreeItemView() { Name="测试4" };
-
-            // Items.Add();
-            Items.Add(view1);
-            view1.Children.Add(view);
-            Items.Add(view2);
-            Items.Add(view3);
-            // Items.Add();
-
-            LeftTree.ItemsSource = Items;
+        private void LeftTreeSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var view = LeftTree.SelectedItem as TreeItemView;
+        
+            // 这里切换面板
+            OutputDocument panel;
+            if(!this._viewOutpanels.TryGetValue(view, out panel))
+            {
+                panel = new OutputDocument();
+                this._viewOutpanels[view] = panel;
+            }
+            OutPanel = panel;
         }
     }
 }
