@@ -8,10 +8,10 @@ from WinIO.Core import PyDelegateConverter as PyDel
 from WinIO2.Controls.IBaseControls.OutputControl import OutputControl
 from WinIO2.Core.FunctionTool import FunctionChain
 
-class CommandWindow(CommandWindow, OutputControl):
+class CommandWindow(CommandWindow):
 
 	def __init__(self):
-		pass
+		self.output = OutputControl(self.Document)
 
 	@classmethod
 	def add_item(self, item):
@@ -20,3 +20,12 @@ class CommandWindow(CommandWindow, OutputControl):
 	@classmethod
 	def remove_item(self, item):
 		CommandWindow.Items.Remove(item)
+
+	def write(self, s):
+		self.output.write(s)
+
+	def append(self, s):
+		self.output.append(s)
+
+	def append_line(self, s):
+		self.output.append_line(s)

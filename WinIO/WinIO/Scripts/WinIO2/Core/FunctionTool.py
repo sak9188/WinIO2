@@ -19,6 +19,11 @@ class FunctionChain(object):
 	def __add__(self, rhs):
 		self.append(rhs)
 
+	def __sub__(self, rhs):
+		if rhs in self.sets:
+			self.sets.remove(rhs)
+		self.remove(rhs)
+
 	def __call__(self, *args, **kwds):
 		for fun in self:
 			fun(*args, **kwds)

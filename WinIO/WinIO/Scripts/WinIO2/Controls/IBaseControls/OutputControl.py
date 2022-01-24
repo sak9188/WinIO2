@@ -1,12 +1,15 @@
-from io import StringIO
+# -*- coding: UTF-8 -*-
+
+import StringIO
 
 from WinIO2.Config.ColorBrush import ColorConfigure
 from WinIO2.Core import ThreadHelper
 
-# -*- coding: UTF-8 -*-
-
 # 输出接口类
 class OutputControl(object):
+	def __init__(self, document):
+		self.Document = document
+
 	def __get_color(self, s):
 		# 这里需要修改一下
 		# 潜规则，如果要显示颜色则必须有一个空格，且大写

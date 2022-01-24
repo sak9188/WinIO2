@@ -9,12 +9,13 @@ from WinIO2.Core import ThreadHelper
 import StringIO
 
 
-class OutputPanel(FlowDocumentScrollViewer, OutputControl):
+class OutputPanel(FlowDocumentScrollViewer):
 	def __init__(self, parent=None):
 		self.thread_id = self.Dispatcher.Thread.ManagedThreadId
 		self.VerticalScrollBarVisibility = ScrollBarVisibility.Auto
-		self.Document = OutputDocument()
+		self.Document = document = OutputDocument()
 		self._parent = parent
+		self.output = OutputControl(document)
 
 	@property
 	def parent(self):
@@ -26,3 +27,12 @@ class OutputPanel(FlowDocumentScrollViewer, OutputControl):
 
 	def reset(self):
 		self._parent.Content = self
+
+	def write(self, s):
+		self.output.write(s)
+
+	def append(self, s):
+		self.output.append(s)
+
+	def append_line(self, s):
+		self.output.append_line(s)
