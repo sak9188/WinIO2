@@ -22,8 +22,11 @@ class FunctionChain(object):
 	def __sub__(self, rhs):
 		if rhs in self.sets:
 			self.sets.remove(rhs)
-		self.remove(rhs)
+		self.funs.remove(rhs)
 
 	def __call__(self, *args, **kwds):
 		for fun in self:
-			fun(*args, **kwds)
+			try:
+				fun(*args, **kwds)
+			except:
+				print "函数链调用发生错误 函数名:%s" % (fun.__name__)

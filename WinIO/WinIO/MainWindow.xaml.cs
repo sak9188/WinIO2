@@ -90,7 +90,7 @@ namespace WinIO
             eightView.Title = "打开测试命令台";
             eightView.Click += (o,e) => 
             {
-                var newWindow = new ComandWindow();
+                var newWindow = new CommandWindow();
                 newWindow.Show();
             };
             _menuItemViews.Add(eightView);

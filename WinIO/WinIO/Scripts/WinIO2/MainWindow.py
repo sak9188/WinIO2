@@ -3,6 +3,7 @@ from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Application import Application
 from WinIO2.CodeFactory import OpenFGUI
+from WinIO2.CodeFactory import OpenCommandWindow
 from WinIO2.Config.Application import ApplicationCofigure
 from WinIO2.Controls.BlankWindow import AcrylicWindowStyle
 from WinIO2.Controls.CommandItem import CommandItem
@@ -11,8 +12,10 @@ from WinIO2.Controls.SettingWindow import SettingWindow
 from WinIO2.Core import ThreadHelper
 from WinIO2.Core.FunctionTool import FunctionChain
 from WinIO2.Core.List import List
+from WinIO2.Core.UIEvent import UIEvent
 from WinIO2.Controls.OutputPanel import OutputPanel
 from WinIO2.Controls.FloatDocument import FloatDocument
+from WinIO2.Controls import CommandWindow, TreeItem
 
 import os
 
@@ -23,6 +26,10 @@ from Tool.GameIO import GUnmanaged, GIOGM, GIOCore
 
 class MainWindow(object):
 	__share__ = {}
+	
+	# UI事件
+	UIE_AfterCreateOutput = UIEvent("创建输出面板")
+	UIE_AfterRemoveOutput = UIEvent("移除输出面板")
 
 	def __init__(self):
 		if self.__share__:
@@ -43,6 +50,9 @@ class MainWindow(object):
 		self.anchora_dict= {}
 		self.after_closed = FunctionChain() 
 		self.main_window.AfterClosed = PyDel.ToEventHandler(self.after_closed)
+		# 一些其他的数据项，做生命周期管理
+		self.__tree_item = {}
+
 		self.init_self()
 
 	def __str__(self):
@@ -85,11 +95,16 @@ class MainWindow(object):
 		self.window_menu.ItemsSource = List(menu_list)
 
 		# 第二顶的工具栏
-		io_edit_view = CommandItem("指令台", "/Assets/Icons/io.png", "print '打印测试工具'")
+		io_edit_view = CommandItem("指令台", "/Assets/Icons/io.png", OpenCommandWindow.OpenCommandWindow)
 		comand_view = CommandItem("FGUI", "/Assets/Icons/ui.png", OpenFGUI.OpenFGUI)
 
 		self.main_window.AddShortcutCommand(io_edit_view)
 		self.main_window.AddShortcutCommand(comand_view)
+
+		# UI事件进行一个注册
+		self.UIE_AfterCreateOutput += self.after_create_output
+		self.UIE_AfterRemoveOutput += self.after_shutdown_output
+
 
 	def init_output(self):
 		self.output = self.create_anchorable("WinIO", OutputPanel())
@@ -249,6 +264,7 @@ class MainWindow(object):
 		document = FloatDocument(name, control)
 		self.dock_pane.InsertChildAt(0, document)
 		self.document_dict[index] = control
+		self.UIE_AfterCreateOutput(name)
 		return control
 
 	@ThreadHelper.invoke
@@ -266,7 +282,9 @@ class MainWindow(object):
 		if not control:
 			return
 		self.dock_pane.RemoveChild(control.parent)
+		# 这里做了真正的操作， 可能C#那边还需要手动释放一下
 		self.document_dict.pop(index)
+		# self.UIE_AfterRemoveOutput(index)
 		del control
 
 	@ThreadHelper.begin_invoke
@@ -281,3 +299,24 @@ class MainWindow(object):
 	"""
 	def after_change_background(self, desc):
 		self.main_window.SetBackground(desc.control)
+
+	"""
+	UI事件
+	"""
+	def __sort_create_tree_item(self, treeitem):
+		# 这里的方法不是通用方法， 而是针对当前客户端
+		name = treeitem.name
+		strs = name.split(".")
+		return strs[0]
+
+	def after_shutdown_output(self, event_args, name):
+		treeitem = self.__tree_item.get(name)
+		CommandWindow.CommandWindow.remove_item(treeitem, self.__sort_create_tree_item)
+		self.__tree_item.pop(name)
+
+	def after_create_output(self, event_args, name):
+		treeitem = TreeItem.TreeItem(name)
+		self.__tree_item[name] = treeitem
+		CommandWindow.CommandWindow.add_item(treeitem, self.__sort_create_tree_item)
+
+

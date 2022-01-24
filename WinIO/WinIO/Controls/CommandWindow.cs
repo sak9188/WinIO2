@@ -20,7 +20,7 @@ namespace WinIO.Controls
     /// <summary>
     /// Interaction logic for ComandWindow.xaml
     /// </summary>
-    public partial class ComandWindow : AcrylicWindow
+    public partial class CommandWindow : AcrylicWindow
     {
         public static readonly ObservableCollection<TreeItemView> Items
             = new ObservableCollection<TreeItemView>();
@@ -30,7 +30,7 @@ namespace WinIO.Controls
 
         public OutputDocument Output => OutPanel;
 
-        public ComandWindow()
+        public CommandWindow()
         {
             InitializeComponent();
         
@@ -39,6 +39,8 @@ namespace WinIO.Controls
             textEditor.Options.ShowEndOfLine = true;
             textEditor.Options.ShowTabs = true;
             textEditor.Options.ShowSpaces = true;
+
+            LeftTree.ItemsSource = Items;
         }
 
         private void LeftTreeSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

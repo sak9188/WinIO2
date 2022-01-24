@@ -2,9 +2,7 @@
 
 
 from WinIO.Models import TreeItemView
-from WinIO.Core import PyDelegateConverter as PyDel
 
-from WinIO2.Core.FunctionTool import FunctionChain
 
 class TreeItem(TreeItemView):
 
@@ -16,7 +14,19 @@ class TreeItem(TreeItemView):
 		return self.Name
 
 	@name.setter
-	def name(self):
-		return self.Name
+	def name(self, value):
+		self.Name = value
 
+	@property
+	def is_checked(self):
+		return self.IsChecked
 
+	@is_checked.setter
+	def is_checked(self, value):
+		self.IsChecked = value
+
+	def add(self, child):
+		self.Children.Add(child)
+
+	def reomve(self, child):
+		self.Children.remove(child)

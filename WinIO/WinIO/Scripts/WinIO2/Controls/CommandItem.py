@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 from WinIO.Models import CommandView
-from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.CodeFactory import BaseCodeFactory
 from WinIO2.Core import code
