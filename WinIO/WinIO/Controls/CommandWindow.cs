@@ -30,6 +30,8 @@ namespace WinIO.Controls
 
         public OutputDocument Output => OutPanel;
 
+        public Button ExeButton => ExecuteButton;
+
         public CommandWindow()
         {
             InitializeComponent();

@@ -51,7 +51,7 @@
                                     Width="{Binding ActualWidth, ElementName=RightCanvas}"
             >Welcome to AvalonEdit!
             </avalonEdit:TextEditor>
-            <Button Style="{StaticResource ButtonRevealStyle}" 
+            <Button x:Name="ExecuteButton" Style="{StaticResource ButtonRevealStyle}" 
                     Canvas.Bottom="20" Canvas.Right="20" Padding="7" FontSize="14">运行</Button>
         </Canvas>
     </Grid>

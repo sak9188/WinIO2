@@ -8,6 +8,14 @@ class FloatDocument(CustomeDocument):
 		control.parent = self
 
 	@property
+	def title(self):
+		return self.Title
+
+	@title.setter
+	def title(self, value):
+		self.Title = value
+
+	@property
 	def ban_resort(self):
 		return self.BanResort
 

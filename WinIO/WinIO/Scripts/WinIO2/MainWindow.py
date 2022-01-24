@@ -53,6 +53,9 @@ class MainWindow(object):
 		# 一些其他的数据项，做生命周期管理
 		self.__tree_item = {}
 
+		# io
+		self.io = None
+
 		self.init_self()
 
 	def __str__(self):
@@ -264,7 +267,8 @@ class MainWindow(object):
 		document = FloatDocument(name, control)
 		self.dock_pane.InsertChildAt(0, document)
 		self.document_dict[index] = control
-		self.UIE_AfterCreateOutput(name)
+		# 记录一下发送指令的index
+		self.UIE_AfterCreateOutput(name, index)
 		return control
 
 	@ThreadHelper.invoke
@@ -284,7 +288,8 @@ class MainWindow(object):
 		self.dock_pane.RemoveChild(control.parent)
 		# 这里做了真正的操作， 可能C#那边还需要手动释放一下
 		self.document_dict.pop(index)
-		# self.UIE_AfterRemoveOutput(index)
+		name = control.parent.title
+		self.UIE_AfterRemoveOutput(name)
 		del control
 
 	@ThreadHelper.begin_invoke
@@ -314,9 +319,19 @@ class MainWindow(object):
 		CommandWindow.CommandWindow.remove_item(treeitem, self.__sort_create_tree_item)
 		self.__tree_item.pop(name)
 
-	def after_create_output(self, event_args, name):
+	def after_create_output(self, event_args, name, index):
 		treeitem = TreeItem.TreeItem(name)
+		treeitem.key = index
 		self.__tree_item[name] = treeitem
 		CommandWindow.CommandWindow.add_item(treeitem, self.__sort_create_tree_item)
 
-
+	"""
+	io 发送命令
+	"""
+	def send_cmd(self, name, cmd):
+		if not self.io:
+			return
+		treeItem = self.__tree_item.get(name)
+		if treeItem:
+			# 这里应该会有的key
+			self.io.send(treeItem.key, cmd)

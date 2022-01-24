@@ -6,6 +6,7 @@ from WinIO.Core import PyDelegateConverter as PyDel
 
 from WinIO2.Controls import TreeItem
 from WinIO2.Controls.IBaseControls.OutputControl import OutputControl
+from WinIO2.Core.FunctionTool import FunctionChain
 
 
 class CommandWindow(CommandWindow):
@@ -14,6 +15,12 @@ class CommandWindow(CommandWindow):
 
 	def __init__(self):
 		self.output = OutputControl(self.Output)
+		self.click_exebutton = FunctionChain()
+		self.click_exebutton += self.after_click_exebutton
+		self.ExeButton.Click += PyDel.ToRoutedEventHandler(self.click_exebutton)
+	
+	def after_click_exebutton(self, sender, args):
+		pass
 
 	@classmethod
 	def add_item(cls, item, sort_fun=None):
