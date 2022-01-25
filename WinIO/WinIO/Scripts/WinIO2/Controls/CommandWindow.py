@@ -20,13 +20,8 @@ class CommandWindow(CommandWindow):
 		self.click_exebutton = FunctionChain()
 		self.click_exebutton += self.after_click_exebutton
 		self.ExeButton.Click += PyDel.ToRoutedEventHandler(self.click_exebutton)
-		
-		self.items = []
-		self.Items = self.items
+		self.items = self.get_copy_items()
 
-	def get_copy_items(self):
-		pass
-	
 	def after_click_exebutton(self, sender, args):
 		items = self.selected_items()
 		for item in items:
@@ -39,6 +34,10 @@ class CommandWindow(CommandWindow):
 		return item_list
 
 	@classmethod
+	def get_copy_items(self):
+		pass
+
+	@classmethod
 	def add_item(cls, item, sort_fun=None):
 		if sort_fun:
 			sort_string = sort_fun(item)
@@ -46,11 +45,9 @@ class CommandWindow(CommandWindow):
 			if not pitem:
 				pitem = TreeItem.TreeItem(sort_string)
 				cls.ItemPool[sort_string] = pitem
-				# CommandWindow.Items.Add(pitem)
 			pitem.add(item)
 		else:
-			pass
-			# CommandWindow.Items.Add(item)
+			cls.ItemPool[item.name] = item
 
 	@classmethod
 	def remove_item(cls, item, sort_fun=None):
@@ -63,11 +60,9 @@ class CommandWindow(CommandWindow):
 				return
 			pitem.remove(item)
 			if pitem.Children.Count == 0:
-				pass
-				# CommandWindow.Items.Remove(pitem)
+				cls.ItemPool.pop(item.name)
 		else:
-			pass
-			# CommandWindow.Items.Remove(item)
+			cls.ItemPool.pop(item.name)
 
 	def write(self, s):
 		self.output.write(s)
