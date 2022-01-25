@@ -8,6 +8,8 @@ from WinIO2.Controls import TreeItem
 from WinIO2.Controls.IBaseControls.OutputControl import OutputControl
 from WinIO2.Core.FunctionTool import FunctionChain
 
+from Tool.GameIO import GIONetWork
+io = GIONetWork.get_io_select()
 
 class CommandWindow(CommandWindow):
 
@@ -18,9 +20,23 @@ class CommandWindow(CommandWindow):
 		self.click_exebutton = FunctionChain()
 		self.click_exebutton += self.after_click_exebutton
 		self.ExeButton.Click += PyDel.ToRoutedEventHandler(self.click_exebutton)
+		
+		self.items = []
+		self.Items = self.items
+
+	def get_copy_items(self):
+		pass
 	
 	def after_click_exebutton(self, sender, args):
-		pass
+		items = self.selected_items()
+		for item in items:
+			io.send(item.key, self.EditText)
+
+	def selected_items(self):
+		item_list = []
+		for item in self.items:
+			item_list += item.selected_items()
+		return item_list
 
 	@classmethod
 	def add_item(cls, item, sort_fun=None):
@@ -30,10 +46,11 @@ class CommandWindow(CommandWindow):
 			if not pitem:
 				pitem = TreeItem.TreeItem(sort_string)
 				cls.ItemPool[sort_string] = pitem
-				CommandWindow.Items.Add(pitem)
+				# CommandWindow.Items.Add(pitem)
 			pitem.add(item)
 		else:
-			CommandWindow.Items.Add(item)
+			pass
+			# CommandWindow.Items.Add(item)
 
 	@classmethod
 	def remove_item(cls, item, sort_fun=None):
@@ -46,9 +63,11 @@ class CommandWindow(CommandWindow):
 				return
 			pitem.remove(item)
 			if pitem.Children.Count == 0:
-				CommandWindow.Items.Remove(pitem)
+				pass
+				# CommandWindow.Items.Remove(pitem)
 		else:
-			CommandWindow.Items.Remove(item)
+			pass
+			# CommandWindow.Items.Remove(item)
 
 	def write(self, s):
 		self.output.write(s)

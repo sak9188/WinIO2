@@ -22,15 +22,16 @@ namespace WinIO.Controls
     /// </summary>
     public partial class CommandWindow : AcrylicWindow
     {
-        public static readonly ObservableCollection<TreeItemView> Items
-            = new ObservableCollection<TreeItemView>();
+        public ObservableCollection<TreeItemView> Items;
 
-        private Dictionary<TreeItemView, OutputDocument> _viewOutpanels 
+        private Dictionary<TreeItemView, OutputDocument> _viewOutpanels
             = new Dictionary<TreeItemView, OutputDocument>();
 
         public OutputDocument Output => OutPanel;
 
         public Button ExeButton => ExecuteButton;
+
+        public string EditText => textEditor.Text;
 
         public CommandWindow()
         {

@@ -324,14 +324,3 @@ class MainWindow(object):
 		treeitem.key = index
 		self.__tree_item[name] = treeitem
 		CommandWindow.CommandWindow.add_item(treeitem, self.__sort_create_tree_item)
-
-	"""
-	io 发送命令
-	"""
-	def send_cmd(self, name, cmd):
-		if not self.io:
-			return
-		treeItem = self.__tree_item.get(name)
-		if treeItem:
-			# 这里应该会有的key
-			self.io.send(treeItem.key, cmd)
