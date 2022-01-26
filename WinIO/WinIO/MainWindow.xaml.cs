@@ -92,7 +92,7 @@ namespace WinIO
 
             // 命令View
             var commandView = new MenuItemView();
-            commandView.Title = "添加一个快捷指令";
+            commandView.Title = "指令编辑";
             commandView.Icon = "Assets/Icons/plus.png";
             commandView.Click += AddShortcutCommand;
             _menuItemViews.Add(commandView);

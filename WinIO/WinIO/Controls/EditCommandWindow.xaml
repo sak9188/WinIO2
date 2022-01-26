@@ -12,6 +12,6 @@
             <StackPanel x:Name="Items">
             </StackPanel>
         </ScrollViewer>
-        <Button Content="添加一个快捷命令" Style="{StaticResource ButtonRevealStyle}" Height="40" Click="AddQuickCommand"></Button>
+        <Button Content="添加命令" Style="{StaticResource ButtonRevealStyle}" Height="40" Click="AddQuickCommand"></Button>
     </StackPanel>
 </local:ReuseWindow>

@@ -22,8 +22,6 @@ namespace WinIO.PythonNet
     /// </summary>
     public class PyObject : DynamicObject, IEnumerable, IPyDisposable
     {
-        internal static bool Locked = false;
-
 #if TRACE_ALLOC
         /// <summary>
         /// Trace stack for PyObject's construction
@@ -796,16 +794,11 @@ namespace WinIO.PythonNet
         {
             if (args == null) throw new ArgumentNullException(nameof(args));
             
-            if (Locked)
-                throw new AccessViolationException("Can not recursive invoke method");
-
-            Locked = true;
             IntPtr r;
             using(Py.GIL())
             {
                 r = Runtime.PyObject_Call(obj, args.obj, kw?.obj ?? IntPtr.Zero);
             }
-            Locked = false;          
 
             if (r == IntPtr.Zero)
             {

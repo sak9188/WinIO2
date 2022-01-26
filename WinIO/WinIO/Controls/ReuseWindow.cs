@@ -14,6 +14,8 @@ namespace WinIO.Controls
         private static List<ReuseWindow> _resuses = new List<ReuseWindow>();
         private bool CanClose = false;
 
+        public event EventHandler AfterHidden;
+
         public ReuseWindow()
         {
             _resuses.Add(this);
@@ -31,7 +33,8 @@ namespace WinIO.Controls
             if(!CanClose)
             {
                 e.Cancel = true; 
-                this.Visibility = System.Windows.Visibility.Hidden;
+                this.Visibility = Visibility.Hidden;
+                AfterHidden?.Invoke(this, e);
             }
         }
         public static void AppExitHandler(object sender, ExitEventArgs e)
