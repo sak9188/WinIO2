@@ -14,14 +14,14 @@ namespace WinIO
         private static PyObject _entry; 
 
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            InitPythonPath();
+            InitPythonPath(args);
             PythonEngine.Initialize();
             app = new App();
             app.InitializeComponent();
             app.MainWindow = new MainWindow();
-            InitPythonEntry();
+            InitPythonEntry(args);
             app.MainWindow.Show();
             var state = PythonEngine.BeginAllowThreads();
             app.Run();
@@ -29,16 +29,35 @@ namespace WinIO
             PythonEngine.Shutdown();
         }
 
-        internal static void InitPythonPath()
+        internal static string GetPythonPath(string[] args)
         {
-            var beforePath = Environment.GetEnvironmentVariable("PYTHONPATH");
-            Environment.SetEnvironmentVariable("PYTHONPATH", beforePath + ";../../../Scripts", EnvironmentVariableTarget.Process);
+            if(args.Length >= 1)
+            {
+                return args[0];
+            }
+            return ".";
+        }
+        internal static string GetPythonEntry(string[] args)
+        {
+            if(args.Length >= 2)
+            {
+                return args[1];
+            }
+            return "WinIOMain";
         }
 
-        private static void InitPythonEntry()
+        internal static void InitPythonPath(string[] args)
         {
-            // TODO : 这个应该由系统传参进来 
-            _entry = Py.Import("WinIOMain");
+            // Debug ../../../Scripts
+            var path = GetPythonPath(args);
+            var beforePath = Environment.GetEnvironmentVariable("PYTHONPATH");
+            Environment.SetEnvironmentVariable("PYTHONPATH", beforePath + ";" + path, EnvironmentVariableTarget.Process);
+        }
+
+        private static void InitPythonEntry(string[] args)
+        {
+            var entry = GetPythonEntry(args);
+            _entry = Py.Import(entry);
         }
     }
 }

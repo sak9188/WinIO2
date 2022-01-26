@@ -27,6 +27,7 @@ debug = Debug()
 
 
 from WinIO2.MainWindow import MainWindow
+from WinIO2.Core.FunctionTool import FunctionChain
 
 # path = os.path.realpath(__file__)
 # path = path[:path.find("Develop")] + r"Develop\PyCode"
@@ -38,26 +39,26 @@ from Server import GSEnvironment
 from Tool.GameIO import GIONetWork
 
 
-io_select = GIONetWork.get_io_select()
+io = GIONetWork.get_io_select()
 
 
 if GSEnvironment.is_windows():
 	main_window = MainWindow()
 	# 把IO给MainWindow
-	main_window.io = io_select
+	main_window.io = io
 	debug.redirect(main_window)
 
-	io_select.on_write_callback = main_window.on_write
-	io_select.on_progress_callback = main_window.on_progress
-	io_select.on_accept_callback = main_window.on_accept
-	io_select.on_recv_callback = main_window.on_recv
-	io_select.on_close_callback = main_window.on_close
-	io_select.on_except_callback = main_window.on_except
+	io.on_write_callback = FunctionChain(main_window.on_write) 
+	io.on_progress_callback = main_window.on_progress
+	io.on_accept_callback = main_window.on_accept
+	io.on_recv_callback = main_window.on_recv
+	io.on_close_callback = main_window.on_close
+	io.on_except_callback = main_window.on_except
 
-	main_window.after_closed += lambda x, y: io_select.stop()
+	main_window.after_closed += lambda x, y: io.stop()
 
 	main_window.write("PURPLE ===============================================\n")
 	main_window.write("WinIO2 使用帮助\n")
 	main_window.write("PURPLE ===============================================\n")
 
-	io_select.start()
+	io.start()

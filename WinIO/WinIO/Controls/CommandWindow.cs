@@ -25,7 +25,7 @@ namespace WinIO.Controls
         public ObservableCollection<TreeItemView> Items 
             = new ObservableCollection<TreeItemView>();
 
-        public OutputDocument Output => OutPanel;
+        //public OutputDocument Output => OutPanel;
 
         public Button ExeButton => ExecuteButton;
 

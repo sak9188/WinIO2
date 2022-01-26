@@ -1,8 +1,9 @@
 # -*- coding: UTF-8 -*-
 
 class FunctionChain(object):
-	def __init__(self):
-		self.funs = list()
+
+	def __init__(self, *funs):
+		self.funs = list(funs)
 		self.sets = set()
 
 	def __iter__(self):

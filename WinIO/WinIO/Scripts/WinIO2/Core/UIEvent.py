@@ -19,8 +19,8 @@ class UIEvent(object):
 		for key, fun in self.fun_dict.iteritems():
 			try:
 				fun(self._event_args, *args, **kwds)
-			except:
-				print "UI事件:%s 回调发生错误 函数名: %s" % (self.name, key)
+			except Exception as e:
+				print "UI事件:%s 回调发生错误 函数名: %s, 错误: %s" % (self.name, key, e)
 
 	def __add__(self, rhs):
 		key = rhs.__name__

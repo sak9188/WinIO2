@@ -10,7 +10,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:con="clr-namespace:WinIO.Controls"
         mc:Ignorable="d"
-        Title="WinIO 2.0" Height="600" Width="1000"
+        Title="WinIO2 Alpha 1.0" Height="600" Width="1000"
         x:ClassModifier="internal" Icon="splash.png" TitleBarMode="Extend"
         WindowStartupLocation="CenterScreen">
     <fluentWpf:AcrylicWindow.TitleBar>
