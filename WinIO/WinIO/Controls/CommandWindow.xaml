@@ -23,8 +23,7 @@
         
         <!-- StackPanel -->
         <StackPanel Grid.Row="0" Grid.Column="0">
-            <TreeView x:Name="LeftTree" Background="Transparent" BorderThickness="0"
-                      SelectedItemChanged="LeftTreeSelectedItemChanged">
+            <TreeView x:Name="LeftTree" Background="Transparent" BorderThickness="0">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type v:TreeItemView}" ItemsSource="{Binding Children}">
                         <StackPanel Orientation="Horizontal">

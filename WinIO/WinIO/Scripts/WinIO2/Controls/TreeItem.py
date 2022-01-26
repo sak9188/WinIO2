@@ -9,6 +9,7 @@ class TreeItem(TreeItemView):
 	def __init__(self, name):
 		self.name = name
 		self.childs = []
+		self.key = 0
 
 	@property
 	def name(self):
@@ -33,6 +34,13 @@ class TreeItem(TreeItemView):
 	def reomve(self, child):
 		self.Remove(child)
 		self.childs.remove(child)
+
+	def copy(self):
+		item = TreeItem(self.name)
+		item.key = self.key
+		for child in self.childs:
+			item.add(child.copy())
+		return item
 
 	def selected_items(self):
 		select = []

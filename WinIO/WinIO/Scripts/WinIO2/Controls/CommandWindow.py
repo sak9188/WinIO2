@@ -20,7 +20,7 @@ class CommandWindow(CommandWindow):
 		self.click_exebutton = FunctionChain()
 		self.click_exebutton += self.after_click_exebutton
 		self.ExeButton.Click += PyDel.ToRoutedEventHandler(self.click_exebutton)
-		self.items = self.get_copy_items()
+		self.init_data()
 
 	def after_click_exebutton(self, sender, args):
 		items = self.selected_items()
@@ -33,9 +33,13 @@ class CommandWindow(CommandWindow):
 			item_list += item.selected_items()
 		return item_list
 
-	@classmethod
-	def get_copy_items(self):
-		pass
+	def init_data(self):
+		items = []
+		for ori in self.ItemPool.itervalues():
+			copy_item = ori.copy()
+			items.append(copy_item)
+			self.Items.Add(copy_item)
+		self.items = items
 
 	@classmethod
 	def add_item(cls, item, sort_fun=None):

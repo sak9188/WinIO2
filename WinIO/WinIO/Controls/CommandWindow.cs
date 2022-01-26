@@ -25,9 +25,6 @@ namespace WinIO.Controls
         public ObservableCollection<TreeItemView> Items 
             = new ObservableCollection<TreeItemView>();
 
-        private Dictionary<TreeItemView, OutputDocument> _viewOutpanels
-            = new Dictionary<TreeItemView, OutputDocument>();
-
         public OutputDocument Output => OutPanel;
 
         public Button ExeButton => ExecuteButton;
@@ -45,20 +42,6 @@ namespace WinIO.Controls
             textEditor.Options.ShowSpaces = true;
 
             LeftTree.ItemsSource = Items;
-        }
-
-        private void LeftTreeSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            var view = LeftTree.SelectedItem as TreeItemView;
-        
-            // 这里切换面板
-            OutputDocument panel;
-            if(!this._viewOutpanels.TryGetValue(view, out panel))
-            {
-                panel = new OutputDocument();
-                this._viewOutpanels[view] = panel;
-            }
-            OutPanel = panel;
         }
     }
 }

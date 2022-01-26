@@ -30,5 +30,5 @@ class FunctionChain(object):
 		for fun in self:
 			try:
 				fun(*args, **kwds)
-			except:
-				print "函数链调用发生错误 函数名:%s" % (fun.__name__)
+			except Exception as e:
+				print "函数调用发生错误:%s, %s" % (fun.__name__, e)
