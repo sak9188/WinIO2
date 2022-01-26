@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 from WinIO.Controls import ReuseWindow
+from WinIO.Core import PyDelegateConverter as PyDel
 
+from WinIO2.Core.FunctionTool import FunctionChain
 
 class AcrylicWindowStyle(object):
 	Normal = 0
@@ -9,6 +11,10 @@ class AcrylicWindowStyle(object):
 
 
 class BlankWindow(ReuseWindow):
+
+	def __init__(self):
+		self.after_hidden = FunctionChain()
+		self.AfterHidden += PyDel.ToEventHandler(self.after_hidden)
 
 	@property
 	def title(self):
