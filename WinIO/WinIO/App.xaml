@@ -39,7 +39,7 @@
 
                     <!-- SubMenu -->
                     <Style x:Key="HeadMenuItem" TargetType="MenuItem" BasedOn="{StaticResource AcrylicMenuItemStyle}">
-                        <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource AncestorType=Menu}}"></Setter>
+                        <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource AncestorType=MenuBase}}"></Setter>
                     </Style>
 
                     <controls:MenuItemContainerStyleSelector x:Key="MenuItemContainerStyleSelector"></controls:MenuItemContainerStyleSelector>
@@ -82,6 +82,12 @@
                         <Setter Property="ItemContainerStyleSelector" Value="{StaticResource MenuItemContainerStyleSelector}"></Setter>
                     </Style>
                     
+                    <!-- ContextMenu -->
+                    <Style x:Key="ContextMenuStyle" TargetType="ContextMenu" BasedOn="{StaticResource AcrylicContextMenuStyle}">
+                        <Setter Property="Background" Value="{StaticResource SystemChromeMediumLowColorBrush}"></Setter>
+                        <Setter Property="ItemContainerStyleSelector" Value="{StaticResource MenuItemContainerStyleSelector}"></Setter>
+                    </Style>
+
                     <!-- OutPut-->
                     <FontFamily x:Key="OutputDefaultFontFamily">Microsoft Yahei</FontFamily>
                     <system:Double x:Key="OutputDefaultFontSize">12</system:Double>
