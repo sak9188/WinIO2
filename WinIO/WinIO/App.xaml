@@ -89,8 +89,8 @@
                     </Style>
 
                     <!-- OutPut-->
-                    <FontFamily x:Key="OutputDefaultFontFamily">Microsoft Yahei</FontFamily>
-                    <system:Double x:Key="OutputDefaultFontSize">12</system:Double>
+                    <FontFamily x:Key="OutputDefaultFontFamily">Consolas</FontFamily>
+                    <system:Double x:Key="OutputDefaultFontSize">14</system:Double>
 
                     <Style x:Key="OutputDocumentStyle" TargetType="FlowDocument">
                         <Setter Property="FontFamily" Value="{DynamicResource OutputDefaultFontFamily}"></Setter>
