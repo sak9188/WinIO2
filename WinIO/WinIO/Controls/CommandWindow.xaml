@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:WinIO.FluentWPF" 
         xmlns:avalonEdit="clr-namespace:WinIO.AvalonEdit"
         mc:Ignorable="d"
-        Title="命令台" Height="800" Width="1050">
+        Title="命令台" Height="800" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -16,9 +16,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
             <ColumnDefinition Width="5"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="5"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
         <!-- StackPanel -->

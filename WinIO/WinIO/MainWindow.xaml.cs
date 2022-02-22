@@ -96,7 +96,6 @@ namespace WinIO
             commandView.Icon = "Assets/Icons/plus.png";
             commandView.Click += AddShortcutCommand;
             _menuItemViews.Add(commandView);
-
         }
 
         public void SetBackground(string imgPath)
@@ -255,6 +254,23 @@ namespace WinIO
             // 收集一下垃圾
             MainDock.Layout.CollectGarbage();
         }
+
+        public void AddPanel(LayoutAnchorable anchorable)
+        {
+            var pane = this.MainDock.Layout.Descendents().OfType<LayoutDocumentPane>().First();
+            if(pane == null)
+            {
+                pane = new LayoutDocumentPane();
+                MainPanelGroup.InsertChildAt(0, pane);
+            }
+            pane.InsertChildAt(0, anchorable);
+        }
+
+        public void RemovePanel(LayoutAnchorable anchorable)
+        {
+            anchorable.Parent?.RemoveChild(anchorable);
+        }
+
         #endregion
 
         #region EventHandler
