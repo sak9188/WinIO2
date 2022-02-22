@@ -23,6 +23,8 @@
         
         <!-- StackPanel -->
         <StackPanel Grid.Row="0" Grid.Column="0">
+            <StackPanel Orientation="Vertical" Margin="4,5">
+            <TextBlock Text="进程池"></TextBlock>
             <TreeView x:Name="LeftTree" Background="Transparent" BorderThickness="0">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type v:TreeItemView}" ItemsSource="{Binding Children}">
@@ -36,6 +38,46 @@
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="4,5">
+                <TextBlock Text="指令池"></TextBlock>
+                <WrapPanel x:Name="CommandPanel">
+                    <Button Margin="3" Style="{StaticResource ButtonRevealStyle}">
+                        <StackPanel Orientation="Horizontal" Margin="1">
+                            <TextBlock Text="炸飞玩家" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                            <Button Content="C" Height="20" Width="20"></Button>
+                            <Button Content="D" Height="20" Width="20"></Button>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="3" Style="{StaticResource ButtonRevealStyle}">
+                        <StackPanel Orientation="Horizontal" Margin="1">
+                            <TextBlock Text="炸飞玩家" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                            <Button Content="C" Height="20" Width="20"></Button>
+                            <Button Content="D" Height="20" Width="20"></Button>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="3" Style="{StaticResource ButtonRevealStyle}">
+                        <StackPanel Orientation="Horizontal" Margin="1">
+                            <TextBlock Text="炸飞玩家" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                            <Button Content="C" Height="20" Width="20"></Button>
+                            <Button Content="D" Height="20" Width="20"></Button>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="3" Style="{StaticResource ButtonRevealStyle}">
+                        <StackPanel Orientation="Horizontal" Margin="1">
+                            <TextBlock Text="炸飞玩家" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                            <Button Content="C" Height="20" Width="20"></Button>
+                            <Button Content="D" Height="20" Width="20"></Button>
+                        </StackPanel>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="4,5">
+                <TextBlock Text="插件池"></TextBlock>
+                <WrapPanel x:Name="PluginPool">
+                    <Button Margin="3" Content="人物属性面板" Style="{StaticResource ButtonRevealStyle}"></Button>
+                </WrapPanel>
+            </StackPanel>
         </StackPanel>
 
         <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
