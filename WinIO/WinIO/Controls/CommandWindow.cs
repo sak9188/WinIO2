@@ -70,8 +70,21 @@ namespace WinIO.Controls
 
             Commands.Add(item);
             Commands.Add(item10);
+        }
 
-            var a = new TreeViewItem();
+        private void CommandPoolMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var source = e.OriginalSource as DependencyObject;
+            while (source != null && !(source is TreeViewItem))
+                source = VisualTreeHelper.GetParent(source);
+
+            TreeViewItem treeViewItem = source as TreeViewItem;
+
+            if (treeViewItem != null)
+            {
+                treeViewItem.Focus();
+                e.Handled = true;
+            }
         }
     }
 }

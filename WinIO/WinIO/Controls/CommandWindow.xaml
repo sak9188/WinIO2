@@ -43,7 +43,7 @@
             <!-- 指令池 -->
             <StackPanel Orientation="Vertical" Margin="4,5">
                 <TextBlock Text="指令池"></TextBlock>
-                <TreeView x:Name="CommandPool" Background="Transparent">
+                <TreeView x:Name="CommandPool" Background="Transparent" PreviewMouseRightButtonDown="CommandPoolMouseRightButtonDown">
                     <TreeView.Resources>
                         <con:LeftMarginMultiplierConverter Length="19" x:Key="LengthConverter" />
                         <SolidColorBrush x:Key="GlyphBrush" Color="White" />
@@ -72,11 +72,9 @@
                         <Style x:Key="TreeViewItemFocusVisual">
                             <Setter Property="Control.Template">
                                 <Setter.Value>
-                                    <ControlTemplate>
-                                        <Border>
-                                            <Rectangle Margin="0,0,0,0" StrokeThickness="5" Stroke="#FF717171" StrokeDashArray="1 2" Opacity="0"/>
-                                        </Border>
-                                    </ControlTemplate>
+                                    <Border>
+                                        <Rectangle Margin="0,0,0,0" StrokeThickness="5" Stroke="#FF717171" StrokeDashArray="1 2" Opacity="0"/>
+                                    </Border>
                                 </Setter.Value>
                             </Setter>
                         </Style>
@@ -102,7 +100,7 @@
                                               BorderBrush="{TemplateBinding BorderBrush}"
                                               BorderThickness="{TemplateBinding BorderThickness}"
                                               Padding="{TemplateBinding Padding}">
-                                              <Grid Margin="{Binding Converter={StaticResource LengthConverter},
+                                                <Grid Margin="{Binding Converter={StaticResource LengthConverter},
                                               RelativeSource={RelativeSource TemplatedParent}}">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
@@ -117,6 +115,22 @@
                                                     <ContentPresenter x:Name="PART_Header" Grid.Column="1" ContentSource="Header"
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                                                 </Grid>
+                                                <Border.ContextMenu>
+                                                    <ContextMenu Style="{StaticResource AcrylicContextMenuStyle}">
+                                                        <MenuItem Header="新建指令" />
+                                                        <MenuItem Header="新建指令集" />
+                                                        <Separator/>
+                                                        <MenuItem Header="复制"/>
+                                                        <MenuItem Header="粘贴" IsEnabled="False"/>
+                                                        <MenuItem Header="修改指令" IsEnabled="False"/>
+                                                        <MenuItem Header="重命名" />
+                                                        <Separator/>
+                                                        <MenuItem Header="删除指令/集" />
+                                                        <Separator/>
+                                                        <MenuItem Header="导入指令/集" IsEnabled="False"/>
+                                                        <MenuItem Header="导出指令/集" IsEnabled="False"/>
+                                                    </ContextMenu>
+                                                </Border.ContextMenu>
                                             </Border>
                                             <ItemsPresenter x:Name="ItemsHost" />
                                         </StackPanel>
@@ -146,22 +160,6 @@
                             </Setter>
                         </Style>
                     </TreeView.ItemContainerStyle>
-                    <TreeView.ContextMenu>
-                        <ContextMenu Style="{StaticResource ContextMenuStyle}">
-                            <MenuItem Header="新建指令" />
-                            <MenuItem Header="新建指令集" />
-                            <Separator/>
-                            <MenuItem Header="复制"/>
-                            <MenuItem Header="粘贴" IsEnabled="False"/>
-                            <MenuItem Header="修改指令" IsEnabled="False"/>
-                            <MenuItem Header="重命名" />
-                            <Separator/>
-                            <MenuItem Header="删除指令/集" />
-                            <Separator/>
-                            <MenuItem Header="导入指令/集" IsEnabled="False"/>
-                            <MenuItem Header="导出指令/集" IsEnabled="False"/>
-                        </ContextMenu>
-                    </TreeView.ContextMenu>
                 </TreeView>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="4,5">

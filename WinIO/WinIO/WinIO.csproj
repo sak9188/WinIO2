@@ -333,6 +333,7 @@
     <Compile Include="Controls\StatusControl.cs" />
     <Compile Include="Controls\TextBoxDialog.cs" />
     <Compile Include="Controls\TreeViewItemExtensions.cs" />
+    <Compile Include="Controls\WinTreeView.cs" />
     <Compile Include="Core\PyDelegateConverter.cs" />
     <Compile Include="Models\CommandView.cs" />
     <Compile Include="Models\MenuItemView.cs" />
@@ -444,6 +445,10 @@
     <Page Include="AvalonEdit\TextEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WinTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\AvalonEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
