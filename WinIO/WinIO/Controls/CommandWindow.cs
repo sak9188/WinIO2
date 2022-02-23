@@ -25,7 +25,8 @@ namespace WinIO.Controls
         public ObservableCollection<TreeItemView> Items 
             = new ObservableCollection<TreeItemView>();
 
-        //public OutputDocument Output => OutPanel;
+        public static ObservableCollection<TreeItemView> Commands 
+            = new ObservableCollection<TreeItemView>();
 
         public Button ExeButton => ExecuteButton;
 
@@ -40,8 +41,37 @@ namespace WinIO.Controls
             textEditor.Options.ShowEndOfLine = true;
             textEditor.Options.ShowTabs = true;
             textEditor.Options.ShowSpaces = true;
-
+            
+            // 左树初始化
             LeftTree.ItemsSource = Items;
+
+            // 指令池
+            CommandPool.ItemsSource = Commands;
+
+            TreeItemView item0 = new TreeItemView();
+            item0.Name = "直接杀死玩家";
+
+            TreeItemView item1 = new TreeItemView();
+            item1.Name = "杀死选中玩家";
+
+            TreeItemView item = new TreeItemView();
+            item.Name = "玩家";
+
+            TreeItemView item10 = new TreeItemView();
+            item10.Name = "超级指令";
+
+            TreeItemView item11 = new TreeItemView();
+            item11.Name = "直接起飞到天上";
+
+            item.Add(item0);
+            item.Add(item1);
+
+            item10.Add(item11);
+
+            Commands.Add(item);
+            Commands.Add(item10);
+
+            var a = new TreeViewItem();
         }
     }
 }
