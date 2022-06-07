@@ -32,6 +32,15 @@ namespace WinIO.Controls
 
         public string EditText => textEditor.Text;
 
+        public static RoutedEventHandler ClickBuildInstruct;
+        public static RoutedEventHandler ClickBuildInstructSet;
+        // public static RoutedEventHandler ClickCopyInstruct;
+        // public static RoutedEventHandler ClickPasteInstruct;
+        public static RoutedEventHandler ClickModifyInstruct;
+        public static RoutedEventHandler ClickRenameInstruct;
+        public static RoutedEventHandler ClickPasteInstruct;
+        public static RoutedEventHandler ClickDeleteInstruct;
+
         public CommandWindow()
         {
             InitializeComponent();
@@ -85,6 +94,32 @@ namespace WinIO.Controls
                 treeViewItem.Focus();
                 e.Handled = true;
             }
+        }
+
+
+        private void OnClickBuildInstruct(object sender, RoutedEventArgs e)
+        {
+            ClickBuildInstruct.Invoke(sender, e);
+        }
+        private void OnClickBuildInstructSet(object sender, RoutedEventArgs e)
+        {
+            ClickBuildInstructSet.Invoke(sender, e);
+        }
+        private void OnClickModifyInstruct(object sender, RoutedEventArgs e)
+        {
+            ClickModifyInstruct.Invoke(sender, e);
+        }
+        private void OnClickRenameInstruct(object sender, RoutedEventArgs e)
+        {
+            ClickRenameInstruct.Invoke(sender, e);
+        }
+        private void OnClickPasteInstruct(object sender, RoutedEventArgs e)
+        {
+            ClickPasteInstruct.Invoke(sender, e);
+        }
+        private void OnClickDeleteInstruct(object sender, RoutedEventArgs e)
+        {
+            ClickDeleteInstruct.Invoke(sender, e);
         }
     }
 }

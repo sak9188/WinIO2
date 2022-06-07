@@ -72,8 +72,8 @@
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                                     </Grid>
                                     <Border.ContextMenu>
-                                        <ContextMenu Style="{StaticResource AcrylicContextMenuStyle}">
-                                            <MenuItem Header="新建指令" />
+                                        <ContextMenu>
+                                            <MenuItem Header="新建指令"/>
                                             <MenuItem Header="新建指令集" />
                                             <Separator/>
                                             <MenuItem Header="复制"/>

@@ -6,7 +6,6 @@
         xmlns:con="clr-namespace:WinIO.Controls" 
         xmlns:v="clr-namespace:WinIO.Models"
         xmlns:local="clr-namespace:WinIO.FluentWPF" 
-        xmlns:fwr="clr-namespace:WinIO.FluentWPF.Resources"
         xmlns:avalonEdit="clr-namespace:WinIO.AvalonEdit"
         mc:Ignorable="d"
         Title="命令台" Height="800" Width="700">
@@ -116,16 +115,17 @@
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                                                 </Grid>
                                                 <Border.ContextMenu>
-                                                    <ContextMenu Style="{StaticResource AcrylicContextMenuStyle}">
-                                                        <MenuItem Header="新建指令" />
-                                                        <MenuItem Header="新建指令集" />
+                                                    <ContextMenu Style="{StaticResource AcrylicContextMenuStyle}" 
+                                                                 Background="{StaticResource SystemChromeMediumLowColorBrush}">
+                                                        <MenuItem Header="新建指令" Click="OnClickBuildInstruct"/>
+                                                        <MenuItem Header="新建指令集" Click="OnClickBuildInstructSet"/>
                                                         <Separator/>
-                                                        <MenuItem Header="复制"/>
-                                                        <MenuItem Header="粘贴" IsEnabled="False"/>
-                                                        <MenuItem Header="修改指令" IsEnabled="False"/>
+                                                        <MenuItem Header="复制" Click="OnClickModifyInstruct"/>
+                                                        <MenuItem Header="粘贴" Click="OnClickRenameInstruct" IsEnabled="False"/>
+                                                        <MenuItem Header="修改指令" Click="OnClickPasteInstruct" IsEnabled="False"/>
                                                         <MenuItem Header="重命名" />
                                                         <Separator/>
-                                                        <MenuItem Header="删除指令/集" />
+                                                        <MenuItem Header="删除指令/集" Click="OnClickDeleteInstruct"/>
                                                         <Separator/>
                                                         <MenuItem Header="导入指令/集" IsEnabled="False"/>
                                                         <MenuItem Header="导出指令/集" IsEnabled="False"/>
